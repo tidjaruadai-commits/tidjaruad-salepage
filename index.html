@@ -301,11 +301,14 @@ footer ul li{margin-bottom:10px}
 .case .kpis{grid-template-columns:repeat(2,1fr);margin-bottom:0}
 .mix{display:grid;grid-template-columns:172px 1fr;gap:18px;align-items:start}
 .phone-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
-.phone{display:block;border-radius:24px;border:5px solid #0A0E1F;overflow:hidden;background:#0A0E1F;box-shadow:var(--shadow-lg);cursor:zoom-in;transition:.22s}
+.phone{position:relative;display:block;border-radius:24px;border:5px solid #0A0E1F;overflow:hidden;background:#0A0E1F;box-shadow:var(--shadow-lg);cursor:zoom-in;transition:.22s}
 a.phone:hover{transform:translateY(-3px)}
 .phone img,.phone video{width:100%;height:auto;display:block}
 .phone-cap{font-size:13px;line-height:1.55;margin-top:10px;text-align:center}
 .phone-cap b{color:var(--ink);font-weight:500}
+/* ภาพจำลอง (ธีมร้านอื่น) — ต้องบอกคนดูชัด ๆ ว่าไม่ใช่ภาพโพสต์จริง */
+.mock-badge{position:absolute;top:10px;left:10px;z-index:2;background:rgba(10,14,31,.8);color:#fff;font-size:11px;font-weight:600;letter-spacing:.4px;padding:4px 10px;border-radius:999px;backdrop-filter:blur(4px)}
+.mock-note{font-size:12px;line-height:1.5;color:#9BA0C0;text-align:center;margin-top:4px}
 /* โชว์รีลวิดีโอ (ฝัง vdo-deck.html) */
 .reel{background:linear-gradient(155deg,#1B1D45,#0A0E1F);border-radius:30px;padding:34px;margin-bottom:46px;box-shadow:var(--shadow-lg);color:rgba(255,255,255,.7)}
 .reel .proof-head h3{color:#fff}
@@ -462,7 +465,7 @@ a.phone:hover{transform:translateY(-3px)}
     </div>
     <div class="grid g3 pf-cases">
       <a class="pf-case" href="#consult"><div class="pf-thumb"><img src="assets/proof/gmv-2025.webp" width="744" height="493" alt="ร้านค้า TikTok Shop · ฿182.6 ล้าน" style="object-position:left top" loading="lazy"></div><div class="pf-body"><div class="pf-who">ร้านค้า TikTok Shop <span>วางกลยุทธ์ทั้งร้าน</span></div><div class="pf-num">฿182.6 ล้าน</div><p>GMV ทั้งปี 2025 จากร้านเดียว · ขายได้ 648,644 รายการ</p><span class="pf-go">ดูรายละเอียด <svg class="i"><use href="#i-arrow-d"/></svg></span></div></a>
-      <a class="pf-case" href="#ads"><div class="pf-thumb"><img src="assets/proof/cafe-line-traffic.webp" width="1400" height="669" alt="ร้านอาหารพรีเมี่ยม · ฿3.50 / คลิก" style="object-position:left top" loading="lazy"></div><div class="pf-body"><div class="pf-who">ร้านอาหารพรีเมี่ยม <span>ดูแลยิงแอด</span></div><div class="pf-num">฿3.50 / คลิก</div><p>ส่งคนจาก TikTok เข้า LINE เพื่อจองที่นั่ง · 339 Conversions ในเดือนเดียว</p><span class="pf-go">ดูรายละเอียด <svg class="i"><use href="#i-arrow-d"/></svg></span></div></a>
+      <a class="pf-case" href="#ads"><div class="pf-thumb"><img src="assets/proof/resto-line-traffic.webp" width="1400" height="669" alt="ร้านอาหารพรีเมี่ยม · ฿3.50 / คลิก" style="object-position:left top" loading="lazy"></div><div class="pf-body"><div class="pf-who">ร้านอาหารพรีเมี่ยม <span>ดูแลยิงแอด</span></div><div class="pf-num">฿3.50 / คลิก</div><p>ส่งคนจาก TikTok เข้า LINE เพื่อจองที่นั่ง · 339 Conversions ในเดือนเดียว</p><span class="pf-go">ดูรายละเอียด <svg class="i"><use href="#i-arrow-d"/></svg></span></div></a>
       <a class="pf-case" href="#kol"><div class="pf-thumb"><img src="assets/proof/gmv-detail-2025.webp" width="830" height="413" alt="ร้านค้า TikTok Shop · ฿89.46 ล้าน" style="object-position:center center" loading="lazy"></div><div class="pf-body"><div class="pf-who">ร้านค้า TikTok Shop <span>ไลฟ์ &amp; ครีเอเตอร์</span></div><div class="pf-num">฿89.46 ล้าน</div><p>ยอดขายจากไลฟ์ปี 2025 (+254%) · ยอดผ่านแอฟฟิลิเอตโต +3,615%</p><span class="pf-go">ดูรายละเอียด <svg class="i"><use href="#i-arrow-d"/></svg></span></div></a>
     </div>
     <div class="reel" id="showreel">
@@ -745,10 +748,10 @@ a.phone:hover{transform:translateY(-3px)}
           </div>
         </div>
         <div class="mix">
-          <div><a class="phone zoom" href="assets/proof/cafe-instant-page.webp" data-cap="Instant Page ของแคมเปญส่งคนเข้า LINE"><img src="assets/proof/cafe-instant-page.webp" width="292" height="544" alt="Instant Page ของแคมเปญส่งคนเข้า LINE" loading="lazy"></a><div class="phone-cap"><b>Instant Page</b> → LINE</div></div>
+          <div><a class="phone zoom" href="assets/proof/resto-instant-page.webp" data-cap="Instant Page ของแคมเปญส่งคนเข้า LINE"><img src="assets/proof/resto-instant-page.webp" width="292" height="544" alt="Instant Page ของแคมเปญส่งคนเข้า LINE" loading="lazy"></a><div class="phone-cap"><b>Instant Page</b> → LINE</div></div>
           <div class="shots">
-            <a class="shot zoom" href="assets/proof/cafe-line-traffic.webp" data-cap="ผลแคมเปญส่งคนเข้า LINE"><img src="assets/proof/cafe-line-traffic.webp" width="1400" height="669" alt="ผลแคมเปญส่งคนเข้า LINE" loading="lazy"><span class="cap"><b>มี.ค. 2026</b> · งบ ฿10,841.82 · 334,404 Impressions · 339 Conversions</span></a>
-            <a class="shot zoom" href="assets/proof/cafe-conv.webp" data-cap="ต้นทุนต่อ Conversion รายแอด"><img src="assets/proof/cafe-conv.webp" width="1400" height="525" alt="ต้นทุนต่อ Conversion รายแอด" loading="lazy"><span class="cap"><b>17 แอด · 351 Conversions</b> · ตัวที่ดีที่สุด ฿26.66 ต่อ Conversion</span></a>
+            <a class="shot zoom" href="assets/proof/resto-line-traffic.webp" data-cap="ผลแคมเปญส่งคนเข้า LINE"><img src="assets/proof/resto-line-traffic.webp" width="1400" height="669" alt="ผลแคมเปญส่งคนเข้า LINE" loading="lazy"><span class="cap"><b>มี.ค. 2026</b> · งบ ฿10,841.82 · 334,404 Impressions · 339 Conversions</span></a>
+            <a class="shot zoom" href="assets/proof/resto-conv.webp" data-cap="ต้นทุนต่อ Conversion รายแอด"><img src="assets/proof/resto-conv.webp" width="1400" height="525" alt="ต้นทุนต่อ Conversion รายแอด" loading="lazy"><span class="cap"><b>17 แอด · 351 Conversions</b> · ตัวที่ดีที่สุด ฿26.66 ต่อ Conversion</span></a>
           </div>
         </div>
       </div>
@@ -844,8 +847,8 @@ a.phone:hover{transform:translateY(-3px)}
         <div class="kpi"><b>1,695</b><span>ผู้ติดตามใหม่จากโฆษณา</span></div>
       </div>
       <div class="split" style="--c:1fr 230px">
-        <a class="shot zoom" href="assets/proof/cafe-engagement.webp" data-cap="Engagement จากแคมเปญวิดีโอ"><img src="assets/proof/cafe-engagement.webp" width="1224" height="676" alt="Engagement จากแคมเปญวิดีโอ" loading="lazy"><span class="cap"><b>รวม 33 แคมเปญ</b> · 115,704 ถูกใจ · 23,957 เข้าโปรไฟล์ · 1,695 ผู้ติดตาม</span></a>
-        <div><a class="phone zoom" href="assets/proof/cafe-post.webp" data-cap="ตัวอย่างคลิปบน TikTok ของร้าน"><img src="assets/proof/cafe-post.webp" width="560" height="967" alt="ตัวอย่างคลิปบน TikTok ของร้าน" loading="lazy"></a><div class="phone-cap"><b>1,236 ถูกใจ</b> · 311 บันทึก · 596 แชร์</div></div>
+        <a class="shot zoom" href="assets/proof/resto-engagement.webp" data-cap="Engagement จากแคมเปญวิดีโอ"><img src="assets/proof/resto-engagement.webp" width="1224" height="676" alt="Engagement จากแคมเปญวิดีโอ" loading="lazy"><span class="cap"><b>รวม 33 แคมเปญ</b> · 115,704 ถูกใจ · 23,957 เข้าโปรไฟล์ · 1,695 ผู้ติดตาม</span></a>
+        <div><a class="phone zoom" href="assets/proof/resto-post.webp" data-cap="ตัวอย่างคลิปบน TikTok ของร้าน"><img src="assets/proof/resto-post.webp" width="560" height="967" alt="ตัวอย่างคลิปบน TikTok ของร้าน" loading="lazy"></a><div class="phone-cap"><b>1,236 ถูกใจ</b> · 311 บันทึก · 596 แชร์</div></div>
       </div>
       <p class="proof-note">* ภาพจากหลังบ้านจริง ปิดชื่อแบรนด์ ชื่อลูกค้า และรูปสินค้าเพื่อความเป็นส่วนตัวของลูกค้า · กดที่ภาพเพื่อดูขนาดเต็ม</p>
     </div>
@@ -925,7 +928,7 @@ a.phone:hover{transform:translateY(-3px)}
       </div>
       <div class="split" style="--c:1fr 230px">
         <a class="shot zoom" href="assets/proof/gmv-detail-2025.webp" data-cap="รายละเอียด GMV แยกช่องทาง ปี 2025"><img src="assets/proof/gmv-detail-2025.webp" width="830" height="413" alt="รายละเอียด GMV แยกช่องทาง ปี 2025" loading="lazy"><span class="cap"><b>รายละเอียด GMV 8 ม.ค. – 31 ธ.ค. 2025</b> · ไลฟ์ 49.1% · วิดีโอ 34.5% · การ์ดสินค้า 16.3%</span></a>
-        <div><a class="phone zoom" href="assets/proof/cafe-post-kol.webp" data-cap="คลิปรีวิวร้านอาหารจากครีเอเตอร์"><img src="assets/proof/cafe-post-kol.webp" width="560" height="967" alt="คลิปรีวิวร้านอาหารจากครีเอเตอร์" loading="lazy"></a><div class="phone-cap"><b>คลิปรีวิวจากครีเอเตอร์</b><br>1,838 ถูกใจ · 293 บันทึก</div></div>
+        <div><a class="phone zoom" href="assets/proof/resto-post-kol.webp" data-cap="คลิปรีวิวร้านอาหารจากครีเอเตอร์"><img src="assets/proof/resto-post-kol.webp" width="560" height="967" alt="คลิปรีวิวร้านอาหารจากครีเอเตอร์" loading="lazy"></a><div class="phone-cap"><b>คลิปรีวิวจากครีเอเตอร์</b><br>1,838 ถูกใจ · 293 บันทึก</div></div>
       </div>
       <p class="proof-note">* ภาพจากหลังบ้านจริง ปิดชื่อแบรนด์ ชื่อลูกค้า และรูปสินค้าเพื่อความเป็นส่วนตัวของลูกค้า · กดที่ภาพเพื่อดูขนาดเต็ม</p>
     </div>
