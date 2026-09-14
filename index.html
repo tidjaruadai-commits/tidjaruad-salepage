@@ -268,6 +268,56 @@ footer ul li{margin-bottom:10px}
 .reel-link{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:46px;padding:18px 22px;border-radius:18px;
   background:linear-gradient(155deg,#1B1D45,#0A0E1F);color:#fff;font-weight:500;box-shadow:var(--shadow-lg);transition:.2s}
 .reel-link:hover{transform:translateY(-3px)}
+/* ===== #certified รางวัล & TikTok Certified (จากเด็คหน้า 3) ===== */
+.cert{background:var(--cream)}
+.cert-head{display:grid;grid-template-columns:1.4fr .6fr;gap:24px 40px;align-items:center;margin-bottom:34px}
+.cert-head h2{font-size:clamp(25px,3.2vw,35px);font-weight:700;letter-spacing:-.3px;margin-bottom:10px}
+.cert-head p{font-size:16.5px}
+.cert-stat{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px 26px;text-align:center;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.cert-stat::before{content:"";position:absolute;left:0;top:0;right:0;height:4px;background:linear-gradient(90deg,var(--red),var(--blue))}
+.cert-stat b{display:block;font-size:46px;font-weight:700;color:var(--red);line-height:1.1;letter-spacing:-.5px}
+.cert-stat span{display:block;font-size:14.5px;margin-top:4px;color:var(--ink);font-weight:500}
+.cert-line{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;
+  background:linear-gradient(8deg,rgba(255,51,71,.10) 0%,rgba(255,51,71,0) 55%);border-radius:24px;padding:10px 12px 0}
+.t-s{--tc:#9AA0B8}.t-g{--tc:#C9A227}.t-e{--tc:#FF3347}.t-x{--tc:#1B1D45}
+.cert-col{display:flex;flex-direction:column;align-items:center;text-align:center}
+/* ความสูงคงที่ทุกคอลัมน์ -> จุดบนเส้นเวลาและปีอยู่แนวเดียวกัน (คอลัมน์ 2026 มีรูป+ป้าย สูงสุด ~377px) */
+.cert-vis{height:384px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:10px;padding-bottom:calc(var(--up) * 26px)}
+.cert-tier{font-size:11px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--tc)}
+.cb{width:118px;height:146px;border-radius:16px;background:#fff;border:3px solid var(--tc);box-shadow:0 14px 30px rgba(27,29,69,.14);overflow:hidden;display:grid;place-items:center}
+.cb img{width:100%;height:100%;object-fit:cover}
+.cb.fit{height:118px}
+.cb.fit img{object-fit:contain;padding:6px}
+.cb.icon{height:118px}
+.cb.icon img{width:56px;height:56px}
+.cs{width:118px;border-radius:10px;overflow:hidden;box-shadow:0 8px 18px rgba(27,29,69,.16)}
+.cs img{width:100%;height:auto}
+.cert-axis{position:relative;width:100%;height:16px;margin:16px 0 12px}
+.cert-axis::before{content:"";position:absolute;left:-9px;right:-9px;top:7px;height:2px;background:#DCE2EC}
+.cert-axis::after{content:"";position:absolute;left:50%;top:1px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--tc);box-shadow:0 0 0 4px #fff}
+.cert-y{font-size:30px;font-weight:700;color:var(--ink);line-height:1.1}
+.cert-t{display:inline-block;margin:8px 0 10px;padding:4px 12px;border-radius:999px;background:var(--tc);color:#fff;font-size:11.5px;font-weight:600;line-height:1.45}
+.cert-col ul{list-style:none;font-size:14px;line-height:1.7;color:var(--ink-2)}
+@media(max-width:1000px){
+  .cert-vis{height:320px;padding-bottom:calc(var(--up) * 18px)}
+  .cb{width:100px;height:124px}.cb.fit,.cb.icon{height:100px}.cs{width:100px}
+}
+@media(max-width:900px){
+  .cert-head{grid-template-columns:1fr}
+  .cert-line{grid-template-columns:1fr;gap:12px;background:none;padding:0}
+  /* แถว 1fr บน-ล่าง = ดันข้อความ (ปี/ระดับ/รายการ) ให้อยู่กลางแนวตั้งข้างภาพ แม้คอลัมน์ภาพสูง 2 ชิ้น */
+  .cert-col{display:grid;grid-template-columns:118px 1fr;grid-template-rows:1fr auto auto auto 1fr;column-gap:18px;
+    align-items:center;text-align:left;
+    background:#fff;border:1px solid var(--line);border-left:4px solid var(--tc);border-radius:18px;padding:16px}
+  .cert-vis{height:auto;padding:0;grid-row:1 / -1;justify-content:center}
+  .cert-y{grid-row:2}.cert-t{grid-row:3}.cert-col ul{grid-row:4}
+  .cert-axis,.cert-tier{display:none}
+  .cert-y{font-size:24px}
+  .cert-t{justify-self:start;margin:6px 0}
+  .cb,.cb.fit,.cb.icon,.cs{width:100px}
+  .cb{height:124px}.cb.fit,.cb.icon{height:100px}
+}
+
 /* ===== PROOF · ผลงานจริงจากหลังบ้าน (ในแต่ละบริการ) ===== */
 .proof{background:#fff;border:1px solid var(--line);border-radius:28px;padding:36px;margin-bottom:46px;box-shadow:var(--shadow)}
 .proof-head{display:grid;grid-template-columns:1.1fr .9fr;gap:12px 36px;align-items:end;margin-bottom:26px}
@@ -418,6 +468,7 @@ a.phone:hover{transform:translateY(-3px)}
     <button class="burger" aria-label="เมนู" onclick="document.getElementById('nl').classList.toggle('open')"><svg class="i"><use href="#i-menu"/></svg></button>
     <div class="nav-links" id="nl">
       <a href="#portfolio">ผลลัพธ์</a>
+      <a href="#certified">รางวัล</a>
       <a href="#services">บริการ</a>
       <a href="#consult">ปรึกษา</a>
       <a href="#training">สอนยิงแอด</a>
@@ -478,6 +529,27 @@ a.phone:hover{transform:translateY(-3px)}
       <div class="proof-head"><div><div class="proof-tag"><svg class="i"><use href="#i-film"/></svg> ผลงานวิดีโอ · 11 แบรนด์เด่น</div><h3>ดูผลงานคลิปจริงของเราได้ตรงนี้เลย</h3></div><p>โชว์รีลชุดเดียวกับที่เราเปิดบนจอบูธ กดการ์ดแบรนด์เพื่อดูคลิปของแบรนด์นั้น หรือกด “เล่นอัตโนมัติ” ให้ไล่ดูทั้งหมด</p></div>
       <div class="reel-frame"><iframe src="vdo-deck.html" title="ผลงานวิดีโอติดจรวด" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
       <div class="reel-bar"><span>คลิกในกรอบก่อน แล้วใช้ ← → เลื่อนสไลด์ · M เปิดเสียง · Esc กลับสารบัญ</span><a class="btn btn-line" href="vdo-deck.html" target="_blank" rel="noopener">เปิดเต็มจอ <svg class="i ar"><use href="#i-arrow-r"/></svg></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CERTIFIED (จากเด็คหน้า 3) ===== -->
+<section id="certified" class="cert">
+  <div class="wrap">
+    <div class="cert-head">
+      <div>
+        <div class="tagchip">CERTIFIED, NOT CLAIMED</div>
+        <h2>การันตีด้วยรางวัลและ TikTok Certified</h2>
+        <p>พิสูจน์ด้วยผลงานจริงและการรับรองอย่างเป็นทางการจาก TikTok ประเทศไทย</p>
+      </div>
+      <div class="cert-stat"><b>$782K</b><span>งบโฆษณาเติบโตขึ้น +115%</span></div>
+    </div>
+    <div class="cert-line">
+      <div class="cert-col t-s" style="--up:0"><div class="cert-vis"><div class="cert-tier">Silver</div><div class="cb photo"><img src="assets/awards/2022-silver.webp" width="244" height="314" alt="TikTok Agency Rewards Program · Silver Tier" loading="lazy"></div></div><div class="cert-axis"></div><div class="cert-y">2022</div><div class="cert-t">TikTok Agency Partner · Silver Tier</div><ul><li>1st Runner Up Creative Contest</li><li>Top 5 Best Campaign</li></ul></div>
+      <div class="cert-col t-g" style="--up:1"><div class="cert-vis"><div class="cert-tier">Gold+</div><div class="cb fit"><img src="assets/awards/2023-gold-strategic.webp" width="300" height="300" alt="TikTok for Business Strategic Agency" loading="lazy"></div><div class="cs"><img src="assets/awards/2023-shop-excellence.webp" width="360" height="300" alt="TikTok Shop Partner · Shop Management Service Excellence" loading="lazy"></div></div><div class="cert-axis"></div><div class="cert-y">2023</div><div class="cert-t">TikTok Agency Partner · Gold+ Tier</div><ul><li>TikTok Agency Champion 2023</li><li>TSP Top Selling Ranking #9 (May 2023)</li></ul></div>
+      <div class="cert-col t-e" style="--up:2"><div class="cert-vis"><div class="cert-tier">Enterprise</div><div class="cb icon"><img src="assets/awards/2024-tiktok.webp" width="64" height="64" alt="TikTok" loading="lazy"></div></div><div class="cert-axis"></div><div class="cert-y">2024</div><div class="cert-t">TikTok Agency Partner · Enterprise</div><ul><li>ขึ้นระดับ Enterprise ปีแรก</li><li>Top List Agency (Shop Ads)</li></ul></div>
+      <div class="cert-col t-e" style="--up:3"><div class="cert-vis"><div class="cert-tier">Enterprise</div><div class="cb fit"><img src="assets/awards/2025-media-buyer.webp" width="300" height="300" alt="TikTok Certified Media Buying Professional" loading="lazy"></div></div><div class="cert-axis"></div><div class="cert-y">2025</div><div class="cert-t">TikTok Agency Partner · Enterprise</div><ul><li>SEA Star Camp</li><li>Qualified Media Buyer Certification</li></ul></div>
+      <div class="cert-col t-x" style="--up:4"><div class="cert-vis"><div class="cert-tier">TikTok Expert</div><div class="cb photo"><img src="assets/awards/2026-founder.webp" width="360" height="480" alt="ผู้ก่อตั้งติดจรวด" loading="lazy"></div><div class="cs"><img src="assets/awards/2026-levelup.webp" width="177" height="137" alt="LEVEL UP with TikTok Experts" loading="lazy"></div></div><div class="cert-axis"></div><div class="cert-y">2026</div><div class="cert-t">TikTok Expert</div><ul><li>ผู้ก่อตั้งได้รับการรับรองเป็น TikTok Expert</li></ul></div>
     </div>
   </div>
 </section>
