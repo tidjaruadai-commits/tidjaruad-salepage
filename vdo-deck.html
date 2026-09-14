@@ -1,0 +1,1194 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>ติดจรวด · คลิปโฆษณาที่สร้างยอดขายจริง</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&display=swap');
+
+/* พาเลทเดียวกับ Sale Deck 2026 */
+:root{
+  --navy:#1B1D45;
+  --navy-deep:#0A0E1F;
+  --red:#FF3347;
+  --blue:#4F8CFF;
+  --white:#FFFDF8;
+  --gray:#EEF2F7;
+  --text:#1B1D45;
+  --text-mid:#3D4070;
+  --text-muted:#7E82B0;
+  --line:rgba(27,29,69,.12);
+  --shadow:0 2px 14px rgba(27,29,69,.08);
+  --shadow-lg:0 14px 40px rgba(27,29,69,.14);
+  --accent:linear-gradient(90deg,var(--red),var(--blue));
+  --s:1;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:#050916}
+body{
+  font-family:'Kanit','Leelawadee UI',Tahoma,sans-serif;
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  cursor:default;
+}
+img{display:block;max-width:100%}
+button{font-family:inherit;color:inherit;border:0;background:none;cursor:pointer}
+
+/* กรอบเวทีชุดเดียวกับ Sale Deck 2026: การ์ดลอยกลางจอ ขอบมน มีเงา พื้นรอบ navy เข้ม */
+#wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--navy-deep)}
+
+.stage{
+  width:1920px;height:1080px;flex:none;position:relative;overflow:hidden;
+  transform:scale(var(--s));transform-origin:center center;
+  background:var(--white);
+  border-radius:18px;
+  box-shadow:0 26px 70px rgba(0,0,0,.42), 0 0 0 1px rgba(255,255,255,.08);
+}
+
+/* ---------- screens ---------- */
+.screen{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .4s ease}
+.screen.on{opacity:1;visibility:visible}
+
+/* ================= HOME / สารบัญ ================= */
+#home{display:flex;flex-direction:column;padding:52px 72px 40px;background:var(--white)}
+
+.hm-top{display:flex;align-items:flex-end;gap:44px}
+/* โลโก้ทางการบนหัวสารบัญ · สูง 72px กว้างตามสัดส่วนจริง (2870x925) */
+.hm-logo{height:72px;width:auto;flex:none;display:block;align-self:center}
+.hm-brand{display:flex;align-items:center;gap:16px;flex:none;padding-bottom:8px}
+.hm-brand .dot{width:14px;height:14px;border-radius:50%;background:var(--red)}
+.hm-brand span{font-size:30px;font-weight:800;color:var(--navy);letter-spacing:.01em}
+.hm-title{flex:1}
+.hm-title h1{font-size:62px;font-weight:800;line-height:1.05;color:var(--navy)}
+.hm-title h1 em{font-style:normal;color:var(--red)}
+.hm-title p{font-size:25px;color:var(--text-muted);margin-top:8px;font-weight:300}
+
+.hm-play{
+  flex:none;display:flex;align-items:center;gap:16px;
+  padding:22px 44px;border-radius:999px;
+  background:var(--red);color:#fff;
+  font-size:31px;font-weight:700;
+  box-shadow:0 14px 34px rgba(255,51,71,.32);
+  transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.hm-play:hover{transform:translateY(-3px);background:#F51E34;box-shadow:0 20px 44px rgba(255,51,71,.42)}
+.hm-play:active{transform:translateY(0)}
+.hm-play .tri{width:0;height:0;border-left:23px solid #fff;border-top:14px solid transparent;border-bottom:14px solid transparent}
+
+.hm-rule{height:4px;background:var(--accent);border-radius:2px;margin:30px 0 26px;width:200px}
+
+.hm-lbl{font-size:22px;color:var(--red);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}
+
+/* การ์ดสารบัญ = กรอบ 9:16 ล้วน ชื่อแบรนด์ทับบนภาพ (ขนาดคำนวณตอน build) */
+.hm-grid{
+  flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;
+  display:grid;grid-template-columns:repeat(var(--cols,6),var(--cw,281px));gap:18px;
+  justify-content:center;align-content:start;padding:4px 12px 4px 4px;
+  scrollbar-width:thin;scrollbar-color:#C9D2E0 transparent;
+}
+.hm-grid::-webkit-scrollbar{width:10px}
+.hm-grid::-webkit-scrollbar-thumb{background:#C9D2E0;border-radius:8px}
+
+.card{
+  position:relative;width:var(--cw);height:var(--ch);
+  text-align:left;border-radius:14px;overflow:hidden;background:var(--navy-deep);
+  box-shadow:var(--shadow);outline:3px solid transparent;outline-offset:-3px;
+  transition:transform .16s ease, outline-color .16s ease, box-shadow .16s ease;
+}
+.card:hover{transform:translateY(-6px);outline-color:var(--red);box-shadow:var(--shadow-lg)}
+.card .thumb{
+  position:absolute;inset:0;overflow:hidden;
+  background:linear-gradient(155deg,var(--navy),var(--navy-deep));
+  display:grid;place-items:center;
+}
+.card .thumb img,.card .thumb video{width:100%;height:100%;object-fit:cover;display:block}
+.card .thumb .initial{font-size:64px;font-weight:800;color:rgba(255,255,255,.18)}
+.card .logo{
+  position:absolute;left:10px;top:10px;z-index:2;
+  width:46px;height:46px;border-radius:10px;background:#fff;padding:5px;object-fit:contain;
+  box-shadow:0 2px 8px rgba(0,0,0,.28);
+}
+.card .body{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;padding:56px 14px 14px;
+  background:linear-gradient(180deg,transparent,rgba(10,14,31,.95));
+}
+.card .body b{display:block;font-size:20px;font-weight:600;line-height:1.25;color:#fff}
+.card .body i{display:block;font-style:normal;font-size:17px;color:#FF8A96;margin-top:4px;font-weight:400}
+
+/* การ์ดที่ยังไม่มีคลิป แต่มีโลโก้ -> พื้นสว่าง โลโก้เต็มกรอบ ตัวหนังสือกลับเป็นสีเข้ม */
+.card.card-logo{background:#fff}
+.thumb-logo{background:var(--white);padding:26px 22px 62px}
+.thumb-logo img{width:100%;height:100%;object-fit:contain}
+.card.card-logo .body{background:linear-gradient(180deg,transparent 0%,rgba(255,253,248,.92) 42%,var(--white) 100%);padding-top:40px}
+.card.card-logo .body b{color:var(--navy)}
+.card.card-logo .body i{color:var(--red)}
+
+.hm-chips{display:flex;gap:14px;margin-top:26px;flex:none;flex-wrap:wrap}
+.chip{
+  padding:16px 30px;border-radius:999px;font-size:23px;font-weight:500;color:var(--text-mid);
+  border:1px solid var(--line);background:#fff;box-shadow:var(--shadow);
+  transition:color .15s ease,border-color .15s ease,background .15s ease;
+}
+.chip:hover{color:var(--red);border-color:var(--red);background:rgba(255,51,71,.06)}
+
+/* ================= DECK ================= */
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .4s ease;background:var(--white)}
+.slide.on{opacity:1;visibility:visible}
+
+.eyebrow{font-size:23px;letter-spacing:.16em;color:var(--red);font-weight:600;text-transform:uppercase}
+
+/* --- cover (สไลด์เดียวที่เป็นพื้นเข้ม เหมือนหน้าปกเด็คเดิม) --- */
+.s-cover{display:grid;place-items:center;overflow:hidden;background:var(--navy-deep)}
+.s-cover .bg{position:absolute;inset:0}
+.s-cover .bg video{width:100%;height:100%;object-fit:cover;opacity:.5}
+.s-cover .veil{position:absolute;inset:0;background:radial-gradient(92% 84% at 50% 50%, rgba(10,14,31,.42) 0%, rgba(10,14,31,.94) 76%)}
+.s-cover .mid{position:relative;text-align:center;padding:0 120px}
+.s-cover h1{font-size:128px;font-weight:800;line-height:1.03;color:#fff;letter-spacing:-.01em}
+.s-cover h1 em{font-style:normal;color:var(--red)}
+.s-cover p{font-size:35px;color:rgba(255,255,255,.72);margin-top:26px;font-weight:300}
+.s-cover .co-logo{height:96px;width:auto;margin:0 auto 40px;display:block;filter:drop-shadow(0 6px 20px rgba(0,0,0,.4))}
+.s-cover .co-brand{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:32px}
+.s-cover .co-brand .dot{width:15px;height:15px;border-radius:50%;background:var(--red)}
+.s-cover .co-brand span{font-size:33px;font-weight:800;color:#fff}
+
+/* --- showreel wall --- */
+/* ล่าง 90px = เว้นที่ให้แถบควบคุมลอย (สูง 58 + ขอบ 26) ไม่ให้ทับคลิป */
+.s-wall{padding:48px 64px 90px;display:flex;flex-direction:column}
+.s-wall .wh{display:flex;align-items:baseline;gap:26px;margin-bottom:24px;flex:none}
+.s-wall .wh h2{font-size:52px;font-weight:800;color:var(--navy)}
+.s-wall .wgrid{
+  flex:1;min-height:0;display:grid;gap:18px;
+  grid-template-columns:repeat(var(--cols,6),var(--cw,247px));grid-auto-rows:var(--ch,440px);
+  justify-content:center;align-content:center;
+}
+.s-wall .wgrid .clip{border-radius:14px;width:var(--cw);height:var(--ch)}
+
+/* --- brand slide --- */
+.s-brand{padding:52px 72px 90px;display:flex;flex-direction:column}
+.bs-head{display:flex;align-items:center;gap:26px;flex:none}
+.bs-logo{
+  width:104px;height:104px;border-radius:18px;background:#fff;padding:12px;flex:none;
+  display:grid;place-items:center;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);
+}
+.bs-logo img{max-width:100%;max-height:100%;object-fit:contain}
+.bs-logo .initial{font-size:44px;font-weight:800;color:var(--navy)}
+.bs-id h2{font-size:56px;font-weight:800;line-height:1.1;color:var(--navy)}
+.bs-id .cat{font-size:25px;color:var(--red);font-weight:400;margin-top:4px}
+.bs-metric{margin-left:auto;text-align:right;flex:none;padding-left:40px;border-left:4px solid var(--red)}
+.bs-metric b{display:block;font-size:82px;font-weight:800;color:var(--red);line-height:1}
+.bs-metric span{display:block;font-size:23px;color:var(--text-muted);margin-top:6px;font-weight:300;max-width:420px}
+/* กรอบคลิปแนวตั้ง 9:16 เป๊ะ · ขนาดคำนวณตอน build ให้พอดีที่ว่างเสมอ */
+.bs-clips{flex:1;min-height:0;display:flex;gap:26px;margin-top:34px;justify-content:center;align-items:center}
+.bs-clips .clip{width:var(--cw);height:var(--ch);flex:none}
+
+/* --- clip tile (พื้นเข้มเสมอ ให้คลิปเด้งออกจากพื้นขาว) --- */
+.clip{position:relative;border-radius:18px;overflow:hidden;background:var(--navy-deep);box-shadow:var(--shadow-lg)}
+.clip video{width:100%;height:100%;object-fit:cover;display:block}
+.clip .cap{
+  position:absolute;left:0;right:0;bottom:0;padding:44px 18px 16px;color:#fff;
+  font-size:20px;font-weight:400;line-height:1.3;
+  background:linear-gradient(180deg,transparent,rgba(10,14,31,.94));
+}
+.clip.empty{
+  display:grid;place-items:center;background:var(--gray);box-shadow:none;
+  border:2px dashed #C3CDDD;
+}
+.clip.empty span{font-size:21px;color:var(--text-muted);font-weight:300;text-align:center;padding:0 16px;line-height:1.5}
+
+/* --- channel slide: ผลงานจริงบนช่องลูกค้า --- */
+.s-channel{padding:40px 72px 90px;display:flex;flex-direction:column}
+.ch-head{display:flex;align-items:center;gap:26px;flex:none}
+.ch-avatar{
+  width:132px;height:132px;border-radius:50%;flex:none;overflow:hidden;background:var(--gray);
+  display:grid;place-items:center;border:3px solid #fff;
+  box-shadow:0 8px 24px rgba(27,29,69,.20), 0 0 0 2px var(--line);
+}
+.ch-avatar img{width:100%;height:100%;object-fit:cover}
+.ch-avatar span{font-size:56px;font-weight:800;color:var(--navy)}
+.ch-id{flex:1;min-width:0}
+.ch-id h2{font-size:52px;font-weight:800;color:var(--navy);line-height:1.1;margin-top:8px}
+.ch-id .ch-handle{font-size:27px;color:var(--red);font-weight:600;margin-top:4px}
+.ch-id .ch-tag{font-size:23px;color:var(--text-muted);font-weight:300;margin-top:6px}
+/* ตัวสไลด์แบ่ง 2 คอลัมน์: ซ้าย = ภาพหน้าช่องจริงเต็มความสูง (พระเอก) ขวา = ตัวเลข + คลิปเด่น */
+.ch-body{flex:1;min-height:0;display:flex;gap:36px;margin-top:22px;align-items:stretch}
+.ch-shot{
+  flex:none;height:100%;border-radius:26px;overflow:hidden;background:var(--navy-deep);
+  border:1px solid var(--line);box-shadow:0 20px 50px rgba(27,29,69,.26), 0 0 0 6px #fff;
+  position:relative;display:grid;place-items:center;
+}
+/* วางภาพแบบ absolute เต็มกรอบ + object-fit:contain = ได้กล่องเท่ากรอบเป๊ะเสมอ
+   เห็นหน้าช่องเต็มหน้าไม่โดนครอป และไม่ล้นไม่ว่าภาพจะสัดส่วนไหน (max-height:100% เอาไม่อยู่ใน grid item) */
+.ch-shot{width:368px}
+.ch-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block}
+.ch-shot-empty{
+  width:356px;background:var(--gray);border:2px dashed #C3CDDD;box-shadow:none;
+}
+.ch-shot-empty span{font-size:21px;color:var(--text-muted);font-weight:300;text-align:center;padding:0 22px;line-height:1.7}
+.ch-shot-empty code{font-size:17px;color:var(--red);word-break:break-all}
+
+.ch-right{flex:1;min-width:0;display:flex;flex-direction:column}
+.ch-stats{display:flex;gap:16px;flex:none}
+.ch-stat{
+  flex:1;padding:18px 22px;border-radius:16px;text-align:center;background:#fff;
+  border:1px solid var(--line);box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.ch-stat::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:var(--accent)}
+.ch-stat b{display:block;font-size:44px;font-weight:800;color:var(--red);line-height:1.05}
+.ch-stat span{display:block;font-size:19px;color:var(--text-muted);font-weight:300;margin-top:4px}
+
+.ch-posts{
+  flex:1;min-height:0;display:flex;gap:24px;margin-top:22px;justify-content:center;align-items:center;
+}
+.ch-posts .ch-post{width:var(--cw);height:var(--ch);flex:none}
+.ch-post .ch-noclip{
+  position:absolute;inset:0;display:grid;place-items:center;
+  background:linear-gradient(155deg,var(--navy),var(--navy-deep));
+}
+.ch-post .ch-noclip span{font-size:21px;color:rgba(255,255,255,.5);font-weight:300;text-align:center;padding:0 20px;line-height:1.5}
+.ch-views{
+  position:absolute;top:14px;left:14px;z-index:2;padding:10px 18px;border-radius:12px;
+  background:var(--red);color:#fff;text-align:center;box-shadow:0 6px 18px rgba(255,51,71,.45);
+}
+.ch-views b{display:block;font-size:34px;font-weight:800;line-height:1}
+.ch-views i{display:block;font-style:normal;font-size:16px;font-weight:400;opacity:.92;margin-top:2px}
+.ch-meta{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;padding:70px 18px 18px;color:#fff;
+  background:linear-gradient(180deg,transparent,rgba(10,14,31,.95));
+}
+.ch-meta b{display:block;font-size:23px;font-weight:600;line-height:1.3}
+.ch-eng{display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:10px}
+.ch-eng span{font-size:19px;font-weight:300;color:rgba(255,255,255,.86)}
+
+.chip.chip-ch{color:var(--red);border-color:rgba(255,51,71,.45);background:rgba(255,51,71,.07);font-weight:600}
+.chip.chip-ch:hover{background:rgba(255,51,71,.14);border-color:var(--red)}
+
+/* --- ไอคอนชุดแบรนด์ (SVG sprite ฝังในหน้า) --- */
+.ico{display:block;flex:none}
+.ico-item{width:76px;height:76px;margin-bottom:16px}
+.ico-step{width:64px;height:64px;margin:0 auto}
+.ico-pack{width:62px;height:62px;margin-bottom:14px}
+
+/* --- message slide --- */
+.s-msg{padding:96px 120px;display:flex;flex-direction:column;justify-content:center}
+.s-msg h2{font-size:86px;font-weight:800;line-height:1.08;margin:18px 0 48px;color:var(--navy)}
+.s-msg h2 span{color:var(--red)}
+.s-msg .items{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.s-msg .item{
+  padding:38px 42px;border-radius:18px;background:#fff;
+  border:1px solid var(--line);box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.s-msg .item::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:var(--accent)}
+.s-msg .item h3{font-size:38px;font-weight:700;color:var(--red);margin-bottom:14px}
+.s-msg .item p{font-size:26px;line-height:1.55;color:var(--text-mid);font-weight:300}
+.s-msg .steps{display:flex;align-items:stretch;gap:14px}
+.s-msg .step{
+  flex:1;padding:34px 20px;border-radius:16px;text-align:center;background:#fff;
+  border:1px solid var(--line);box-shadow:var(--shadow);
+  display:flex;flex-direction:column;justify-content:center;gap:14px;
+}
+.s-msg .step b{font-size:28px;font-weight:600;line-height:1.3;color:var(--navy)}
+.s-msg .step i{
+  font-style:normal;font-size:22px;font-weight:800;color:#fff;
+  width:46px;height:46px;border-radius:50%;background:var(--red);
+  display:grid;place-items:center;margin:0 auto;
+}
+
+/* --- packages --- */
+.s-pack{padding:66px 90px 90px;display:flex;flex-direction:column}
+.s-pack h2{font-size:64px;font-weight:800;margin:14px 0 40px;color:var(--navy)}
+.s-pack .pk{flex:1;min-height:0;display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.s-pack .p{
+  padding:44px 40px;border-radius:20px;display:flex;flex-direction:column;background:#fff;
+  border:1px solid var(--line);box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.s-pack .p::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:var(--gray)}
+.s-pack .p.hot{border-color:var(--red);box-shadow:var(--shadow-lg);transform:translateY(-10px)}
+.s-pack .p.hot::before{background:var(--accent)}
+.s-pack .p .nm{font-size:26px;letter-spacing:.16em;color:var(--red);font-weight:600}
+.s-pack .p .pr{font-size:56px;font-weight:800;margin:14px 0 2px;line-height:1.1;color:var(--navy)}
+.s-pack .p .un{font-size:21px;color:var(--text-muted);font-weight:300;margin-bottom:28px}
+.s-pack .p ul{list-style:none;display:flex;flex-direction:column;gap:16px}
+.s-pack .p li{font-size:25px;font-weight:300;line-height:1.4;color:var(--text-mid);padding-left:32px;position:relative}
+.s-pack .p li::before{content:'';position:absolute;left:0;top:12px;width:14px;height:14px;border-radius:50%;background:var(--red)}
+.s-pack .note{font-size:21px;color:var(--text-muted);font-weight:300;margin-top:26px;flex:none}
+
+/* --- contact --- */
+.s-contact{display:grid;grid-template-columns:1fr auto;align-items:center;gap:90px;padding:0 130px}
+.s-contact h2{font-size:92px;font-weight:800;line-height:1.08;margin:18px 0 34px;color:var(--navy)}
+.s-contact h2 span{color:var(--red)}
+.s-contact .ct-logo{height:74px;width:auto;margin-bottom:26px}
+.s-contact .lines{display:grid;grid-template-columns:auto auto;gap:14px 28px;justify-content:start;align-items:baseline}
+.s-contact .lines div{display:contents}
+.s-contact .lines div span{font-size:25px;color:var(--text-muted);font-weight:300}
+.s-contact .lines div b{font-size:33px;color:var(--red);font-weight:700}
+.s-contact .ct-co{margin-top:30px;padding-top:22px;border-top:2px solid var(--line)}
+.s-contact .ct-co b{display:block;font-size:30px;font-weight:700;color:var(--navy)}
+.s-contact .ct-co span{display:block;font-size:22px;color:var(--text-muted);font-weight:300;margin-top:4px}
+.s-contact .note{font-size:25px;color:var(--text-muted);font-weight:300;margin-top:30px;max-width:700px;line-height:1.5}
+.s-contact .qr{
+  width:400px;height:400px;border-radius:24px;background:#fff;display:grid;place-items:center;padding:22px;
+  border:1px solid var(--line);box-shadow:var(--shadow-lg);
+}
+.s-contact .qr img{width:100%;height:100%;object-fit:contain}
+.s-contact .qr .ph{color:var(--text-muted);font-size:23px;text-align:center;font-weight:300;line-height:1.5}
+
+/* ================= chrome ================= */
+/* แถบควบคุมลอยอยู่เหนือสไลด์ -> ต้องเล็กและซ่อนตัวเองเมื่อไม่มีคนแตะ ไม่งั้นบังคลิป */
+#bar{
+  position:absolute;right:30px;bottom:26px;display:flex;gap:10px;align-items:center;
+  opacity:0;visibility:hidden;transition:opacity .35s ease;z-index:20;
+}
+#bar.on{opacity:1;visibility:visible}
+.bbtn{
+  min-width:58px;height:58px;padding:0 18px;border-radius:999px;color:var(--text-mid);
+  background:rgba(255,253,248,.94);border:1px solid var(--line);
+  backdrop-filter:blur(10px);box-shadow:var(--shadow);
+  font-size:21px;font-weight:500;display:flex;align-items:center;gap:9px;justify-content:center;
+  transition:background .15s ease,border-color .15s ease,color .15s ease;
+}
+.bbtn:hover{color:var(--red);border-color:var(--red)}
+.bbtn.hl{background:var(--red);color:#fff;border-color:var(--red);font-weight:700}
+.bbtn.hl:hover{color:#fff}
+
+#prog{position:absolute;left:0;top:0;height:6px;width:0;background:var(--accent);z-index:21;transition:width .25s linear;opacity:0}
+#prog.on{opacity:1}
+
+/* พื้นพิลล์ของตัวเอง เพราะต้องอ่านออกทั้งบนสไลด์ขาวและบนหน้าปกพื้นเข้ม */
+#hint{
+  position:absolute;left:30px;bottom:26px;font-size:17px;color:var(--text-muted);
+  font-weight:300;z-index:20;opacity:0;visibility:hidden;transition:opacity .35s ease;
+  padding:11px 20px;border-radius:999px;
+  background:rgba(255,253,248,.94);border:1px solid var(--line);
+  backdrop-filter:blur(10px);box-shadow:var(--shadow);
+}
+#hint.on{opacity:1;visibility:visible}
+
+</style>
+</head>
+<body>
+<!-- ชุดไอคอนทางการของติดจรวด
+     ที่มา: Tidjaruad Branded Asset\tidjaruad-brand-assets\08-brand-icon-set.svg
+     ใส่ prefix tjr- ให้ทุกคลาส กันชนกับ CSS ของเด็ค (ของเดิมใช้ .line .navy .red ซึ่งกว้างเกินไป) -->
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <defs>
+    <style>
+      .tjr-navy{stroke:#1B1D45}
+      .tjr-red{stroke:#FF3347}
+      .tjr-blue{stroke:#4F8CFF}
+      .tjr-line{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:7}
+      .tjr-thin{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:5}
+      .tjr-fill-red{fill:#FF3347}
+    </style>
+
+    <symbol id="icon-tiktok-ads" viewBox="0 0 120 120">
+      <rect class="tjr-line tjr-navy" x="24" y="18" width="56" height="84" rx="14"/>
+      <path class="tjr-line tjr-navy" d="M58 42v31a15 15 0 1 1-12-14"/>
+      <path class="tjr-line tjr-blue" d="M58 42c10 13 18 17 30 17"/>
+      <path class="tjr-thin tjr-red" d="M85 24h18v18"/>
+      <path class="tjr-thin tjr-red" d="M101 26 82 45"/>
+    </symbol>
+
+    <symbol id="icon-strategy-planning" viewBox="0 0 120 120">
+      <path class="tjr-line tjr-navy" d="M23 92V28a10 10 0 0 1 10-10h54l10 10v64a10 10 0 0 1-10 10H33a10 10 0 0 1-10-10Z"/>
+      <path class="tjr-thin tjr-blue" d="M42 44h31M42 59h22M42 74h15"/>
+      <circle class="tjr-thin tjr-red" cx="79" cy="74" r="16"/>
+      <path class="tjr-thin tjr-red" d="M79 65v9l8 5"/>
+    </symbol>
+
+    <symbol id="icon-content-creative" viewBox="0 0 120 120">
+      <rect class="tjr-line tjr-navy" x="20" y="26" width="80" height="60" rx="14"/>
+      <path class="tjr-thin tjr-blue" d="M38 72l15-18 12 13 10-9 13 14"/>
+      <circle class="tjr-fill-red" cx="42" cy="45" r="6"/>
+      <path class="tjr-thin tjr-red" d="M90 18v15M82 26h16"/>
+      <path class="tjr-thin tjr-navy" d="M47 100h26M60 86v14"/>
+    </symbol>
+
+    <symbol id="icon-ads-optimization" viewBox="0 0 120 120">
+      <circle class="tjr-line tjr-navy" cx="60" cy="60" r="38"/>
+      <circle class="tjr-thin tjr-blue" cx="60" cy="60" r="22"/>
+      <circle class="tjr-fill-red" cx="60" cy="60" r="8"/>
+      <path class="tjr-thin tjr-red" d="M75 45 96 24"/>
+      <path class="tjr-thin tjr-red" d="M95 24h-16M96 24v16"/>
+      <path class="tjr-thin tjr-navy" d="M60 18v13M60 89v13M18 60h13M89 60h13"/>
+    </symbol>
+
+    <symbol id="icon-performance-report" viewBox="0 0 120 120">
+      <rect class="tjr-line tjr-navy" x="22" y="18" width="76" height="84" rx="12"/>
+      <path class="tjr-thin tjr-blue" d="M40 78V64M58 78V50M76 78V38"/>
+      <path class="tjr-thin tjr-red" d="M36 48c12 3 22-1 31-12l12 8 9-16"/>
+      <path class="tjr-thin tjr-navy" d="M39 90h42"/>
+    </symbol>
+
+    <symbol id="icon-sales-growth" viewBox="0 0 120 120">
+      <path class="tjr-line tjr-navy" d="M22 92h76"/>
+      <path class="tjr-thin tjr-blue" d="M34 80V64M53 80V52M72 80V42"/>
+      <path class="tjr-thin tjr-red" d="M29 47c16 8 31 5 44-10l18 12"/>
+      <path class="tjr-thin tjr-red" d="M90 31v18H72"/>
+      <path class="tjr-thin tjr-navy" d="M91 49 73 37"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div id="wrap">
+  <div class="stage" id="stage">
+
+    <div id="prog"></div>
+
+    <!-- class="on" ตั้งแต่แรก เพื่อให้เห็นสารบัญแม้ในตัวพรีวิวที่ไม่รัน JS -->
+    <section class="screen on" id="home">
+      <div class="hm-top">
+        <img class="hm-logo" src="https://vdo.tidjaruad.co/assets/brand/logo-color.png" alt="ติดจรวด">
+        <div class="hm-title">
+          <h1>ปั้นช่อง สร้างตัวตน ดึงคนดู<br><span>ด้วยคอนเทนต์วิดีโอที่สร้างการรับรู้จริง</span></h1>
+          <p>ผลิตคลิปสั้น &amp; UGC โดยทีมที่ยิงแอดจริงทุกวัน</p>
+        </div>
+        <button class="hm-play" id="btnPlay"><i class="tri"></i>เล่นอัตโนมัติ</button>
+      </div>
+      <div class="hm-rule"></div>
+      <div class="hm-lbl">ผลงานแยกตามแบรนด์ &mdash; กดเพื่อดู</div>
+      <div class="hm-grid" style="--cw:181px;--ch:322px;--cols:9">
+      <button class="card" data-goto="8">
+        <div class="thumb"><video src="https://vdo.tidjaruad.co/assets/video/m121-tria/01.mp4" preload="metadata" muted playsinline></video></div><img class="logo" src="https://vdo.tidjaruad.co/assets/logos/TRIA.png" alt="">
+        <div class="body"><b>TRIA</b><i>สุขภาพ / เวลเนส</i></div>
+      </button>
+      <button class="card" data-goto="11">
+        <div class="thumb"><video src="https://vdo.tidjaruad.co/assets/video/m127-groove55/01.mp4" preload="metadata" muted playsinline></video></div><img class="logo" src="https://vdo.tidjaruad.co/assets/logos/Terra.jpg" alt="">
+        <div class="body"><b>Terra Groove55</b><i>ร้านอาหาร</i></div>
+      </button>
+      <button class="card" data-goto="9">
+        <div class="thumb"><video src="https://vdo.tidjaruad.co/assets/video/m145-morbow/01.mp4" preload="metadata" muted playsinline></video></div><img class="logo" src="https://vdo.tidjaruad.co/assets/logos/%E0%B8%AB%E0%B8%A1%E0%B8%AD%E0%B9%82%E0%B8%9A%E0%B8%A7%E0%B9%8C.jpg" alt="">
+        <div class="body"><b>หมอโบว์</b><i>คลินิก</i></div>
+      </button>
+      <button class="card" data-goto="10">
+        <div class="thumb"><video src="https://vdo.tidjaruad.co/assets/video/m104-kozue/01.mp4" preload="metadata" muted playsinline></video></div><img class="logo" src="https://vdo.tidjaruad.co/assets/logos/KOZUE.jpg" alt="">
+        <div class="body"><b>Kozue Omakaze</b><i>ร้านอาหารญี่ปุ่น</i></div>
+      </button>
+      <button class="card" data-goto="3">
+        <div class="thumb"><video src="https://vdo.tidjaruad.co/assets/video/m077-smartclinic/01.mp4" preload="metadata" muted playsinline></video></div><img class="logo" src="https://vdo.tidjaruad.co/assets/logos/S'Mart%20Clinic.jpg" alt="">
+        <div class="body"><b>Smart Clinic</b><i>คลินิก</i></div>
+      </button>
+      <button class="card" data-goto="5">
+        <div class="thumb"><video src="https://vdo.tidjaruad.co/assets/video/m100-barcode/01.mp4" preload="metadata" muted playsinline></video></div><img class="logo" src="https://vdo.tidjaruad.co/assets/logos/%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%9A%E0%B8%B1%E0%B8%99%E0%B8%9A%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B9%82%E0%B8%84%E0%B9%89%E0%B8%94%E0%B8%8A%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%95.jpg" alt="">
+        <div class="body"><b>สถาบันบาร์โค้ดชีวิต</b><i>คอร์ส / ที่ปรึกษา</i></div>
+      </button>
+      <button class="card" data-goto="19">
+        <div class="thumb"><video src="https://vdo.tidjaruad.co/assets/video/m030-mildglucan/01.mp4" preload="metadata" muted playsinline></video></div>
+        <div class="body"><b>MildGlucan</b><i>อาหารเสริม</i></div>
+      </button>
+      <button class="card" data-goto="20">
+        <div class="thumb"><video src="https://vdo.tidjaruad.co/assets/video/m039-lilsheep/01.mp4" preload="metadata" muted playsinline></video></div>
+        <div class="body"><b>Lilsheep</b><i>โปรตีน / อาหารเสริม</i></div>
+      </button>
+      <button class="card" data-goto="12">
+        <div class="thumb"><video src="https://vdo.tidjaruad.co/assets/video/m066-bpk9/01.mp4" preload="metadata" muted playsinline></video></div>
+        <div class="body"><b>BPK9</b><i>โรงพยาบาล</i></div>
+      </button>
+      <button class="card" data-goto="21">
+        <div class="thumb"><video src="https://vdo.tidjaruad.co/assets/video/m073-positif/01.mp4" preload="metadata" muted playsinline></video></div>
+        <div class="body"><b>Positif</b><i>อาหารเสริมความงาม</i></div>
+      </button>
+      <button class="card" data-goto="22">
+        <div class="thumb"><video src="https://vdo.tidjaruad.co/assets/video/m084-florenza/01.mp4" preload="metadata" muted playsinline></video></div>
+        <div class="body"><b>Florenza Clinic</b><i>คลินิกความงาม</i></div>
+      </button>
+      <button class="card" data-goto="23">
+        <div class="thumb"><video src="https://vdo.tidjaruad.co/assets/video/m093-jigo/01.mp4" preload="metadata" muted playsinline></video></div><img class="logo" src="https://vdo.tidjaruad.co/assets/logos/Jigo.jpg" alt="">
+        <div class="body"><b>Jigo Smoothie</b><i>อาหาร / เครื่องดื่ม</i></div>
+      </button>
+      <button class="card" data-goto="15">
+        <div class="thumb"><video src="https://vdo.tidjaruad.co/assets/video/m108-shooshoke/01.mp4" preload="metadata" muted playsinline></video></div><img class="logo" src="https://vdo.tidjaruad.co/assets/logos/Shooshoke.jpg" alt="">
+        <div class="body"><b>ShooShoke</b><i>เกษตรอินทรีย์</i></div>
+      </button>
+      <button class="card" data-goto="24">
+        <div class="thumb"><video src="https://vdo.tidjaruad.co/assets/video/m123-mortian/01.mp4" preload="metadata" muted playsinline></video></div><img class="logo" src="https://vdo.tidjaruad.co/assets/logos/%E0%B8%AB%E0%B8%A1%E0%B8%AD%E0%B9%80%E0%B8%96%E0%B8%B5%E0%B8%A2%E0%B8%A3.jpg" alt="">
+        <div class="body"><b>หมอเถียร</b><i>แพทย์แผนจีน</i></div>
+      </button>
+      <button class="card" data-goto="13">
+        <div class="thumb"><video src="https://vdo.tidjaruad.co/assets/video/m140-siamauto/01.mp4" preload="metadata" muted playsinline></video></div><img class="logo" src="https://vdo.tidjaruad.co/assets/logos/Saim%20auto%20car.jpg" alt="">
+        <div class="body"><b>Siam Auto Car</b><i>ยานยนต์</i></div>
+      </button>
+      <button class="card" data-goto="14">
+        <div class="thumb"><video src="https://vdo.tidjaruad.co/assets/video/m146-sharisma/01.mp4" preload="metadata" muted playsinline></video></div>
+        <div class="body"><b>Sharisma</b><i>อาหารเสริม / เวลเนส</i></div>
+      </button>
+      <button class="card" data-goto="25">
+        <div class="thumb"><video src="https://vdo.tidjaruad.co/assets/video/pn-autopart/01.mp4" preload="metadata" muted playsinline></video></div><img class="logo" src="https://vdo.tidjaruad.co/assets/logos/PN%20auto%20part.jpg" alt="">
+        <div class="body"><b>PN Auto Part</b><i>อะไหล่ยนต์</i></div>
+      </button>
+      </div>
+      <div class="hm-chips">
+      <button class="chip chip-ch" data-goto="4">&#9654; ผลงานช่อง หมอมาศ Anti Aging</button>
+      <button class="chip chip-ch" data-goto="6">&#9654; ผลงานช่อง ซินแสบาร์โค้ดชีวิต</button>
+      <button class="chip" data-goto="2">เราทำอะไร</button>
+      <button class="chip" data-goto="16">ทำไมต้องเรา</button>
+      <button class="chip" data-goto="7">ขั้นตอนงาน</button>
+      <button class="chip" data-goto="17">แพ็กเกจ</button>
+      <button class="chip" data-goto="18">ติดต่อ</button>
+      </div>
+    </section>
+
+    <section class="screen" id="deck">
+<div class="slide s-cover" data-dur="6000">
+  
+  <div class="veil"></div>
+  <div class="mid">
+    <img class="co-logo" src="https://vdo.tidjaruad.co/assets/brand/logo-white.png" alt="ติดจรวด">
+    <h1>ปั้นช่อง สร้างตัวตน ดึงคนดู<br><span>ด้วยคอนเทนต์วิดีโอที่สร้างการรับรู้จริง</span></h1>
+    <p>ผลิตคลิปสั้น &amp; UGC โดยทีมที่ยิงแอดจริงทุกวัน</p>
+  </div>
+</div>
+
+<div class="slide s-wall" data-dur="15000">
+  <div class="wh"><h2>ผลงานบางส่วน</h2><span class="eyebrow">TIKTOK &middot; REELS &middot; UGC</span></div>
+  <div class="wgrid" style="--cw:231px;--ch:411px;--cols:6">
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/wall/m127-groove55-01.mp4" preload="metadata" loop playsinline data-silent="1" muted></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/wall/m127-groove55-02.mp4" preload="metadata" loop playsinline data-silent="1" muted></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/wall/m121-tria-01.mp4" preload="metadata" loop playsinline data-silent="1" muted></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/wall/m121-tria-02.mp4" preload="metadata" loop playsinline data-silent="1" muted></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/wall/m145-morbow-01.mp4" preload="metadata" loop playsinline data-silent="1" muted></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/wall/m145-morbow-02.mp4" preload="metadata" loop playsinline data-silent="1" muted></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/wall/m104-kozue-01.mp4" preload="metadata" loop playsinline data-silent="1" muted></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/wall/m104-kozue-02.mp4" preload="metadata" loop playsinline data-silent="1" muted></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/wall/m077-smartclinic-01.mp4" preload="metadata" loop playsinline data-silent="1" muted></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/wall/m077-smartclinic-02.mp4" preload="metadata" loop playsinline data-silent="1" muted></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/wall/m100-barcode-01.mp4" preload="metadata" loop playsinline data-silent="1" muted></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/wall/m100-barcode-02.mp4" preload="metadata" loop playsinline data-silent="1" muted></video></div>
+  </div>
+</div>
+
+<div class="slide s-msg" data-dur="8000" data-msg="services">
+  <div class="eyebrow">เราทำอะไร</div>
+  <h2>ผลิตคลิปให้แบรนด์<br><span>2 แบบ</span></h2>
+  <div class="items"><div class="item"><svg class="ico ico-item" aria-hidden="true"><use href="#icon-content-creative"/></svg><h3>คลิปสั้นสำหรับยิงแอด</h3><p>TikTok / Reels เน้น hook 3 วินาทีแรก ผลิตเป็นชุดต่อเดือน เอาไปยิงแอดต่อได้ทันที</p></div><div class="item"><svg class="ico ico-item" aria-hidden="true"><use href="#icon-tiktok-ads"/></svg><h3>UGC / รีวิวครีเอเตอร์</h3><p>คลิปคนจริงรีวิวสินค้า สไตล์ธรรมชาติ เลือกครีเอเตอร์ให้ตรงกลุ่มลูกค้าของแบรนด์</p></div></div>
+</div>
+
+<div class="slide s-brand" data-dur="12000" data-brand="m077-smartclinic">
+  <div class="bs-head">
+    <div class="bs-logo"><img src="https://vdo.tidjaruad.co/assets/logos/S'Mart%20Clinic.jpg" alt="Smart Clinic"></div>
+    <div class="bs-id"><h2>Smart Clinic</h2><div class="cat">คลินิก</div></div>
+    <div class="bs-metric"><b>70.9K</b><span>ผู้ติดตาม TikTok หมอมาศ</span></div>
+  </div>
+  <div class="bs-clips" style="--cw:424px;--ch:754px;--cols:4">
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m077-smartclinic/01.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m077-smartclinic/02.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m077-smartclinic/03.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m077-smartclinic/04.mp4" preload="metadata" loop playsinline></video></div>
+  </div>
+</div>
+
+<div class="slide s-channel" data-dur="14000" data-channel="m077-smartclinic">
+  <div class="ch-head">
+    
+    <div class="ch-id">
+      <div class="eyebrow">ผลงานบนช่องจริง &middot; TikTok</div>
+      <h2>หมอมาศ Anti Aging</h2>
+      <div class="ch-handle">@dr.mas.co</div>
+      <div class="ch-tag">&quot;Your Body is The Best Doctor&quot; · เวชศาสตร์ชะลอวัยและป้องกัน</div>
+    </div>
+  </div>
+  <div class="ch-body">
+    <div class="ch-shot"><img src="https://vdo.tidjaruad.co/assets/screens/dr-mas-profile.jpg" alt="หน้าช่อง หมอมาศ Anti Aging"></div>
+    <div class="ch-right">
+      <div class="ch-stats"><div class="ch-stat"><b>70.9K</b><span>ผู้ติดตาม</span></div><div class="ch-stat"><b>508.7K</b><span>ยอดถูกใจรวม</span></div><div class="ch-stat"><b>811K</b><span>ยอดดูคลิปสูงสุด</span></div></div>
+      <div class="ch-posts" style="--cw:339px;--ch:604px;--cols:3">
+      <div class="clip ch-post"><video src="https://vdo.tidjaruad.co/assets/video/m077-smartclinic/ch-sleep.mp4" preload="metadata" loop playsinline></video><div class="ch-views"><b>811K</b><i>ยอดดู</i></div>
+        <div class="ch-meta"><b>&quot;การนอนดึก&quot; ส่งผลอย่างไร</b><div class="ch-eng"><span>&#9825; 24.9K</span><span>&#128172; 237</span><span>&#128278; 3,964</span><span>&#10150; 20.9K</span></div></div>
+      </div>
+      <div class="clip ch-post"><video src="https://vdo.tidjaruad.co/assets/video/m077-smartclinic/ch-age53.mp4" preload="metadata" loop playsinline></video><div class="ch-views"><b>176.2K</b><i>ยอดดู</i></div>
+        <div class="ch-meta"><b>อายุ 53 ปี หน้าเด็กขนาดนี้ ดูแลตัวเองยังไง</b><div class="ch-eng"><span>&#9825; 5,590</span><span>&#128172; 114</span><span>&#128278; 540</span><span>&#10150; 696</span></div></div>
+      </div>
+      <div class="clip ch-post"><video src="https://vdo.tidjaruad.co/assets/video/m077-smartclinic/01.mp4" preload="metadata" loop playsinline></video>
+        <div class="ch-meta"><b>อาหารแช่เย็นนาน อาจทำให้เป็นมะเร็งโดยไม่รู้ตัว</b><div class="ch-eng"><span>&#9825; 12.1K</span><span>&#128172; 146</span><span>&#128278; 1,379</span><span>&#10150; 5,957</span></div></div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="slide s-brand" data-dur="12000" data-brand="m100-barcode">
+  <div class="bs-head">
+    <div class="bs-logo"><img src="https://vdo.tidjaruad.co/assets/logos/%E0%B8%AA%E0%B8%96%E0%B8%B2%E0%B8%9A%E0%B8%B1%E0%B8%99%E0%B8%9A%E0%B8%B2%E0%B8%A3%E0%B9%8C%E0%B9%82%E0%B8%84%E0%B9%89%E0%B8%94%E0%B8%8A%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%95.jpg" alt="สถาบันบาร์โค้ดชีวิต"></div>
+    <div class="bs-id"><h2>สถาบันบาร์โค้ดชีวิต</h2><div class="cat">คอร์ส / ที่ปรึกษา</div></div>
+    <div class="bs-metric"><b>105.3K</b><span>ผู้ติดตาม TikTok</span></div>
+  </div>
+  <div class="bs-clips" style="--cw:424px;--ch:754px;--cols:4">
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m100-barcode/01.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m100-barcode/02.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m100-barcode/03.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m100-barcode/04.mp4" preload="metadata" loop playsinline></video></div>
+  </div>
+</div>
+
+<div class="slide s-channel" data-dur="14000" data-channel="m100-barcode">
+  <div class="ch-head">
+    
+    <div class="ch-id">
+      <div class="eyebrow">ผลงานบนช่องจริง &middot; TikTok</div>
+      <h2>ซินแสบาร์โค้ดชีวิต</h2>
+      <div class="ch-handle">@zinzaebarcode</div>
+      <div class="ch-tag">สอนโหงวเฮ้ง / ฮวงจุ้ย / ลายเซ็น สำหรับเจ้าของกิจการและองค์กร</div>
+    </div>
+  </div>
+  <div class="ch-body">
+    <div class="ch-shot"><img src="https://vdo.tidjaruad.co/assets/screens/zinzaebarcode-profile.jpg" alt="หน้าช่อง ซินแสบาร์โค้ดชีวิต"></div>
+    <div class="ch-right">
+      <div class="ch-stats"><div class="ch-stat"><b>105.3K</b><span>ผู้ติดตาม</span></div><div class="ch-stat"><b>745.4K</b><span>ยอดถูกใจรวม</span></div><div class="ch-stat"><b>8.3M</b><span>ยอดดูรวม 3 คลิปปักหมุด</span></div></div>
+      <div class="ch-posts" style="--cw:339px;--ch:604px;--cols:3">
+      <div class="clip ch-post"><video src="https://vdo.tidjaruad.co/assets/video/m100-barcode/ch-husband.mp4" preload="metadata" loop playsinline></video><div class="ch-views"><b>4M</b><i>ยอดดู</i></div>
+        <div class="ch-meta"><b>โหงวเฮ้งแบบไหนไม่ควรเอามาทำผัว</b><div class="ch-eng"><span>&#9825; 94.2K</span><span>&#128172; 1,173</span><span>&#128278; 9,746</span><span>&#10150; 24.5K</span></div></div>
+      </div>
+      <div class="clip ch-post"><video src="https://vdo.tidjaruad.co/assets/video/m100-barcode/03.mp4" preload="metadata" loop playsinline></video><div class="ch-views"><b>2.3M</b><i>ยอดดู</i></div>
+        <div class="ch-meta"><b>คนรวยหรือคนจน ดูง่าย ๆ ที่จมูก</b><div class="ch-eng"><span>&#9825; 45K</span><span>&#128172; 474</span><span>&#128278; 4,410</span><span>&#10150; 10K</span></div></div>
+      </div>
+      <div class="clip ch-post"><video src="https://vdo.tidjaruad.co/assets/video/m100-barcode/ch-house.mp4" preload="metadata" loop playsinline></video><div class="ch-views"><b>2M</b><i>ยอดดู</i></div>
+        <div class="ch-meta"><b>บ้านนี้ใครใหญ่ ดูได้จากฝั่งที่นอน</b><div class="ch-eng"><span>&#9825; 31.7K</span><span>&#128172; 571</span><span>&#128278; 3,625</span><span>&#10150; 18.2K</span></div></div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="slide s-msg" data-dur="8000" data-msg="process">
+  <div class="eyebrow">ขั้นตอนงาน</div>
+  <h2>ตั้งแต่บรีฟ<br><span>ถึงคลิปที่ชนะ</span></h2>
+  <div class="steps"><div class="step"><svg class="ico ico-step" aria-hidden="true"><use href="#icon-strategy-planning"/></svg><b>รับบรีฟ</b></div><div class="step"><svg class="ico ico-step" aria-hidden="true"><use href="#icon-content-creative"/></svg><b>วาง Hook / สคริปต์</b></div><div class="step"><svg class="ico ico-step" aria-hidden="true"><use href="#icon-tiktok-ads"/></svg><b>ถ่ายทำ</b></div><div class="step"><svg class="ico ico-step" aria-hidden="true"><use href="#icon-content-creative"/></svg><b>ตัดต่อ</b></div><div class="step"><svg class="ico ico-step" aria-hidden="true"><use href="#icon-ads-optimization"/></svg><b>ยิงทดสอบ</b></div><div class="step"><svg class="ico ico-step" aria-hidden="true"><use href="#icon-sales-growth"/></svg><b>คัดตัวชนะไปสเกล</b></div></div>
+</div>
+
+<div class="slide s-brand" data-dur="12000" data-brand="m121-tria">
+  <div class="bs-head">
+    <div class="bs-logo"><img src="https://vdo.tidjaruad.co/assets/logos/TRIA.png" alt="TRIA"></div>
+    <div class="bs-id"><h2>TRIA</h2><div class="cat">สุขภาพ / เวลเนส</div></div>
+    
+  </div>
+  <div class="bs-clips" style="--cw:450px;--ch:800px;--cols:3">
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m121-tria/01.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m121-tria/02.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m121-tria/03.mp4" preload="metadata" loop playsinline></video></div>
+  </div>
+</div>
+
+<div class="slide s-brand" data-dur="12000" data-brand="m145-morbow">
+  <div class="bs-head">
+    <div class="bs-logo"><img src="https://vdo.tidjaruad.co/assets/logos/%E0%B8%AB%E0%B8%A1%E0%B8%AD%E0%B9%82%E0%B8%9A%E0%B8%A7%E0%B9%8C.jpg" alt="หมอโบว์"></div>
+    <div class="bs-id"><h2>หมอโบว์</h2><div class="cat">คลินิก</div></div>
+    
+  </div>
+  <div class="bs-clips" style="--cw:424px;--ch:754px;--cols:4">
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m145-morbow/01.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m145-morbow/02.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m145-morbow/03.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m145-morbow/04.mp4" preload="metadata" loop playsinline></video></div>
+  </div>
+</div>
+
+<div class="slide s-brand" data-dur="12000" data-brand="m104-kozue">
+  <div class="bs-head">
+    <div class="bs-logo"><img src="https://vdo.tidjaruad.co/assets/logos/KOZUE.jpg" alt="Kozue Omakaze"></div>
+    <div class="bs-id"><h2>Kozue Omakaze</h2><div class="cat">ร้านอาหารญี่ปุ่น</div></div>
+    
+  </div>
+  <div class="bs-clips" style="--cw:450px;--ch:800px;--cols:3">
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m104-kozue/01.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m104-kozue/02.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m104-kozue/03.mp4" preload="metadata" loop playsinline></video></div>
+  </div>
+</div>
+
+<div class="slide s-brand" data-dur="12000" data-brand="m127-groove55">
+  <div class="bs-head">
+    <div class="bs-logo"><img src="https://vdo.tidjaruad.co/assets/logos/Terra.jpg" alt="Terra Groove55"></div>
+    <div class="bs-id"><h2>Terra Groove55</h2><div class="cat">ร้านอาหาร</div></div>
+    
+  </div>
+  <div class="bs-clips" style="--cw:450px;--ch:800px;--cols:3">
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m127-groove55/01.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m127-groove55/02.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m127-groove55/03.mp4" preload="metadata" loop playsinline></video></div>
+  </div>
+</div>
+
+<div class="slide s-brand" data-dur="12000" data-brand="m066-bpk9">
+  <div class="bs-head">
+    <div class="bs-logo"><span class="initial">B</span></div>
+    <div class="bs-id"><h2>BPK9</h2><div class="cat">โรงพยาบาล</div></div>
+    
+  </div>
+  <div class="bs-clips" style="--cw:450px;--ch:800px;--cols:3">
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m066-bpk9/01.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m066-bpk9/02.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m066-bpk9/03.mp4" preload="metadata" loop playsinline></video></div>
+  </div>
+</div>
+
+<div class="slide s-brand" data-dur="12000" data-brand="m140-siamauto">
+  <div class="bs-head">
+    <div class="bs-logo"><img src="https://vdo.tidjaruad.co/assets/logos/Saim%20auto%20car.jpg" alt="Siam Auto Car"></div>
+    <div class="bs-id"><h2>Siam Auto Car</h2><div class="cat">ยานยนต์</div></div>
+    
+  </div>
+  <div class="bs-clips" style="--cw:424px;--ch:754px;--cols:4">
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m140-siamauto/01.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m140-siamauto/02.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m140-siamauto/03.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m140-siamauto/04.mp4" preload="metadata" loop playsinline></video></div>
+  </div>
+</div>
+
+<div class="slide s-brand" data-dur="12000" data-brand="m146-sharisma">
+  <div class="bs-head">
+    <div class="bs-logo"><span class="initial">S</span></div>
+    <div class="bs-id"><h2>Sharisma</h2><div class="cat">อาหารเสริม / เวลเนส</div></div>
+    
+  </div>
+  <div class="bs-clips" style="--cw:424px;--ch:754px;--cols:4">
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m146-sharisma/01.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m146-sharisma/02.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m146-sharisma/03.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m146-sharisma/04.mp4" preload="metadata" loop playsinline></video></div>
+  </div>
+</div>
+
+<div class="slide s-brand" data-dur="12000" data-brand="m108-shooshoke">
+  <div class="bs-head">
+    <div class="bs-logo"><img src="https://vdo.tidjaruad.co/assets/logos/Shooshoke.jpg" alt="ShooShoke"></div>
+    <div class="bs-id"><h2>ShooShoke</h2><div class="cat">เกษตรอินทรีย์</div></div>
+    
+  </div>
+  <div class="bs-clips" style="--cw:450px;--ch:800px;--cols:3">
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m108-shooshoke/01.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m108-shooshoke/02.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m108-shooshoke/03.mp4" preload="metadata" loop playsinline></video></div>
+  </div>
+</div>
+
+<div class="slide s-msg" data-dur="8000" data-msg="diff">
+  <div class="eyebrow">ทำไมต้องเรา</div>
+  <h2>ทีม In-House วางกลยุทธ์ปั้นช่อง<br><span>ผลิตคอนเทนต์วิดีโอครบวงจรเพื่อสร้างการรับรู้</span></h2>
+  <div class="items"><div class="item"><svg class="ico ico-item" aria-hidden="true"><use href="#icon-ads-optimization"/></svg><h3>วางกลยุทธ์คอนเทนต์ ปั้นช่องให้มีทิศทางและเติบโตอย่างต่อเนื่อง</h3><p>เรารู้ว่า hook แบบไหน CTR ดี เพราะเรายิงแอดให้ลูกค้าทุกวัน เอาผลจริงมาออกแบบคลิปตัวถัดไป</p></div><div class="item"><svg class="ico ico-item" aria-hidden="true"><use href="#icon-performance-report"/></svg><h3>สร้างการรับรู้และภาพจำที่ชัดเจน ดึงดูดกลุ่มเป้าหมายเข้าหน้าช่อง</h3><p>คลิปทุกตัวถูกเอาไปทดสอบจริง แล้วคัดตัวที่ทำผลได้ดีที่สุดมาสเกลต่อ</p></div></div>
+</div>
+
+<div class="slide s-pack" data-dur="10000" data-key="packages">
+  <div class="eyebrow">ค่าบริการ · ราคาเริ่มต้น</div>
+  <h2>เลือกเฉพาะที่ธุรกิจคุณต้องการได้</h2>
+  <div class="pk">
+    <div class="p hot">
+      <svg class="ico ico-pack" aria-hidden="true"><use href="#icon-content-creative"/></svg>
+      <div class="nm">01 · CONTENT</div>
+      <div class="pr">2,000.-</div>
+      <div class="un">/ คลิป (เริ่มต้น)</div>
+      <ul><li>Short-form 15–60 วิ</li><li>Ad-Optimized Hook</li><li>Editing + Subtitle</li></ul>
+    </div>
+    <div class="p">
+      <svg class="ico ico-pack" aria-hidden="true"><use href="#icon-tiktok-ads"/></svg>
+      <div class="nm">02 · INFLUENCE</div>
+      <div class="pr">20%</div>
+      <div class="un">ของงบ KOL</div>
+      <ul><li>คัดครีเอเตอร์ให้ตรงกลุ่ม</li><li>บรีฟและประสานงาน</li><li>รายงานผล</li></ul>
+    </div>
+    <div class="p">
+      <svg class="ico ico-pack" aria-hidden="true"><use href="#icon-sales-growth"/></svg>
+      <div class="nm">03 · LIVE</div>
+      <div class="pr">1,500.-</div>
+      <div class="un">/ ชั่วโมง (เริ่มต้น)</div>
+      <ul><li>Live Sales มือโปร</li><li>Engagement สด</li><li>GMV Report</li></ul>
+    </div>
+  </div>
+  <div class="note">ราคาเริ่มต้น ยังไม่รวม VAT · ค่าครีเอเตอร์และค่าโปรดักชันนอกสถานที่คิดแยกตามงาน</div>
+</div>
+
+<div class="slide s-contact" data-dur="10000" data-key="contact">
+  <div>
+    <img class="ct-logo" src="https://vdo.tidjaruad.co/assets/brand/logo-color.png" alt="ติดจรวด">
+    <div class="eyebrow">เริ่มต้นแบบไม่มีความเสี่ยง</div>
+    <h2>รับ Audit ทิศทางคอนเทนต์ & แนวทางปั้นช่องฟรี<br><span>มูลค่า 3,000 บาท (ไม่มีข้อผูกมัด)</span></h2>
+    <div class="lines"><div><span>Line / TikTok</span><b>@tidjaruad</b></div><div><span>โทรศัพท์</span><b>062-294-5324 · 091-717-8924</b></div><div><span>เว็บไซต์</span><b>www.tidjaruad.co.th</b></div><div><span>อีเมล</span><b>info@tidjaruad.com</b></div></div>
+    <div class="ct-co"><b>บริษัท ติดจรวด จำกัด</b><span>Performance Marketing Agency · Friendly Growth Partner</span></div>
+    <div class="note">วิเคราะห์คลิปปัจจุบัน หาจุดรั่ว + โอกาสโต · ตอบกลับภายใน 2 ชั่วโมง · ไม่มีข้อผูกมัด</div>
+  </div>
+  <div class="qr"><img src="https://vdo.tidjaruad.co/assets/qr-line.png" alt="QR"></div>
+</div>
+
+<div class="slide s-brand" data-dur="12000" data-autoskip="1" data-brand="m030-mildglucan">
+  <div class="bs-head">
+    <div class="bs-logo"><span class="initial">M</span></div>
+    <div class="bs-id"><h2>MildGlucan</h2><div class="cat">อาหารเสริม</div></div>
+    
+  </div>
+  <div class="bs-clips" style="--cw:450px;--ch:800px;--cols:3">
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m030-mildglucan/01.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m030-mildglucan/02.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m030-mildglucan/03.mp4" preload="metadata" loop playsinline></video></div>
+  </div>
+</div>
+
+<div class="slide s-brand" data-dur="12000" data-autoskip="1" data-brand="m039-lilsheep">
+  <div class="bs-head">
+    <div class="bs-logo"><span class="initial">L</span></div>
+    <div class="bs-id"><h2>Lilsheep</h2><div class="cat">โปรตีน / อาหารเสริม</div></div>
+    
+  </div>
+  <div class="bs-clips" style="--cw:450px;--ch:800px;--cols:3">
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m039-lilsheep/01.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m039-lilsheep/02.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m039-lilsheep/03.mp4" preload="metadata" loop playsinline></video></div>
+  </div>
+</div>
+
+<div class="slide s-brand" data-dur="12000" data-autoskip="1" data-brand="m073-positif">
+  <div class="bs-head">
+    <div class="bs-logo"><span class="initial">P</span></div>
+    <div class="bs-id"><h2>Positif</h2><div class="cat">อาหารเสริมความงาม</div></div>
+    
+  </div>
+  <div class="bs-clips" style="--cw:450px;--ch:800px;--cols:3">
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m073-positif/01.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m073-positif/02.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m073-positif/03.mp4" preload="metadata" loop playsinline></video></div>
+  </div>
+</div>
+
+<div class="slide s-brand" data-dur="12000" data-autoskip="1" data-brand="m084-florenza">
+  <div class="bs-head">
+    <div class="bs-logo"><span class="initial">F</span></div>
+    <div class="bs-id"><h2>Florenza Clinic</h2><div class="cat">คลินิกความงาม</div></div>
+    
+  </div>
+  <div class="bs-clips" style="--cw:450px;--ch:800px;--cols:3">
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m084-florenza/01.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m084-florenza/02.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m084-florenza/03.mp4" preload="metadata" loop playsinline></video></div>
+  </div>
+</div>
+
+<div class="slide s-brand" data-dur="12000" data-autoskip="1" data-brand="m093-jigo">
+  <div class="bs-head">
+    <div class="bs-logo"><img src="https://vdo.tidjaruad.co/assets/logos/Jigo.jpg" alt="Jigo Smoothie"></div>
+    <div class="bs-id"><h2>Jigo Smoothie</h2><div class="cat">อาหาร / เครื่องดื่ม</div></div>
+    
+  </div>
+  <div class="bs-clips" style="--cw:450px;--ch:800px;--cols:3">
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m093-jigo/01.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m093-jigo/02.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m093-jigo/03.mp4" preload="metadata" loop playsinline></video></div>
+  </div>
+</div>
+
+<div class="slide s-brand" data-dur="12000" data-autoskip="1" data-brand="m123-mortian">
+  <div class="bs-head">
+    <div class="bs-logo"><img src="https://vdo.tidjaruad.co/assets/logos/%E0%B8%AB%E0%B8%A1%E0%B8%AD%E0%B9%80%E0%B8%96%E0%B8%B5%E0%B8%A2%E0%B8%A3.jpg" alt="หมอเถียร"></div>
+    <div class="bs-id"><h2>หมอเถียร</h2><div class="cat">แพทย์แผนจีน</div></div>
+    
+  </div>
+  <div class="bs-clips" style="--cw:450px;--ch:800px;--cols:3">
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m123-mortian/01.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m123-mortian/02.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/m123-mortian/03.mp4" preload="metadata" loop playsinline></video></div>
+  </div>
+</div>
+
+<div class="slide s-brand" data-dur="12000" data-autoskip="1" data-brand="pn-autopart">
+  <div class="bs-head">
+    <div class="bs-logo"><img src="https://vdo.tidjaruad.co/assets/logos/PN%20auto%20part.jpg" alt="PN Auto Part"></div>
+    <div class="bs-id"><h2>PN Auto Part</h2><div class="cat">อะไหล่ยนต์</div></div>
+    
+  </div>
+  <div class="bs-clips" style="--cw:450px;--ch:800px;--cols:3">
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/pn-autopart/01.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/pn-autopart/02.mp4" preload="metadata" loop playsinline></video></div>
+      <div class="clip"><video src="https://vdo.tidjaruad.co/assets/video/pn-autopart/03.mp4" preload="metadata" loop playsinline></video></div>
+  </div>
+</div>
+    </section>
+
+    <div id="hint">&#8592; &#8594; เลื่อนสไลด์ &middot; Esc สารบัญ &middot; Space เล่นอัตโนมัติ &middot; F เต็มจอ &middot; M เสียง</div>
+
+    <div id="bar">
+      <button class="bbtn" id="btnHome">&#9776; สารบัญ</button>
+      <button class="bbtn" id="btnPrev">&#8249;</button>
+      <button class="bbtn" id="btnNext">&#8250;</button>
+      <button class="bbtn" id="btnAuto">&#9654; อัตโนมัติ</button>
+      <button class="bbtn" id="btnSound"><span>&#128263;</span></button>
+      <button class="bbtn" id="btnFs">&#9974;</button>
+    </div>
+
+  </div>
+</div>
+
+<script>window.__CFG__ = {"coverMs":6000,"wallMs":15000,"textSlideMs":8000,"packagesMs":10000,"contactMs":10000,"maxVideoMs":15000,"idleReturnMs":60000,"messageEvery":4,"maxLoopBrands":12};</script>
+<script>
+(function () {
+  'use strict';
+
+  var CFG = window.__CFG__ || {};
+  var qs = new URLSearchParams(location.search);
+  var KIOSK = qs.get('auto') === '1' || qs.get('kiosk') === '1';
+
+  var home = document.getElementById('home');
+  var deck = document.getElementById('deck');
+  var bar = document.getElementById('bar');
+  var prog = document.getElementById('prog');
+  var hint = document.getElementById('hint');
+  var btnAuto = document.getElementById('btnAuto');
+  var btnSound = document.getElementById('btnSound');
+  var slides = [].slice.call(document.querySelectorAll('#deck .slide'));
+
+  var idx = -1;
+  var inDeck = false;         // อยู่ในหน้าสไลด์อยู่ไหม (คุมการโผล่ของแถบควบคุม)
+  var chromeTimer = null;
+  var CHROME_MS = 3000;       // ไม่แตะอะไรกี่มิลลิวินาทีแล้วซ่อนแถบควบคุม
+  var mode = 'home';          // 'home' | 'manual' | 'auto'
+  var muted = true;
+  var timer = null;
+  var idleTimer = null;
+  var fsAsked = false;
+
+  /* ---------- scale stage to fit any monitor ---------- */
+  // วัดจากกล่องครอบเหมือน fitStage() ของ Sale Deck 2026
+  // (min(w/1280, h/720) x 1280/1920 ให้ค่าเท่ากับ min(w/1920, h/1080) เป๊ะ)
+  function fit() {
+    var host = document.getElementById('wrap');
+    var w = (host && host.clientWidth) || innerWidth || document.documentElement.clientWidth || 1920;
+    var h = (host && host.clientHeight) || innerHeight || document.documentElement.clientHeight || 1080;
+    var s = Math.min(w / 1920, h / 1080);
+    if (!isFinite(s) || s <= 0) s = 1;   // กันจอ/เบราว์เซอร์ที่รายงานขนาดเป็น 0 แล้วจอดำ
+    document.documentElement.style.setProperty('--s', s);
+  }
+  addEventListener('resize', fit);
+  fit();
+
+  /* ---------- video helpers ---------- */
+  function vids(el) { return [].slice.call(el.querySelectorAll('video')); }
+
+  function stopAll() {
+    slides.forEach(function (s) {
+      vids(s).forEach(function (v) { v.pause(); });
+    });
+  }
+
+  function playCurrent() {
+    if (idx < 0) return [];
+    var vs = vids(slides[idx]);
+    vs.forEach(function (v) {
+      v.muted = muted || v.dataset.silent === '1';
+      try { v.currentTime = 0; } catch (e) {}
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {});
+    });
+    return vs;
+  }
+
+  /* ---------- auto-play timing ---------- */
+  function slideMs() {
+    var s = slides[idx];
+    var base = parseInt(s.dataset.dur || '8000', 10);
+    var longest = 0;
+    vids(s).forEach(function (v) {
+      if (isFinite(v.duration) && v.duration > longest) longest = v.duration;
+    });
+    if (longest > 0) {
+      // maxVideoMs เป็นเพดานของ "เวลาที่ยืดตามความยาวคลิป" เท่านั้น
+      // ไม่เอาไปกดทับ data-dur ที่ตั้งมาเอง (ไม่งั้นตั้ง wallMs สูงกว่าเพดานแล้วจะถูกหั่นเงียบ ๆ)
+      var byClip = Math.min(Math.round(longest * 1000) + 600, CFG.maxVideoMs || 45000);
+      base = Math.max(base, byClip);
+    }
+    return base;
+  }
+
+  function runProg(ms) {
+    prog.classList.add('on');
+    prog.style.transition = 'none';
+    prog.style.width = '0%';
+    void prog.offsetWidth;
+    prog.style.transition = 'width ' + ms + 'ms linear';
+    prog.style.width = '100%';
+  }
+  function killProg() {
+    prog.classList.remove('on');
+    prog.style.transition = 'none';
+    prog.style.width = '0%';
+  }
+
+  function arm() {
+    clearTimeout(timer);
+    if (mode !== 'auto' || idx < 0) { killProg(); return; }
+    var ms = slideMs();
+    runProg(ms);
+    timer = setTimeout(next, ms);
+  }
+
+  /* ---------- navigation ---------- */
+  function nextIndex(from) {
+    var i = from;
+    for (var n = 0; n < slides.length; n++) {
+      i = (i + 1) % slides.length;
+      if (mode === 'auto' && slides[i].dataset.autoskip === '1') continue;
+      return i;
+    }
+    return (from + 1) % slides.length;
+  }
+
+  function prevIndex(from) {
+    var i = from;
+    for (var n = 0; n < slides.length; n++) {
+      i = (i - 1 + slides.length) % slides.length;
+      if (mode === 'auto' && slides[i].dataset.autoskip === '1') continue;
+      return i;
+    }
+    return (from - 1 + slides.length) % slides.length;
+  }
+
+  function show(i) {
+    clearTimeout(timer);
+    stopAll();
+    if (idx >= 0) slides[idx].classList.remove('on');
+    idx = i;
+    slides[idx].classList.add('on');
+    var vs = playCurrent();
+    // metadata may arrive late -> re-arm so the slide waits for the full clip
+    vs.forEach(function (v) {
+      v.addEventListener('loadedmetadata', arm, { once: true });
+    });
+    arm();
+  }
+
+  function next() { show(nextIndex(idx)); }
+  function prev() { show(prevIndex(idx)); }
+
+  /* ---------- modes ---------- */
+  /* ---------- แถบควบคุมลอยทับสไลด์ -> โผล่เมื่อมีคนแตะ แล้วซ่อนเอง
+     ที่บูธจะได้เห็นคลิปเต็มจอ ไม่มีอะไรบัง                        */
+  function hideChrome() {
+    bar.classList.remove('on');
+    hint.classList.remove('on');
+  }
+  function showChrome() {
+    clearTimeout(chromeTimer);
+    if (!inDeck) return;
+    bar.classList.add('on');
+    hint.classList.add('on');
+    chromeTimer = setTimeout(hideChrome, CHROME_MS);
+  }
+
+  function goHome() {
+    clearTimeout(timer);
+    clearTimeout(chromeTimer);
+    killProg();
+    stopAll();
+    mode = 'home';
+    inDeck = false;
+    if (idx >= 0) { slides[idx].classList.remove('on'); idx = -1; }
+    deck.classList.remove('on');
+    hideChrome();
+    home.classList.add('on');
+    bumpIdle();
+  }
+
+  function enterDeck(i, m) {
+    mode = m;
+    inDeck = true;
+    home.classList.remove('on');
+    deck.classList.add('on');
+    btnAuto.classList.toggle('hl', mode === 'auto');
+    show(i);
+    showChrome();
+    bumpIdle();
+  }
+
+  function startAuto() { enterDeck(0, 'auto'); }
+
+  function toggleAuto() {
+    if (mode === 'auto') {
+      mode = 'manual';
+      clearTimeout(timer);
+      killProg();
+      btnAuto.classList.remove('hl');
+      bumpIdle();
+    } else if (mode === 'manual') {
+      mode = 'auto';
+      btnAuto.classList.add('hl');
+      arm();
+    } else {
+      startAuto();
+    }
+  }
+
+  /* ---------- idle -> back to auto play ----------
+     ที่บูธ: พนักงานกดโชว์งานให้ลูกค้าดู คุยจบแล้วเดินไป
+     ถ้าไม่มีตัวนี้ จอจะค้างสไลด์เดียวทั้งวัน                      */
+  function bumpIdle() {
+    clearTimeout(idleTimer);
+    if (mode === 'auto') return;
+    idleTimer = setTimeout(startAuto, CFG.idleReturnMs || 60000);
+  }
+  ['pointerdown', 'keydown', 'wheel', 'pointermove'].forEach(function (e) {
+    addEventListener(e, function () { bumpIdle(); showChrome(); }, { passive: true });
+  });
+
+  /* ---------- sound ---------- */
+  function setMuted(m) {
+    muted = m;
+    btnSound.innerHTML = muted ? '<span>&#128263;</span>' : '<span>&#128266;</span>';
+    btnSound.setAttribute('aria-label', muted ? 'เปิดเสียง' : 'ปิดเสียง');
+    slides.forEach(function (s) {
+      vids(s).forEach(function (v) { v.muted = muted || v.dataset.silent === '1'; });
+    });
+  }
+
+  /* ---------- fullscreen ---------- */
+  function toggleFs() {
+    var d = document;
+    if (!d.fullscreenElement) {
+      var r = d.documentElement.requestFullscreen;
+      if (r) r.call(d.documentElement).catch(function () {});
+    } else if (d.exitFullscreen) {
+      d.exitFullscreen().catch(function () {});
+    }
+  }
+
+  // เบราว์เซอร์ยอมให้เข้าเต็มจอได้เฉพาะตอนมี gesture -> ขอตอนแตะครั้งแรก
+  if (KIOSK) {
+    addEventListener('pointerdown', function once() {
+      removeEventListener('pointerdown', once);
+      if (fsAsked || document.fullscreenElement) return;
+      fsAsked = true;
+      toggleFs();
+    });
+  }
+
+  /* ---------- wiring ---------- */
+  document.getElementById('btnPlay').addEventListener('click', startAuto);
+  document.getElementById('btnHome').addEventListener('click', goHome);
+  document.getElementById('btnPrev').addEventListener('click', function () { mode = 'manual'; btnAuto.classList.remove('hl'); killProg(); prev(); });
+  document.getElementById('btnNext').addEventListener('click', function () { mode = 'manual'; btnAuto.classList.remove('hl'); killProg(); next(); });
+  document.getElementById('btnFs').addEventListener('click', toggleFs);
+  btnAuto.addEventListener('click', toggleAuto);
+  btnSound.addEventListener('click', function () { setMuted(!muted); playCurrent(); });
+
+  [].slice.call(document.querySelectorAll('[data-goto]')).forEach(function (el) {
+    el.addEventListener('click', function () {
+      enterDeck(parseInt(el.dataset.goto, 10), 'manual');
+      btnAuto.classList.remove('hl');
+    });
+  });
+
+  addEventListener('keydown', function (e) {
+    var k = e.key;
+    if (k === 'ArrowRight' || k === 'PageDown') { e.preventDefault(); mode = (mode === 'home' ? 'manual' : mode); if (mode === 'auto') { mode = 'manual'; btnAuto.classList.remove('hl'); killProg(); } if (idx < 0) enterDeck(0, 'manual'); else next(); }
+    else if (k === 'ArrowLeft' || k === 'PageUp') { e.preventDefault(); if (mode === 'auto') { mode = 'manual'; btnAuto.classList.remove('hl'); killProg(); } if (idx < 0) enterDeck(slides.length - 1, 'manual'); else prev(); }
+    else if (k === 'Escape') { goHome(); }
+    else if (k === ' ') { e.preventDefault(); toggleAuto(); }
+    else if (k === 'f' || k === 'F') { toggleFs(); }
+    else if (k === 'm' || k === 'M') { setMuted(!muted); playCurrent(); }
+  });
+
+  /* ---------- go ---------- */
+  setMuted(true);
+  if (KIOSK) startAuto(); else goHome();
+})();
+
+</script>
+</body>
+</html>
