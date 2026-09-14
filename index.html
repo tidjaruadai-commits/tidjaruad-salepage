@@ -16,7 +16,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:locale" content="th_TH">
 <meta property="og:site_name" content="ติดจรวด Tidjaruad Agency">
 <meta property="og:title" content="ติดจรวด | Growth Partner ด้าน TikTok Ads และคอนเทนต์">
-<meta property="og:description" content="วางกลยุทธ์ ดูแลแอด ผลิตคลิป หา KOL — ดูผลงานจริงจากหลังบ้าน แล้วรับคำปรึกษาฟรี">
+<meta property="og:description" content="งบโฆษณา ฿3.22 ล้าน กลับมาเป็นยอดขาย ฿12.38 ล้าน — ดูผลงานจริงจากหลังบ้าน แล้วรับคำปรึกษาฟรี">
 <meta name="theme-color" content="#FFFDF8">
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <style>
@@ -229,7 +229,46 @@ footer ul li{margin-bottom:10px}
   .stat .v{font-size:36px}
 }
 
-/* ===== PROOF · ผลงานจริงจากหลังบ้าน (เพิ่มสำหรับเซลเพจ) ===== */
+/* ===== HERO แบบผลลัพธ์ก่อน (แทนมาสคอต) ===== */
+.hero{padding-bottom:64px}
+.hero .lead{margin-bottom:26px}
+.hero-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:30px;max-width:620px}
+.hero-kpis a{display:block;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 12px;box-shadow:var(--shadow);transition:.2s}
+.hero-kpis a:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:transparent}
+.hero-kpis b{display:block;font-size:22px;font-weight:700;color:var(--red);line-height:1.2;letter-spacing:-.3px}
+.hero-kpis span{display:block;font-size:12.5px;line-height:1.45;margin-top:3px}
+.hero-proof{position:relative;padding:26px 8px 0}
+.hp-card{display:block;background:#fff;border-radius:18px;overflow:hidden;cursor:zoom-in;transform:rotate(1.5deg);transition:.3s;
+  box-shadow:0 30px 70px rgba(27,29,69,.18),0 0 0 1px var(--line)}
+.hp-card:hover{transform:rotate(0) translateY(-4px)}
+.hp-bar{display:flex;align-items:center;gap:6px;padding:10px 14px;background:var(--wash);border-bottom:1px solid var(--line)}
+.hp-bar i{width:9px;height:9px;border-radius:50%;background:#FF5F57}
+.hp-bar i:nth-child(2){background:#FEBC2E}.hp-bar i:nth-child(3){background:#28C840}
+.hp-bar em{font-style:normal;font-size:12px;color:#9BA0C0;margin-left:8px}
+.hp-card img{width:100%;height:auto}
+.hero-proof .chip b{color:var(--red);font-weight:700}
+.hero-proof .c1{top:-22px;left:-10px;right:auto;bottom:auto}   /* ลอยเหนือการ์ด ไม่บังแถบชื่อแดชบอร์ด */
+.hero-proof .c2{top:46%;right:-20px;left:auto;bottom:auto}
+.hero-proof .c3{bottom:46px;left:-22px;top:auto;right:auto}
+.hp-note{font-size:12.5px;color:#9BA0C0;text-align:center;margin-top:20px}
+/* ===== #portfolio ผลลัพธ์ก่อนรายละเอียด ===== */
+.pf-top{background:linear-gradient(180deg,#FFFDF8 0%,#EEF4FF 100%);padding-top:64px}
+.pf-cases{margin-bottom:46px}
+.pf-case{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow);transition:.25s}
+.pf-case:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+.pf-thumb{aspect-ratio:16/10;overflow:hidden;background:var(--wash);border-bottom:1px solid var(--line)}
+.pf-thumb img{width:100%;height:100%;object-fit:cover}
+.pf-body{display:flex;flex-direction:column;flex:1;padding:20px 22px 22px}
+.pf-who{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13.5px;color:var(--ink);font-weight:600}
+.pf-who span{font-size:11.5px;color:var(--red);background:var(--red-soft);padding:2px 10px;border-radius:999px;font-weight:500}
+.pf-num{font-size:34px;font-weight:700;color:var(--red);line-height:1.2;margin:8px 0 6px;letter-spacing:-.4px}
+.pf-body p{font-size:14px;line-height:1.7;flex:1}
+.pf-go{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:14px;color:var(--red);font-weight:500}
+.pf-top .reel{margin-bottom:0}
+.reel-link{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:46px;padding:18px 22px;border-radius:18px;
+  background:linear-gradient(155deg,#1B1D45,#0A0E1F);color:#fff;font-weight:500;box-shadow:var(--shadow-lg);transition:.2s}
+.reel-link:hover{transform:translateY(-3px)}
+/* ===== PROOF · ผลงานจริงจากหลังบ้าน (ในแต่ละบริการ) ===== */
 .proof{background:#fff;border:1px solid var(--line);border-radius:28px;padding:36px;margin-bottom:46px;box-shadow:var(--shadow)}
 .proof-head{display:grid;grid-template-columns:1.1fr .9fr;gap:12px 36px;align-items:end;margin-bottom:26px}
 .proof-tag{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(90deg,var(--red),var(--blue));color:#fff;font-size:11.5px;font-weight:600;letter-spacing:1.4px;padding:6px 15px;border-radius:999px;margin-bottom:12px}
@@ -289,8 +328,14 @@ a.phone:hover{transform:translateY(-3px)}
   .proof-head{grid-template-columns:1fr}
   .case{grid-template-columns:1fr;gap:22px}
   .split{grid-template-columns:1fr 1fr}
+  .hero-proof{padding-top:6px}
+  .hp-card{transform:none}
 }
 @media(max-width:760px){
+  .hero-kpis{grid-template-columns:repeat(2,1fr)}
+  .hero-kpis b{font-size:20px}
+  .pf-top{padding-top:46px}
+  .pf-num{font-size:28px}
   .proof,.reel{padding:24px 18px;border-radius:22px}
   .split{grid-template-columns:1fr}
   /* มือถือ: KPI 2 ช่องต่อแถว ไม่งั้นบล็อกยาวเกิน · ภาพมือถือเดี่ยวไม่ให้ยืดเต็มจอ */
@@ -362,15 +407,14 @@ a.phone:hover{transform:translateY(-3px)}
     </a>
     <button class="burger" aria-label="เมนู" onclick="document.getElementById('nl').classList.toggle('open')"><svg class="i"><use href="#i-menu"/></svg></button>
     <div class="nav-links" id="nl">
+      <a href="#portfolio">ผลลัพธ์</a>
       <a href="#services">บริการ</a>
       <a href="#consult">ปรึกษา</a>
       <a href="#training">สอนยิงแอด</a>
       <a href="#ads">ดูแลแอด</a>
       <a href="#content">ทำคลิป</a>
-      <a href="#showreel">ผลงานวิดีโอ</a>
       <a href="#kol">หา KOL</a>
       <a href="#ai">AI องค์กร</a>
-      <a href="#results">ผลลัพธ์</a>
     </div>
     <a href="#contact" class="nav-cta">ปรึกษาฟรี <svg class="i ar"><use href="#i-arrow-r"/></svg></a>
   </div>
@@ -381,24 +425,53 @@ a.phone:hover{transform:translateY(-3px)}
   <div class="hero-bg"></div><div class="hero-fade"></div>
   <div class="wrap hero-in">
     <div>
-      <div class="pill"><svg class="i"><use href="#i-rocket"/></svg> FRIENDLY GROWTH PARTNER</div>
-      <h1>มากกว่าเอเจนซี่โฆษณา<br><span class="red">Growth Partner</span><br>ที่โตไปกับคุณ</h1>
-      <div class="sub">พร้อมทำงานเคียงคู่ และผลักดันธุรกิจในทุกสเต็ปของการเติบโต</div>
-      <p class="lead">ลดช่องว่างในการทำงาน ด้วยเอเจนซี่ที่พร้อมพูดคุย ซัพพอร์ต และดูแลผลลัพธ์เหมือนเป็นทีมของคุณเอง</p>
+      <div class="pill"><svg class="i"><use href="#i-chart-up"/></svg> ผลงานจริง · ภาพจากหลังบ้านโฆษณา</div>
+      <h1>งบโฆษณา ฿3.22 ล้าน<br>กลับมาเป็นยอดขาย<br><span class="red">฿12.38 ล้าน</span></h1>
+      <p class="lead">ผลลัพธ์จริงที่ติดจรวดทำให้ลูกค้า — Growth Partner ด้าน TikTok Ads และคอนเทนต์ ที่ดูแลผลลัพธ์เหมือนเป็นทีมของคุณเอง</p>
+      <div class="hero-kpis">
+        <a href="#training"><b>9.40x</b><span>ROAS รวม</span></a>
+        <a href="#consult"><b>฿182.6M</b><span>GMV ต่อปี ร้านเดียว</span></a>
+        <a href="#ads"><b>฿3.50</b><span>ต่อคลิกเข้า LINE</span></a>
+        <a href="#kol"><b>+2,226%</b><span>ยอดขายจากวิดีโอ</span></a>
+      </div>
       <div class="hero-cta">
         <a href="#contact" class="btn btn-red">ปรึกษาฟรี <svg class="i ar"><use href="#i-arrow-r"/></svg></a>
-        <a href="#services" class="btn btn-line">ดูบริการทั้งหมด <svg class="i"><use href="#i-arrow-d"/></svg></a>
+        <a href="#portfolio" class="btn btn-line">ดูผลลัพธ์ทั้งหมด <svg class="i"><use href="#i-arrow-d"/></svg></a>
       </div>
     </div>
-    <div class="mascot-wrap">
-      <img class="mascot" src="assets/mascot.webp" alt="นักบินอวกาศติดจรวด ตัวแทนเอเจนซี่ติดจรวด" width="442" height="663">
-      <div class="chip c1"><svg class="i"><use href="#i-mobile"/></svg> TikTok Ads Management</div>
-      <div class="chip c2"><svg class="i"><use href="#i-chart-up"/></svg> Sales Growth Analysis</div>
-      <div class="chip c3"><svg class="i"><use href="#i-target"/></svg> ROAS Optimal 4.8x+</div>
-      <div class="chip c4"><svg class="i"><use href="#i-file"/></svg> Performance Reporting</div>
+    <div class="hero-proof">
+      <a class="hp-card zoom" href="assets/proof/gmvmax-shop-b.webp" data-cap="GMV Max ร้านค้า TikTok Shop · 9 ส.ค. – 7 พ.ย. 2024 · งบ ฿3,220,897 → ยอดขาย ฿12,383,742">
+        <span class="hp-bar"><i></i><i></i><i></i><em>TikTok Seller Center · GMV Max</em></span>
+        <img src="assets/proof/gmvmax-shop-b.webp" width="1037" height="634" alt="แดชบอร์ด GMV Max ร้านค้า TikTok Shop" fetchpriority="high">
+      </a>
+      <div class="chip c1"><svg class="i"><use href="#i-chart-up"/></svg> ROI <b>3.84</b></div>
+      <div class="chip c2"><svg class="i"><use href="#i-cart"/></svg> <b>25,568</b> คำสั่งซื้อ</div>
+      <div class="chip c3"><svg class="i"><use href="#i-calendar"/></svg> ภายใน 3 เดือน</div>
+      <p class="hp-note">ภาพจริงจากหลังบ้าน · ปิดชื่อร้านเพื่อความเป็นส่วนตัวของลูกค้า</p>
     </div>
   </div>
 </header>
+
+<!-- ===== RESULTS FIRST ===== -->
+<section id="portfolio" class="pf-top">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="tagchip">PROVEN RESULTS</div>
+      <h2>ผลลัพธ์จากลูกค้าจริง ก่อนไปดูว่าเราทำอะไรบ้าง</h2>
+      <p>ตัวเลขทุกตัวมาจากหลังบ้านโฆษณาของลูกค้าที่เราดูแล · กดการ์ดเพื่อข้ามไปดูรายละเอียดและภาพหลักฐานของแต่ละเคส</p>
+    </div>
+    <div class="grid g3 pf-cases">
+      <a class="pf-case" href="#consult"><div class="pf-thumb"><img src="assets/proof/gmv-2025.webp" width="744" height="493" alt="ร้านค้า TikTok Shop · ฿182.6 ล้าน" style="object-position:left top" loading="lazy"></div><div class="pf-body"><div class="pf-who">ร้านค้า TikTok Shop <span>วางกลยุทธ์ทั้งร้าน</span></div><div class="pf-num">฿182.6 ล้าน</div><p>GMV ทั้งปี 2025 จากร้านเดียว · ขายได้ 648,644 รายการ</p><span class="pf-go">ดูรายละเอียด <svg class="i"><use href="#i-arrow-d"/></svg></span></div></a>
+      <a class="pf-case" href="#ads"><div class="pf-thumb"><img src="assets/proof/cafe-line-traffic.webp" width="1400" height="669" alt="ร้านคาเฟ่ผลไม้ · ฿3.50 / คลิก" style="object-position:left top" loading="lazy"></div><div class="pf-body"><div class="pf-who">ร้านคาเฟ่ผลไม้ <span>ดูแลยิงแอด</span></div><div class="pf-num">฿3.50 / คลิก</div><p>ส่งคนจาก TikTok เข้า LINE เพื่อจองที่นั่ง · 339 Conversions ในเดือนเดียว</p><span class="pf-go">ดูรายละเอียด <svg class="i"><use href="#i-arrow-d"/></svg></span></div></a>
+      <a class="pf-case" href="#kol"><div class="pf-thumb"><img src="assets/proof/gmv-detail-2025.webp" width="830" height="413" alt="ร้านค้า TikTok Shop · ฿89.46 ล้าน" style="object-position:center center" loading="lazy"></div><div class="pf-body"><div class="pf-who">ร้านค้า TikTok Shop <span>ไลฟ์ &amp; ครีเอเตอร์</span></div><div class="pf-num">฿89.46 ล้าน</div><p>ยอดขายจากไลฟ์ปี 2025 (+254%) · ยอดผ่านแอฟฟิลิเอตโต +3,615%</p><span class="pf-go">ดูรายละเอียด <svg class="i"><use href="#i-arrow-d"/></svg></span></div></a>
+    </div>
+    <div class="reel" id="showreel">
+      <div class="proof-head"><div><div class="proof-tag"><svg class="i"><use href="#i-film"/></svg> ผลงานวิดีโอ · 17 แบรนด์</div><h3>ดูผลงานคลิปจริงของเราได้ตรงนี้เลย</h3></div><p>โชว์รีลชุดเดียวกับที่เราเปิดบนจอบูธ กดการ์ดแบรนด์เพื่อดูคลิปของแบรนด์นั้น หรือกด “เล่นอัตโนมัติ” ให้ไล่ดูทั้งหมด</p></div>
+      <div class="reel-frame"><iframe src="vdo-deck.html" title="ผลงานวิดีโอติดจรวด" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+      <div class="reel-bar"><span>คลิกในกรอบก่อน แล้วใช้ ← → เลื่อนสไลด์ · M เปิดเสียง · Esc กลับสารบัญ</span><a class="btn btn-line" href="vdo-deck.html" target="_blank" rel="noopener">เปิดเต็มจอ <svg class="i ar"><use href="#i-arrow-r"/></svg></a></div>
+    </div>
+  </div>
+</section>
 
 <!-- ===== BENEFITS ===== -->
 <section class="wash">
@@ -760,11 +833,7 @@ a.phone:hover{transform:translateY(-3px)}
       <div class="feat"><div class="b"><svg class="i"><use href="#i-refresh"/></svg></div><div><h3>A/B Testing</h3><p>วางแนวทางทดสอบเพื่อหา Creative ที่ทำงานได้ดีที่สุด ก่อนทุ่มงบสเกล</p></div></div>
     </div>
 
-    <div class="reel" id="showreel">
-      <div class="proof-head"><div><div class="proof-tag"><svg class="i"><use href="#i-film"/></svg> ผลงานวิดีโอ · 17 แบรนด์</div><h3>ดูผลงานคลิปจริงของเราได้ตรงนี้เลย</h3></div><p>โชว์รีลชุดเดียวกับที่เราเปิดบนจอบูธ กดการ์ดแบรนด์เพื่อดูคลิปของแบรนด์นั้น หรือกด “เล่นอัตโนมัติ” ให้ไล่ดูทั้งหมด</p></div>
-      <div class="reel-frame"><iframe src="vdo-deck.html" title="ผลงานวิดีโอติดจรวด" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
-      <div class="reel-bar"><span>คลิกในกรอบก่อน แล้วใช้ ← → เลื่อนสไลด์ · M เปิดเสียง · Esc กลับสารบัญ</span><a class="btn btn-line" href="vdo-deck.html" target="_blank" rel="noopener">เปิดเต็มจอ <svg class="i ar"><use href="#i-arrow-r"/></svg></a></div>
-    </div>
+    <a class="reel-link" href="#showreel"><svg class="i"><use href="#i-film"/></svg> ดูโชว์รีลผลงานวิดีโอจริง 17 แบรนด์ <svg class="i"><use href="#i-arrow-u"/></svg></a>
 
     <div class="proof">
       <div class="proof-head"><div><div class="proof-tag"><svg class="i"><use href="#i-heart"/></svg> ผลงานจริง · ร้านคาเฟ่ผลไม้</div><h3>คอนเทนต์ที่ทำให้คนกดถูกใจ กดบันทึก และกดเข้าโปรไฟล์</h3></div><p>ผลรวมจากแคมเปญวิดีโอ 33 แคมเปญของร้านคาเฟ่ผลไม้ และตัวอย่างคลิปบนช่องจริง</p></div>
@@ -1019,18 +1088,6 @@ a.phone:hover{transform:translateY(-3px)}
 <section id="results">
   <div class="wrap">
     <div class="sec-head">
-      <div class="tagchip">PROVEN RESULTS</div>
-      <h2>เราเชื่อในผลลัพธ์ที่วัดผลได้</h2>
-      <p>ตัวเลขทุกตัวด้านล่างมาจากหลังบ้านจริงของลูกค้า ดูภาพหลักฐานได้ในแต่ละบริการด้านบน</p>
-    </div>
-    <div class="grid g4">
-      <div class="stat"><div class="k">ROAS รวม</div><div class="v">9.40x</div><p>งบโฆษณา ฿800,714 สร้างรายได้ร้านค้า ฿7.53 ล้าน</p></div>
-      <div class="stat"><div class="k">GMV ปี 2025</div><div class="v">฿182.6M</div><p>ยอดขายทั้งปีของร้านค้า TikTok Shop ที่เราดูแล</p></div>
-      <div class="stat"><div class="k">ต้นทุน / CONVERSION</div><div class="v">฿26.66</div><p>แอดที่ดีที่สุดของร้านคาเฟ่ผลไม้ ต่ำกว่าค่าเฉลี่ยของบัญชีราว 17%</p></div>
-      <div class="stat"><div class="k">ยอดขายผ่านวิดีโอ</div><div class="v">+2,226%</div><p>โตจากช่วงก่อนหน้า เป็น ฿62.86 ล้านในปี 2025</p></div>
-    </div>
-
-    <div class="sec-head" style="margin-top:76px">
       <h2>ทำไมต้องติดจรวด?</h2>
       <p>เราไม่ได้ดูแลแค่การยิงแอดรายวัน แต่ทำงานร่วมกับคุณเหมือน Growth Partner ที่ช่วยวางระบบ คิดกลยุทธ์ อ่านข้อมูล และปรับแคมเปญให้สอดคล้องกับเป้าหมายธุรกิจ</p>
     </div>
@@ -1098,7 +1155,7 @@ a.phone:hover{transform:translateY(-3px)}
         <li><a href="#top">หน้าแรก</a></li>
         <li><a href="#services">บริการของเรา</a></li>
         <li><a href="#process">ขั้นตอนการทำงาน</a></li>
-        <li><a href="#results">ผลลัพธ์</a></li>
+        <li><a href="#portfolio">ผลลัพธ์</a></li>
         <li><a href="#faq">คำถามที่พบบ่อย</a></li>
         <li><a href="#contact">ปรึกษาฟรี</a></li>
       </ul></div>
