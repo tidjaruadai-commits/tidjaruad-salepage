@@ -298,6 +298,20 @@ footer ul li{margin-bottom:10px}
 .cert-y{font-size:30px;font-weight:700;color:var(--ink);line-height:1.1}
 .cert-t{display:inline-block;margin:8px 0 10px;padding:4px 12px;border-radius:999px;background:var(--tc);color:#fff;font-size:11.5px;font-weight:600;line-height:1.45}
 .cert-col ul{list-style:none;font-size:14px;line-height:1.7;color:var(--ink-2)}
+/* ลูกเล่นตอนเลื่อนมาถึง (ผู้ใช้ขอ 2026-09-14): เส้นเวลาวิ่ง 2022 -> 2026 แล้วจุด/ป้ายของแต่ละปีเด้งขึ้นตามลำดับ
+   JS ใส่ .anim ตอนโหลด (ซ่อนไว้ก่อน) แล้วใส่ .go เมื่อเลื่อนมาถึง · --up = ลำดับปี 0-4 ใช้เป็นตัวหน่วงเวลา */
+.cert-line.anim .cert-col{opacity:0;transform:translateY(28px)}
+.cert-line.anim .cert-vis > *{opacity:0;transform:translateY(40px) scale(.9)}
+.cert-line.anim .cert-axis::before{transform:scaleX(0);transform-origin:left center}
+.cert-line.anim .cert-axis::after{transform:scale(0)}
+.cert-line.go .cert-col{opacity:1;transform:none;transition:opacity .55s ease,transform .7s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--up) * .45s)}
+.cert-line.go .cert-axis::before{transform:scaleX(1);transition:transform .45s linear;transition-delay:calc(var(--up) * .45s)}
+.cert-line.go .cert-axis::after{animation:certPop .55s cubic-bezier(.3,1.6,.5,1) both;animation-delay:calc(var(--up) * .45s + .3s)}
+.cert-line.go .cert-vis > *{opacity:1;transform:none;transition:opacity .5s ease,transform .7s cubic-bezier(.3,1.4,.5,1);transition-delay:calc(var(--up) * .45s + .25s)}
+.cert-line.go .cert-vis > *:nth-child(3){transition-delay:calc(var(--up) * .45s + .4s)}
+.cert-line.go .t-x .cert-axis::after{animation:certPop .55s cubic-bezier(.3,1.6,.5,1) both,certPulse 1.6s ease-out 3 both;animation-delay:2.1s,2.7s}
+@keyframes certPop{0%{transform:scale(0)}100%{transform:scale(1)}}
+@keyframes certPulse{0%{box-shadow:0 0 0 4px #fff,0 0 0 4px rgba(27,29,69,.45)}100%{box-shadow:0 0 0 4px #fff,0 0 0 20px rgba(27,29,69,0)}}
 @media(max-width:1000px){
   .cert-vis{height:320px;padding-bottom:calc(var(--up) * 18px)}
   .cb{width:100px;height:124px}.cb.fit,.cb.icon{height:100px}.cs{width:100px}
@@ -361,7 +375,7 @@ a.phone:hover{transform:translateY(-3px)}
 /* ภาพจำลอง (ธีมร้านอื่น) — ต้องบอกคนดูชัด ๆ ว่าไม่ใช่ภาพโพสต์จริง */
 .mock-badge{position:absolute;top:10px;left:10px;z-index:2;background:rgba(10,14,31,.8);color:#fff;font-size:11px;font-weight:600;letter-spacing:.4px;padding:4px 10px;border-radius:999px;backdrop-filter:blur(4px)}
 .mock-note{font-size:12px;line-height:1.5;color:#9BA0C0;text-align:center;margin-top:4px}
-/* โชว์รีลวิดีโอ (ฝัง vdo-deck.html) */
+/* กล่องผลงานวิดีโอ (พื้นเข้ม) */
 .reel{background:linear-gradient(155deg,#1B1D45,#0A0E1F);border-radius:30px;padding:34px;margin-bottom:46px;box-shadow:var(--shadow-lg);color:rgba(255,255,255,.7)}
 .reel .proof-head h3{color:#fff}
 .reel .proof-head p{color:rgba(255,255,255,.72)}
@@ -370,6 +384,46 @@ a.phone:hover{transform:translateY(-3px)}
 .reel-bar{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:18px;font-size:14px}
 .reel-bar .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.3);box-shadow:none}
 .reel-bar .btn-line:hover{border-color:var(--red);color:#fff;background:rgba(255,51,71,.18)}
+/* ===== ผลงานวิดีโอ (การ์ดคลิปแยก ไม่ใช้เด็ค) ===== */
+.v-group{margin-top:26px}
+.v-label{font-size:12px;letter-spacing:1.4px;font-weight:600;color:rgba(255,255,255,.62);margin-bottom:12px}
+.vchs{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.vch{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:16px}
+.vch-head{display:flex;justify-content:space-between;align-items:flex-end;gap:8px 14px;flex-wrap:wrap;margin-bottom:12px}
+.vch-head b{display:block;color:#fff;font-size:17px;font-weight:600;line-height:1.3}
+.vch-head span{font-size:13px;color:#FF8A96}
+.vch-stats{display:flex;gap:12px;font-size:12.5px;color:rgba(255,255,255,.65)}
+.vch-stats b{color:#fff;font-weight:600}
+.v-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.v-brands{grid-template-columns:repeat(6,1fr)}
+.vtile{position:relative;display:block;width:100%;aspect-ratio:9/16;border:0;padding:0;border-radius:14px;overflow:hidden;
+  background:#050916;cursor:pointer;text-align:left;font:inherit;color:#fff;transition:transform .2s,box-shadow .2s}
+.vtile:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(0,0,0,.45)}
+.v-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.v-logo{position:absolute;top:8px;left:8px;z-index:2;width:34px;height:34px;border-radius:8px;background:#fff;padding:3px;object-fit:contain}
+.v-views{position:absolute;top:8px;left:8px;z-index:2;background:var(--red);border-radius:10px;padding:5px 9px;font-size:10.5px;line-height:1.2;
+  box-shadow:0 6px 16px rgba(255,51,71,.45)}
+.v-views b{display:block;font-size:17px;font-weight:700}
+.v-play{position:absolute;left:50%;top:44%;z-index:2;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;
+  background:rgba(255,255,255,.9);box-shadow:0 6px 18px rgba(0,0,0,.35);transition:transform .2s}
+.v-play::after{content:"";position:absolute;left:18px;top:14px;border-left:14px solid var(--red);border-top:9px solid transparent;border-bottom:9px solid transparent}
+.vtile:hover .v-play{transform:scale(1.12)}
+.v-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:36px 10px 10px;background:linear-gradient(180deg,transparent,rgba(10,14,31,.95));
+  font-size:11.5px;line-height:1.35}
+.v-cap b{display:block;font-size:13px;font-weight:600;line-height:1.3}
+.v-cap span{display:block;color:rgba(255,255,255,.75);margin-top:2px}
+@media(max-width:1000px){.v-brands{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:900px){.vchs{grid-template-columns:1fr}}
+@media(max-width:760px){
+  .v-row,.v-brands{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;padding-bottom:6px}
+  .v-row .vtile{flex:0 0 44%;scroll-snap-align:start}
+}
+/* หน้าต่างเล่นคลิป */
+#vp{border:0;padding:0;background:transparent;margin:auto;overflow:visible;max-height:94vh}
+#vp::backdrop{background:rgba(10,14,31,.9)}
+#vp video{display:block;height:min(82vh,860px);width:auto;max-width:94vw;border-radius:16px;background:#000}
+#vp p{color:#fff;text-align:center;margin-top:10px;font-size:14px}
+#vp button{position:fixed;top:18px;right:18px;width:46px;height:46px;border-radius:50%;border:0;background:#fff;color:var(--ink);font-size:26px;line-height:1;cursor:pointer}
 /* ขยายภาพ */
 #lb{border:0;padding:0;background:transparent;max-width:94vw;max-height:94vh;margin:auto;overflow:visible}
 #lb::backdrop{background:rgba(10,14,31,.86);backdrop-filter:blur(4px)}
@@ -526,9 +580,8 @@ a.phone:hover{transform:translateY(-3px)}
       <a class="pf-case" href="#kol"><div class="pf-thumb"><img src="assets/proof/gmv-detail-2025.webp" width="830" height="413" alt="ร้านค้า TikTok Shop · ฿89.46 ล้าน" style="object-position:center center" loading="lazy"></div><div class="pf-body"><div class="pf-who">ร้านค้า TikTok Shop <span>ไลฟ์ &amp; ครีเอเตอร์</span></div><div class="pf-num">฿89.46 ล้าน</div><p>ยอดขายจากไลฟ์ปี 2025 (+254%) · ยอดผ่านแอฟฟิลิเอตโต +3,615%</p><span class="pf-go">ดูรายละเอียด <svg class="i"><use href="#i-arrow-d"/></svg></span></div></a>
     </div>
     <div class="reel" id="showreel">
-      <div class="proof-head"><div><div class="proof-tag"><svg class="i"><use href="#i-film"/></svg> ผลงานวิดีโอ · 11 แบรนด์เด่น</div><h3>ดูผลงานคลิปจริงของเราได้ตรงนี้เลย</h3></div><p>โชว์รีลชุดเดียวกับที่เราเปิดบนจอบูธ กดการ์ดแบรนด์เพื่อดูคลิปของแบรนด์นั้น หรือกด “เล่นอัตโนมัติ” ให้ไล่ดูทั้งหมด</p></div>
-      <div class="reel-frame"><iframe src="vdo-deck.html" title="ผลงานวิดีโอติดจรวด" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
-      <div class="reel-bar"><span>คลิกในกรอบก่อน แล้วใช้ ← → เลื่อนสไลด์ · M เปิดเสียง · Esc กลับสารบัญ</span><a class="btn btn-line" href="vdo-deck.html" target="_blank" rel="noopener">เปิดเต็มจอ <svg class="i ar"><use href="#i-arrow-r"/></svg></a></div>
+      <div class="proof-head"><div><div class="proof-tag"><svg class="i"><use href="#i-film"/></svg> ผลงานวิดีโอ · 11 แบรนด์เด่น</div><h3>ดูผลงานคลิปจริงของเราได้ตรงนี้เลย</h3></div><p>คลิปจริงที่ทีมติดจรวดผลิต ทั้งบนช่องลูกค้าที่ยอดดูหลักล้าน และคลิปของแบรนด์เด่น — กดที่คลิปเพื่อดูพร้อมเสียง</p></div>
+      <div class="v-group"><div class="v-label">ผลงานบนช่องจริง · TikTok</div><div class="vchs"><div class="vch"><div class="vch-head"><div><b>หมอมาศ Anti Aging</b><span>@dr.mas.co</span></div><div class="vch-stats"><span><b>70.9K</b> ผู้ติดตาม</span><span><b>508.7K</b> ยอดถูกใจรวม</span></div></div><div class="v-row"><button type="button" class="vtile" data-video="assets/video/m077-smartclinic-ch-sleep.mp4" data-label="หมอมาศ Anti Aging · &quot;การนอนดึก&quot; ส่งผลอย่างไร" aria-label="เล่นคลิป หมอมาศ Anti Aging · &quot;การนอนดึก&quot; ส่งผลอย่างไร"><img class="v-poster" src="assets/video/m077-smartclinic-ch-sleep.webp" alt="" width="360" height="640" loading="lazy"><span class="v-views"><b>811K</b>ยอดดู</span><span class="v-play" aria-hidden="true"></span><span class="v-cap"><b>&quot;การนอนดึก&quot; ส่งผลอย่างไร</b><span class="v-eng">♡ 24.9K · 💬 237</span></span></button><button type="button" class="vtile" data-video="assets/video/m077-smartclinic-ch-age53.mp4" data-label="หมอมาศ Anti Aging · อายุ 53 ปี หน้าเด็กขนาดนี้ ดูแลตัวเองยังไง" aria-label="เล่นคลิป หมอมาศ Anti Aging · อายุ 53 ปี หน้าเด็กขนาดนี้ ดูแลตัวเองยังไง"><img class="v-poster" src="assets/video/m077-smartclinic-ch-age53.webp" alt="" width="360" height="640" loading="lazy"><span class="v-views"><b>176.2K</b>ยอดดู</span><span class="v-play" aria-hidden="true"></span><span class="v-cap"><b>อายุ 53 ปี หน้าเด็กขนาดนี้ ดูแลตัวเองยังไง</b><span class="v-eng">♡ 5,590 · 💬 114</span></span></button><button type="button" class="vtile" data-video="assets/video/m077-smartclinic-01.mp4" data-label="หมอมาศ Anti Aging · อาหารแช่เย็นนาน อาจทำให้เป็นมะเร็งโดยไม่รู้ตัว" aria-label="เล่นคลิป หมอมาศ Anti Aging · อาหารแช่เย็นนาน อาจทำให้เป็นมะเร็งโดยไม่รู้ตัว"><img class="v-poster" src="assets/video/m077-smartclinic-01.webp" alt="" width="360" height="640" loading="lazy"><span class="v-play" aria-hidden="true"></span><span class="v-cap"><b>อาหารแช่เย็นนาน อาจทำให้เป็นมะเร็งโดยไม่รู้ตัว</b><span class="v-eng">♡ 12.1K · 💬 146</span></span></button></div></div><div class="vch"><div class="vch-head"><div><b>ซินแสบาร์โค้ดชีวิต</b><span>@zinzaebarcode</span></div><div class="vch-stats"><span><b>105.3K</b> ผู้ติดตาม</span><span><b>745.4K</b> ยอดถูกใจรวม</span></div></div><div class="v-row"><button type="button" class="vtile" data-video="assets/video/m100-barcode-ch-husband.mp4" data-label="ซินแสบาร์โค้ดชีวิต · โหงวเฮ้งแบบไหนไม่ควรเอามาทำผัว" aria-label="เล่นคลิป ซินแสบาร์โค้ดชีวิต · โหงวเฮ้งแบบไหนไม่ควรเอามาทำผัว"><img class="v-poster" src="assets/video/m100-barcode-ch-husband.webp" alt="" width="360" height="640" loading="lazy"><span class="v-views"><b>4M</b>ยอดดู</span><span class="v-play" aria-hidden="true"></span><span class="v-cap"><b>โหงวเฮ้งแบบไหนไม่ควรเอามาทำผัว</b><span class="v-eng">♡ 94.2K · 💬 1,173</span></span></button><button type="button" class="vtile" data-video="assets/video/m100-barcode-03.mp4" data-label="ซินแสบาร์โค้ดชีวิต · คนรวยหรือคนจน ดูง่าย ๆ ที่จมูก" aria-label="เล่นคลิป ซินแสบาร์โค้ดชีวิต · คนรวยหรือคนจน ดูง่าย ๆ ที่จมูก"><img class="v-poster" src="assets/video/m100-barcode-03.webp" alt="" width="360" height="640" loading="lazy"><span class="v-views"><b>2.3M</b>ยอดดู</span><span class="v-play" aria-hidden="true"></span><span class="v-cap"><b>คนรวยหรือคนจน ดูง่าย ๆ ที่จมูก</b><span class="v-eng">♡ 45K · 💬 474</span></span></button><button type="button" class="vtile" data-video="assets/video/m100-barcode-ch-house.mp4" data-label="ซินแสบาร์โค้ดชีวิต · บ้านนี้ใครใหญ่ ดูได้จากฝั่งที่นอน" aria-label="เล่นคลิป ซินแสบาร์โค้ดชีวิต · บ้านนี้ใครใหญ่ ดูได้จากฝั่งที่นอน"><img class="v-poster" src="assets/video/m100-barcode-ch-house.webp" alt="" width="360" height="640" loading="lazy"><span class="v-views"><b>2M</b>ยอดดู</span><span class="v-play" aria-hidden="true"></span><span class="v-cap"><b>บ้านนี้ใครใหญ่ ดูได้จากฝั่งที่นอน</b><span class="v-eng">♡ 31.7K · 💬 571</span></span></button></div></div></div></div><div class="v-group"><div class="v-label">คลิปแบรนด์ · กดที่คลิปเพื่อดูพร้อมเสียง</div><div class="v-row v-brands"><button type="button" class="vtile" data-video="assets/video/m121-tria-01.mp4" data-label="TRIA" aria-label="เล่นคลิป TRIA"><img class="v-poster" src="assets/video/m121-tria-01.webp" alt="" width="360" height="640" loading="lazy"><img class="v-logo" src="assets/video/logos/m121-tria.webp" alt="" loading="lazy"><span class="v-play" aria-hidden="true"></span><span class="v-cap"><b>TRIA</b><span>สุขภาพ / เวลเนส</span></span></button><button type="button" class="vtile" data-video="assets/video/m127-groove55-01.mp4" data-label="Terra Groove55" aria-label="เล่นคลิป Terra Groove55"><img class="v-poster" src="assets/video/m127-groove55-01.webp" alt="" width="360" height="640" loading="lazy"><img class="v-logo" src="assets/video/logos/m127-groove55.webp" alt="" loading="lazy"><span class="v-play" aria-hidden="true"></span><span class="v-cap"><b>Terra Groove55</b><span>ร้านอาหาร</span></span></button><button type="button" class="vtile" data-video="assets/video/m145-morbow-01.mp4" data-label="หมอโบว์" aria-label="เล่นคลิป หมอโบว์"><img class="v-poster" src="assets/video/m145-morbow-01.webp" alt="" width="360" height="640" loading="lazy"><img class="v-logo" src="assets/video/logos/m145-morbow.webp" alt="" loading="lazy"><span class="v-play" aria-hidden="true"></span><span class="v-cap"><b>หมอโบว์</b><span>คลินิก</span></span></button><button type="button" class="vtile" data-video="assets/video/m104-kozue-01.mp4" data-label="Kozue Omakaze" aria-label="เล่นคลิป Kozue Omakaze"><img class="v-poster" src="assets/video/m104-kozue-01.webp" alt="" width="360" height="640" loading="lazy"><img class="v-logo" src="assets/video/logos/m104-kozue.webp" alt="" loading="lazy"><span class="v-play" aria-hidden="true"></span><span class="v-cap"><b>Kozue Omakaze</b><span>ร้านอาหารญี่ปุ่น</span></span></button><button type="button" class="vtile" data-video="assets/video/m077-smartclinic-01.mp4" data-label="Smart Clinic" aria-label="เล่นคลิป Smart Clinic"><img class="v-poster" src="assets/video/m077-smartclinic-01.webp" alt="" width="360" height="640" loading="lazy"><img class="v-logo" src="assets/video/logos/m077-smartclinic.webp" alt="" loading="lazy"><span class="v-play" aria-hidden="true"></span><span class="v-cap"><b>Smart Clinic</b><span>คลินิก</span></span></button><button type="button" class="vtile" data-video="assets/video/m100-barcode-01.mp4" data-label="สถาบันบาร์โค้ดชีวิต" aria-label="เล่นคลิป สถาบันบาร์โค้ดชีวิต"><img class="v-poster" src="assets/video/m100-barcode-01.webp" alt="" width="360" height="640" loading="lazy"><img class="v-logo" src="assets/video/logos/m100-barcode.webp" alt="" loading="lazy"><span class="v-play" aria-hidden="true"></span><span class="v-cap"><b>สถาบันบาร์โค้ดชีวิต</b><span>คอร์ส / ที่ปรึกษา</span></span></button><button type="button" class="vtile" data-video="assets/video/m093-jigo-01.mp4" data-label="Jigo Smoothie" aria-label="เล่นคลิป Jigo Smoothie"><img class="v-poster" src="assets/video/m093-jigo-01.webp" alt="" width="360" height="640" loading="lazy"><img class="v-logo" src="assets/video/logos/m093-jigo.webp" alt="" loading="lazy"><span class="v-play" aria-hidden="true"></span><span class="v-cap"><b>Jigo Smoothie</b><span>อาหาร / เครื่องดื่ม</span></span></button><button type="button" class="vtile" data-video="assets/video/m108-shooshoke-01.mp4" data-label="ShooShoke" aria-label="เล่นคลิป ShooShoke"><img class="v-poster" src="assets/video/m108-shooshoke-01.webp" alt="" width="360" height="640" loading="lazy"><img class="v-logo" src="assets/video/logos/m108-shooshoke.webp" alt="" loading="lazy"><span class="v-play" aria-hidden="true"></span><span class="v-cap"><b>ShooShoke</b><span>เกษตรอินทรีย์</span></span></button><button type="button" class="vtile" data-video="assets/video/m123-mortian-01.mp4" data-label="หมอเถียร" aria-label="เล่นคลิป หมอเถียร"><img class="v-poster" src="assets/video/m123-mortian-01.webp" alt="" width="360" height="640" loading="lazy"><img class="v-logo" src="assets/video/logos/m123-mortian.webp" alt="" loading="lazy"><span class="v-play" aria-hidden="true"></span><span class="v-cap"><b>หมอเถียร</b><span>แพทย์แผนจีน</span></span></button><button type="button" class="vtile" data-video="assets/video/m140-siamauto-01.mp4" data-label="Siam Auto Car" aria-label="เล่นคลิป Siam Auto Car"><img class="v-poster" src="assets/video/m140-siamauto-01.webp" alt="" width="360" height="640" loading="lazy"><img class="v-logo" src="assets/video/logos/m140-siamauto.webp" alt="" loading="lazy"><span class="v-play" aria-hidden="true"></span><span class="v-cap"><b>Siam Auto Car</b><span>ยานยนต์</span></span></button><button type="button" class="vtile" data-video="assets/video/pn-autopart-01.mp4" data-label="PN Auto Part" aria-label="เล่นคลิป PN Auto Part"><img class="v-poster" src="assets/video/pn-autopart-01.webp" alt="" width="360" height="640" loading="lazy"><img class="v-logo" src="assets/video/logos/pn-autopart.webp" alt="" loading="lazy"><span class="v-play" aria-hidden="true"></span><span class="v-cap"><b>PN Auto Part</b><span>อะไหล่ยนต์</span></span></button></div></div>
     </div>
   </div>
 </section>
@@ -1251,6 +1304,62 @@ a.phone:hover{transform:translateY(-3px)}
     lb.showModal();
   });
   lb.addEventListener('click', function(){ lb.close(); });
+})();
+</script>
+
+<script>
+/* ส่วนรางวัล: เลื่อนมาถึงแล้วค่อยเล่น (เส้นเวลา 2022 -> 2026 + นับเลข $782K ขึ้นจาก 0)
+   ไม่รองรับ IntersectionObserver หรือผู้ใช้ตั้งลดการเคลื่อนไหว -> แสดงแบบนิ่งตามปกติ */
+(function(){
+  var sec = document.getElementById('certified');
+  var line = sec && sec.querySelector('.cert-line');
+  var stat = sec && sec.querySelector('.cert-stat b');
+  if (!line || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  line.classList.add('anim');
+  var target = 782, done = false;
+  if (stat) stat.textContent = '$0K';
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (!e.isIntersecting || done) return;
+      done = true; io.disconnect();
+      line.classList.add('go');
+      if (!stat) return;
+      var t0 = null, dur = 2200;                       // นับไปพร้อมกับเส้นเวลาที่วิ่งถึงปี 2026
+      function step(t){
+        if (!t0) t0 = t;
+        var p = Math.min((t - t0) / dur, 1);
+        stat.textContent = '$' + Math.round(target * (1 - Math.pow(1 - p, 3))) + 'K';
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }, {threshold: .25});
+  io.observe(sec);
+})();
+</script>
+
+<dialog id="vp" aria-label="เล่นคลิปผลงาน"><button type="button" aria-label="ปิด">&times;</button><video controls playsinline preload="none"></video><p></p></dialog>
+<script>
+/* ส่วนผลงานวิดีโอ: กดการ์ด -> เปิดเล่นพร้อมเสียงในหน้าต่างลอย (คลิปโหลดตอนกดเท่านั้น หน้าเว็บเลยเบา)
+   ส่ง event video_play ให้ GTM ด้วย เผื่ออยากดูว่าคนดูคลิปไหนบ้าง */
+(function(){
+  var dlg = document.getElementById('vp');
+  if (!dlg) return;
+  var v = dlg.querySelector('video'), cap = dlg.querySelector('p');
+  function stop(){ v.pause(); v.removeAttribute('src'); v.load(); }
+  document.addEventListener('click', function(e){
+    var t = e.target.closest('.vtile');
+    if (!t) return;
+    if (typeof dlg.showModal !== 'function') { window.open(t.dataset.video, '_blank'); return; }
+    v.src = t.dataset.video;
+    cap.textContent = t.dataset.label || '';
+    dlg.showModal();
+    var p = v.play(); if (p && p.catch) p.catch(function(){});
+    (window.dataLayer = window.dataLayer || []).push({event: 'video_play', video_label: t.dataset.label || ''});
+  });
+  dlg.addEventListener('click', function(e){ if (e.target === dlg || e.target.tagName === 'BUTTON') dlg.close(); });
+  dlg.addEventListener('close', stop);
 })();
 </script>
 

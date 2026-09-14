@@ -1,0 +1,208 @@
+{
+ "channels": [
+  {
+   "id": "m077-smartclinic",
+   "name": "หมอมาศ Anti Aging",
+   "handle": "@dr.mas.co",
+   "stats": [
+    [
+     "70.9K",
+     "ผู้ติดตาม"
+    ],
+    [
+     "508.7K",
+     "ยอดถูกใจรวม"
+    ],
+    [
+     "811K",
+     "ยอดดูคลิปสูงสุด"
+    ]
+   ],
+   "posts": [
+    {
+     "video": "m077-smartclinic-ch-sleep.mp4",
+     "poster": "m077-smartclinic-ch-sleep.webp",
+     "views": "811K",
+     "title": "\"การนอนดึก\" ส่งผลอย่างไร",
+     "eng": [
+      "♡ 24.9K",
+      "💬 237",
+      "🔖 3,964",
+      "➦ 20.9K"
+     ]
+    },
+    {
+     "video": "m077-smartclinic-ch-age53.mp4",
+     "poster": "m077-smartclinic-ch-age53.webp",
+     "views": "176.2K",
+     "title": "อายุ 53 ปี หน้าเด็กขนาดนี้ ดูแลตัวเองยังไง",
+     "eng": [
+      "♡ 5,590",
+      "💬 114",
+      "🔖 540",
+      "➦ 696"
+     ]
+    },
+    {
+     "video": "m077-smartclinic-01.mp4",
+     "poster": "m077-smartclinic-01.webp",
+     "views": "",
+     "title": "อาหารแช่เย็นนาน อาจทำให้เป็นมะเร็งโดยไม่รู้ตัว",
+     "eng": [
+      "♡ 12.1K",
+      "💬 146",
+      "🔖 1,379",
+      "➦ 5,957"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "m100-barcode",
+   "name": "ซินแสบาร์โค้ดชีวิต",
+   "handle": "@zinzaebarcode",
+   "stats": [
+    [
+     "105.3K",
+     "ผู้ติดตาม"
+    ],
+    [
+     "745.4K",
+     "ยอดถูกใจรวม"
+    ],
+    [
+     "8.3M",
+     "ยอดดูรวม 3 คลิปปักหมุด"
+    ]
+   ],
+   "posts": [
+    {
+     "video": "m100-barcode-ch-husband.mp4",
+     "poster": "m100-barcode-ch-husband.webp",
+     "views": "4M",
+     "title": "โหงวเฮ้งแบบไหนไม่ควรเอามาทำผัว",
+     "eng": [
+      "♡ 94.2K",
+      "💬 1,173",
+      "🔖 9,746",
+      "➦ 24.5K"
+     ]
+    },
+    {
+     "video": "m100-barcode-03.mp4",
+     "poster": "m100-barcode-03.webp",
+     "views": "2.3M",
+     "title": "คนรวยหรือคนจน ดูง่าย ๆ ที่จมูก",
+     "eng": [
+      "♡ 45K",
+      "💬 474",
+      "🔖 4,410",
+      "➦ 10K"
+     ]
+    },
+    {
+     "video": "m100-barcode-ch-house.mp4",
+     "poster": "m100-barcode-ch-house.webp",
+     "views": "2M",
+     "title": "บ้านนี้ใครใหญ่ ดูได้จากฝั่งที่นอน",
+     "eng": [
+      "♡ 31.7K",
+      "💬 571",
+      "🔖 3,625",
+      "➦ 18.2K"
+     ]
+    }
+   ]
+  }
+ ],
+ "brands": [
+  {
+   "id": "m121-tria",
+   "name": "TRIA",
+   "cat": "สุขภาพ / เวลเนส",
+   "logo": "logos/m121-tria.webp",
+   "video": "m121-tria-01.mp4",
+   "poster": "m121-tria-01.webp"
+  },
+  {
+   "id": "m127-groove55",
+   "name": "Terra Groove55",
+   "cat": "ร้านอาหาร",
+   "logo": "logos/m127-groove55.webp",
+   "video": "m127-groove55-01.mp4",
+   "poster": "m127-groove55-01.webp"
+  },
+  {
+   "id": "m145-morbow",
+   "name": "หมอโบว์",
+   "cat": "คลินิก",
+   "logo": "logos/m145-morbow.webp",
+   "video": "m145-morbow-01.mp4",
+   "poster": "m145-morbow-01.webp"
+  },
+  {
+   "id": "m104-kozue",
+   "name": "Kozue Omakaze",
+   "cat": "ร้านอาหารญี่ปุ่น",
+   "logo": "logos/m104-kozue.webp",
+   "video": "m104-kozue-01.mp4",
+   "poster": "m104-kozue-01.webp"
+  },
+  {
+   "id": "m077-smartclinic",
+   "name": "Smart Clinic",
+   "cat": "คลินิก",
+   "logo": "logos/m077-smartclinic.webp",
+   "video": "m077-smartclinic-01.mp4",
+   "poster": "m077-smartclinic-01.webp"
+  },
+  {
+   "id": "m100-barcode",
+   "name": "สถาบันบาร์โค้ดชีวิต",
+   "cat": "คอร์ส / ที่ปรึกษา",
+   "logo": "logos/m100-barcode.webp",
+   "video": "m100-barcode-01.mp4",
+   "poster": "m100-barcode-01.webp"
+  },
+  {
+   "id": "m093-jigo",
+   "name": "Jigo Smoothie",
+   "cat": "อาหาร / เครื่องดื่ม",
+   "logo": "logos/m093-jigo.webp",
+   "video": "m093-jigo-01.mp4",
+   "poster": "m093-jigo-01.webp"
+  },
+  {
+   "id": "m108-shooshoke",
+   "name": "ShooShoke",
+   "cat": "เกษตรอินทรีย์",
+   "logo": "logos/m108-shooshoke.webp",
+   "video": "m108-shooshoke-01.mp4",
+   "poster": "m108-shooshoke-01.webp"
+  },
+  {
+   "id": "m123-mortian",
+   "name": "หมอเถียร",
+   "cat": "แพทย์แผนจีน",
+   "logo": "logos/m123-mortian.webp",
+   "video": "m123-mortian-01.mp4",
+   "poster": "m123-mortian-01.webp"
+  },
+  {
+   "id": "m140-siamauto",
+   "name": "Siam Auto Car",
+   "cat": "ยานยนต์",
+   "logo": "logos/m140-siamauto.webp",
+   "video": "m140-siamauto-01.mp4",
+   "poster": "m140-siamauto-01.webp"
+  },
+  {
+   "id": "pn-autopart",
+   "name": "PN Auto Part",
+   "cat": "อะไหล่ยนต์",
+   "logo": "logos/pn-autopart.webp",
+   "video": "pn-autopart-01.mp4",
+   "poster": "pn-autopart-01.webp"
+  }
+ ]
+}
