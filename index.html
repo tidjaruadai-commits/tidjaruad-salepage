@@ -300,6 +300,8 @@ footer ul li{margin-bottom:10px}
 .case p{font-size:14.5px;margin-bottom:18px}
 .case .kpis{grid-template-columns:repeat(2,1fr);margin-bottom:0}
 .mix{display:grid;grid-template-columns:172px 1fr;gap:18px;align-items:start}
+.case-phone{max-width:240px}   /* ภาพมือถือเดี่ยวในคอลัมน์ขวาของเคส ไม่ให้ยืดเต็มคอลัมน์ */
+@media(max-width:900px){.case-phone{margin:0 auto;width:100%}}
 .phone-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
 .phone{position:relative;display:block;border-radius:24px;border:5px solid #0A0E1F;overflow:hidden;background:#0A0E1F;box-shadow:var(--shadow-lg);cursor:zoom-in;transition:.22s}
 a.phone:hover{transform:translateY(-3px)}
@@ -473,7 +475,7 @@ a.phone:hover{transform:translateY(-3px)}
       <a class="pf-case" href="#kol"><div class="pf-thumb"><img src="assets/proof/gmv-detail-2025.webp" width="830" height="413" alt="ร้านค้า TikTok Shop · ฿89.46 ล้าน" style="object-position:center center" loading="lazy"></div><div class="pf-body"><div class="pf-who">ร้านค้า TikTok Shop <span>ไลฟ์ &amp; ครีเอเตอร์</span></div><div class="pf-num">฿89.46 ล้าน</div><p>ยอดขายจากไลฟ์ปี 2025 (+254%) · ยอดผ่านแอฟฟิลิเอตโต +3,615%</p><span class="pf-go">ดูรายละเอียด <svg class="i"><use href="#i-arrow-d"/></svg></span></div></a>
     </div>
     <div class="reel" id="showreel">
-      <div class="proof-head"><div><div class="proof-tag"><svg class="i"><use href="#i-film"/></svg> ผลงานวิดีโอ · 17 แบรนด์</div><h3>ดูผลงานคลิปจริงของเราได้ตรงนี้เลย</h3></div><p>โชว์รีลชุดเดียวกับที่เราเปิดบนจอบูธ กดการ์ดแบรนด์เพื่อดูคลิปของแบรนด์นั้น หรือกด “เล่นอัตโนมัติ” ให้ไล่ดูทั้งหมด</p></div>
+      <div class="proof-head"><div><div class="proof-tag"><svg class="i"><use href="#i-film"/></svg> ผลงานวิดีโอ · 11 แบรนด์เด่น</div><h3>ดูผลงานคลิปจริงของเราได้ตรงนี้เลย</h3></div><p>โชว์รีลชุดเดียวกับที่เราเปิดบนจอบูธ กดการ์ดแบรนด์เพื่อดูคลิปของแบรนด์นั้น หรือกด “เล่นอัตโนมัติ” ให้ไล่ดูทั้งหมด</p></div>
       <div class="reel-frame"><iframe src="vdo-deck.html" title="ผลงานวิดีโอติดจรวด" loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
       <div class="reel-bar"><span>คลิกในกรอบก่อน แล้วใช้ ← → เลื่อนสไลด์ · M เปิดเสียง · Esc กลับสารบัญ</span><a class="btn btn-line" href="vdo-deck.html" target="_blank" rel="noopener">เปิดเต็มจอ <svg class="i ar"><use href="#i-arrow-r"/></svg></a></div>
     </div>
@@ -839,7 +841,7 @@ a.phone:hover{transform:translateY(-3px)}
       <div class="feat"><div class="b"><svg class="i"><use href="#i-refresh"/></svg></div><div><h3>A/B Testing</h3><p>วางแนวทางทดสอบเพื่อหา Creative ที่ทำงานได้ดีที่สุด ก่อนทุ่มงบสเกล</p></div></div>
     </div>
 
-    <a class="reel-link" href="#showreel"><svg class="i"><use href="#i-film"/></svg> ดูโชว์รีลผลงานวิดีโอจริง 17 แบรนด์ <svg class="i"><use href="#i-arrow-u"/></svg></a>
+    <a class="reel-link" href="#showreel"><svg class="i"><use href="#i-film"/></svg> ดูโชว์รีลผลงานวิดีโอจริง 11 แบรนด์เด่น <svg class="i"><use href="#i-arrow-u"/></svg></a>
 
     <div class="proof">
       <div class="proof-head"><div><div class="proof-tag"><svg class="i"><use href="#i-heart"/></svg> ผลงานจริง · ร้านอาหารพรีเมี่ยม</div><h3>คอนเทนต์ที่ทำให้คนกดถูกใจ กดบันทึก และกดเข้าโปรไฟล์</h3></div><p>ผลรวมจากแคมเปญวิดีโอ 33 แคมเปญของร้านอาหารพรีเมี่ยม และตัวอย่างคลิปบนช่องจริง</p></div>
@@ -922,16 +924,35 @@ a.phone:hover{transform:translateY(-3px)}
     </div>
 
     <div class="proof">
-      <div class="proof-head"><div><div class="proof-tag"><svg class="i"><use href="#i-users"/></svg> ผลงานจริง · ไลฟ์ &amp; ครีเอเตอร์</div><h3>ไลฟ์ แอฟฟิลิเอต และคลิปรีวิว ช่วยกันดันยอดขาย</h3></div><p>ร้านค้า TikTok Shop ปี 2025 ที่ยอดขายจากไลฟ์และบัญชีแอฟฟิลิเอตโตหลายเท่า และคลิปรีวิวจากครีเอเตอร์สายอาหารให้ร้านอาหารพรีเมี่ยม</p></div>
-      <div class="kpis">
-        <div class="kpi"><b>฿89.46 ล้าน</b><span>ยอดขายจากไลฟ์สด · +254.56%</span></div>
-        <div class="kpi"><b>+3,615%</b><span>ยอดขายผ่านบัญชีแอฟฟิลิเอต · ฿5.78 ล้าน</span></div>
-        <div class="kpi"><b>฿62.86 ล้าน</b><span>ยอดขายผ่านวิดีโอ · +2,226.79%</span></div>
-        <div class="kpi"><b>1,838</b><span>ถูกใจบนคลิปรีวิวจากครีเอเตอร์ · 661 แชร์</span></div>
-      </div>
-      <div class="split" style="--c:1fr 230px">
+      <div class="proof-head"><div><div class="proof-tag"><svg class="i"><use href="#i-users"/></svg> ผลงานจริง · ไลฟ์ &amp; ครีเอเตอร์</div><h3>ไลฟ์ แอฟฟิลิเอต และคลิปรีวิว ช่วยกันดันยอดขาย</h3></div><p>ตัวอย่าง 2 แบบ แยกกันชัด ๆ: ร้านค้าบน TikTok Shop ที่วัดกันที่ยอดขาย และร้านอาหารหน้าร้าน (Non-Shop) ที่วัดกันที่ยอดคนดู</p></div>
+
+      <!-- เคส TikTok Shop: ตาราง GMV เป็นยอดของ Shop ห้ามเอาคลิป Non-Shop มาวางคู่ (ผู้ใช้สั่ง 2026-09-14) -->
+      <div class="case">
+        <div>
+          <div class="case-brand"><b>ร้านค้า TikTok Shop</b><span>ไลฟ์ · แอฟฟิลิเอต · ปี 2025</span></div>
+          <h4>ยอดขายจากไลฟ์ ฿89.46 ล้าน และยอดผ่านแอฟฟิลิเอตโต +3,615%</h4>
+          <p>รายละเอียด GMV ทั้งปี 2025 แยกตามช่องทาง ทุกช่องทางโตพร้อมกัน</p>
+          <div class="kpis">
+            <div class="kpi"><b>฿89.46 ล้าน</b><span>ยอดขายจากไลฟ์สด · +254.56%</span></div>
+            <div class="kpi"><b>+3,615%</b><span>ยอดขายผ่านบัญชีแอฟฟิลิเอต · ฿5.78 ล้าน</span></div>
+            <div class="kpi"><b>฿62.86 ล้าน</b><span>ยอดขายผ่านวิดีโอ · +2,226.79%</span></div>
+            <div class="kpi"><b>฿29.71 ล้าน</b><span>ยอดขายผ่านการ์ดสินค้า · +797.15%</span></div>
+          </div>
+        </div>
         <a class="shot zoom" href="assets/proof/gmv-detail-2025.webp" data-cap="รายละเอียด GMV แยกช่องทาง ปี 2025"><img src="assets/proof/gmv-detail-2025.webp" width="830" height="413" alt="รายละเอียด GMV แยกช่องทาง ปี 2025" loading="lazy"><span class="cap"><b>รายละเอียด GMV 8 ม.ค. – 31 ธ.ค. 2025</b> · ไลฟ์ 49.1% · วิดีโอ 34.5% · การ์ดสินค้า 16.3%</span></a>
-        <div><a class="phone zoom" href="assets/proof/resto-post-kol.webp" data-cap="ภาพจำลอง · คลิปรีวิวร้านอาหารจากครีเอเตอร์"><span class="mock-badge">ภาพจำลอง</span><img src="assets/proof/resto-post-kol.webp" width="600" height="1075" alt="ภาพจำลอง · คลิปรีวิวร้านอาหารจากครีเอเตอร์" loading="lazy"></a><div class="phone-cap"><b>คลิปรีวิวจากครีเอเตอร์</b><br>1,838 ถูกใจ · 293 บันทึก</div><div class="mock-note">* ภาพจำลองของธุรกิจที่ใช้บริการจริง</div></div>
+      </div>
+
+      <div class="case">
+        <div>
+          <div class="case-brand"><b>ร้านอาหารพรีเมี่ยม</b><span>หน้าร้าน · TikTok Non-Shop</span></div>
+          <h4>คลิปรีวิวร้านจากครีเอเตอร์สายอาหาร</h4>
+          <p>วัดผลจากยอดถูกใจ บันทึก และแชร์จากคนดูจริงบนคลิปรีวิว</p>
+          <div class="kpis">
+            <div class="kpi"><b>1,838</b><span>ถูกใจบนคลิปรีวิว</span></div>
+            <div class="kpi"><b>661</b><span>แชร์ต่อ · 293 บันทึก</span></div>
+          </div>
+        </div>
+        <div class="case-phone"><div><a class="phone zoom" href="assets/proof/resto-post-kol.webp" data-cap="ภาพจำลอง · คลิปรีวิวร้านอาหารจากครีเอเตอร์"><span class="mock-badge">ภาพจำลอง</span><img src="assets/proof/resto-post-kol.webp" width="600" height="1075" alt="ภาพจำลอง · คลิปรีวิวร้านอาหารจากครีเอเตอร์" loading="lazy"></a><div class="phone-cap"><b>คลิปรีวิวจากครีเอเตอร์</b><br>1,838 ถูกใจ · 293 บันทึก</div><div class="mock-note">* ภาพจำลองของธุรกิจที่ใช้บริการจริง</div></div></div>
       </div>
       <p class="proof-note">* ภาพจากหลังบ้านจริง ปิดชื่อแบรนด์ ชื่อลูกค้า และรูปสินค้าเพื่อความเป็นส่วนตัวของลูกค้า · กดที่ภาพเพื่อดูขนาดเต็ม</p>
     </div>
