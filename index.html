@@ -1221,7 +1221,7 @@ a.phone:hover{transform:translateY(-3px)}
       <h2>พร้อมพาธุรกิจก้าวไปอีกขั้น<br>กับ<span class="hl">พาร์ทเนอร์ที่เข้าใจคุณ</span>หรือยัง?</h2>
       <p>เริ่มต้นง่าย ๆ ด้วยการพูดคุยเป้าหมาย วิเคราะห์ปัญหา และหาทิศทางการทำโฆษณาที่เหมาะกับคุณโดยเฉพาะ</p>
       <div class="cta-btns">
-        <a href="https://line.me/ti/p/@tidjaruad" class="btn btn-red"><svg class="i"><use href="#i-line"/></svg> ทัก LINE @tidjaruad</a>
+        <a href="https://lin.ee/YKdTsUY" class="btn btn-red"><svg class="i"><use href="#i-line"/></svg> ทัก LINE @tidjaruad</a>
         <a href="tel:0622945324" class="btn btn-line"><svg class="i"><use href="#i-phone"/></svg> 062-294-5324</a>
         <a href="tel:0917178924" class="btn btn-line"><svg class="i"><use href="#i-phone"/></svg> 091-717-8924</a>
       </div>
@@ -1260,7 +1260,7 @@ a.phone:hover{transform:translateY(-3px)}
         <li><a href="#kol">จัดหา KOL</a></li>
       </ul></div>
       <div><h4>ช่องทางติดต่อ</h4><ul>
-        <li><span class="ct-k">LINE OA</span><a href="https://line.me/ti/p/@tidjaruad">@tidjaruad</a></li>
+        <li><span class="ct-k">LINE OA</span><a href="https://lin.ee/YKdTsUY">@tidjaruad</a></li>
         <li><span class="ct-k">FACEBOOK PAGE</span><a href="https://www.facebook.com/biztidjaruad">ธุรกิจติดจรวด</a></li>
         <li><span class="ct-k">EMAIL ADDRESS</span><a href="mailto:info@tidjaruad.com">info@tidjaruad.com</a></li>
         <li><span class="ct-k">PHONE</span><a href="tel:0622945324">062-294-5324</a><br><a href="tel:0917178924">091-717-8924</a></li>
@@ -1272,7 +1272,7 @@ a.phone:hover{transform:translateY(-3px)}
 
 <div class="float">
   <button class="top" id="toTop" aria-label="กลับขึ้นบน" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg class="i"><use href="#i-arrow-u"/></svg></button>
-  <a href="https://line.me/ti/p/@tidjaruad" class="ln" aria-label="ทัก LINE"><svg class="i"><use href="#i-line"/></svg></a>
+  <a href="https://lin.ee/YKdTsUY" class="ln" aria-label="ทัก LINE"><svg class="i"><use href="#i-line"/></svg></a>
   <a href="tel:0622945324" class="tl" aria-label="โทรหาเรา"><svg class="i"><use href="#i-phone"/></svg></a>
 </div>
 
@@ -1392,10 +1392,10 @@ a.phone:hover{transform:translateY(-3px)}
     var SVC = {consult: 'ที่ปรึกษาการตลาด', training: 'คอร์สสอนยิงแอด', ads: 'ดูแลแอด', content: 'ผลิตคลิปสั้น', kol: 'จัดหา KOL'};
     var name = src, s = src.toLowerCase();
     for (var i = 0; i < NAMES.length; i++) if (s.indexOf(NAMES[i][0]) > -1) { name = NAMES[i][1]; break; }
-    document.querySelectorAll('a[href*="line.me/ti/p/@tidjaruad"]').forEach(function(a){
+    document.querySelectorAll('a[href*="lin.ee/"]').forEach(function(a){
       var sec = a.closest('section[id]'), svc = SVC[sec && sec.id] || SVC[land];
       var msg = 'สวัสดีครับ/ค่ะ สนใจ' + (svc ? 'บริการ' + svc : 'ปรึกษาการตลาด') + ' (เห็นจาก ' + name + ')';
-      a.href = 'https://line.me/R/oaMessage/%40tidjaruad/?' + encodeURIComponent(msg);
+      a.href = 'https://line.me/R/oaMessage/%40fpr0123n/?' + encodeURIComponent(msg);
     });
   }
 
@@ -1403,7 +1403,7 @@ a.phone:hover{transform:translateY(-3px)}
     var a = e.target.closest('a[href]');
     if (!a) return;
     var h = a.getAttribute('href'), m = '';
-    if (h.indexOf('line.me') > -1) m = 'line';
+    if (h.indexOf('line.me') > -1 || h.indexOf('lin.ee') > -1) m = 'line';
     else if (h.indexOf('tel:') === 0) m = 'phone';
     else if (h.indexOf('mailto:') === 0) m = 'email';
     if (!m) return;
