@@ -29,6 +29,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   });
 </script>
 <!-- End OpenAI Ads Pixel -->
+<!-- Meta Pixel 2640065319747020 (ติดในโค้ด · ตัวใน GTM คือ 1054667877284065 คนละตัว) -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+(function () {
+  var ID = '2640065319747020', ready = false, pending = [];
+  function send(ev, params, eid) { fbq('trackSingle', ID, ev, params || {}, eid ? {eventID: eid} : undefined); }
+  window.tjrMeta = function (ev, params, eid) { ready ? send(ev, params, eid) : pending.push([ev, params, eid]); };
+  function start() {
+    if (ready) return;
+    ready = true;
+    fbq('init', ID);
+    send('PageView');
+    pending.forEach(function (p) { send(p[0], p[1], p[2]); });
+  }
+  (window.dataLayer = window.dataLayer || []).push({event: 'tjr_meta_init', eventCallback: start, eventTimeout: 2500});
+  setTimeout(start, 4000);   // GTM ถูกบล็อกหรือโหลดไม่ขึ้น
+})();
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=2640065319747020&amp;ev=PageView&amp;noscript=1"></noscript>
+<!-- End Meta Pixel -->
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ติดจรวด | Tidjaruad Agency — ปรึกษา · สอนยิงแอด · ดูแลแอด · ทำคลิป · หา KOL</title>
 <meta name="description" content="Performance Marketing Agency ที่ช่วย SME, คลินิก, ร้านอาหาร, TikTok Shop และแบรนด์ E-commerce วางกลยุทธ์ TikTok Ads ใช้งบโฆษณาอย่างมีทิศทาง และวัดผลได้จากข้อมูลจริง">
@@ -1475,6 +1499,8 @@ a.phone:hover{transform:translateY(-3px)}
     });
     /* ChatGPT Ads: นับเป็น Lead · event_id เดียวกันต่อช่องทางต่อการเปิดหน้า กดซ้ำช่องทางเดิมไม่นับเพิ่ม */
     if (window.oaiq) oaiq('measure', 'lead_created', {type: 'customer_action'}, {event_id: 'lead_' + pv + '_' + m});
+    /* Meta pixel ของเซลเพจ: Contact ทุกช่องทาง · event_id เดียวกันต่อช่องทางต่อการเปิดหน้า */
+    if (window.tjrMeta) tjrMeta('Contact', {content_name: m}, 'contact_' + pv + '_' + m);
   });
 
   /* ฟอร์มขอคำปรึกษา (#leadForm) -> n8n ตัวเดียวกับ tidjaruad.co/contact
@@ -1516,6 +1542,7 @@ a.phone:hover{transform:translateY(-3px)}
           (window.dataLayer = window.dataLayer || []).push({event: 'submit_contact_form', form_name: 'sale_page_form',
             traffic_source: src, landing_section: land});
           if (window.oaiq) oaiq('measure', 'custom', {type: 'custom'}, {custom_event_name: 'submit_contact_form', event_id: 'form_' + pv});
+          if (window.tjrMeta) tjrMeta('Lead', {content_name: 'sale_page_form'}, 'form_' + pv);
         })
         .catch(function () {
           btn.disabled = false;
