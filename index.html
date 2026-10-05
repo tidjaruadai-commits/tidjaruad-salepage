@@ -9,6 +9,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-NT76SJTN');</script>
 <!-- End Google Tag Manager -->
+<!-- OpenAI Ads Pixel (ChatGPT Ads) -->
+<script>
+  (function (w, d, s, u) {
+    if (w.oaiq) return;
+    var q = function () { q.q.push(arguments); };
+    q.q = [];
+    w.oaiq = q;
+    var js = d.createElement(s);
+    js.async = true;
+    js.src = u;
+    var f = d.getElementsByTagName(s)[0];
+    f.parentNode.insertBefore(js, f);
+  })(window, document, "script", "https://bzrcdn.openai.com/sdk/oaiq.min.js");
+  oaiq("init", { pixelId: "Gq8g8mWMiGXgpuq1ucPBte" });
+  oaiq("measure", "page_viewed", {
+    type: "contents",
+    contents: [{ id: "sale-page", name: "TIDJARUAD Sale Page", content_type: "page" }]
+  });
+</script>
+<!-- End OpenAI Ads Pixel -->
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ติดจรวด | Tidjaruad Agency — ปรึกษา · สอนยิงแอด · ดูแลแอด · ทำคลิป · หา KOL</title>
 <meta name="description" content="Performance Marketing Agency ที่ช่วย SME, คลินิก, ร้านอาหาร, TikTok Shop และแบรนด์ E-commerce วางกลยุทธ์ TikTok Ads ใช้งบโฆษณาอย่างมีทิศทาง และวัดผลได้จากข้อมูลจริง">
@@ -1379,6 +1399,7 @@ a.phone:hover{transform:translateY(-3px)}
      แอดมินรู้ทันทีว่า lead มาจาก ChatGPT / TikTok / Facebook · บริการเดาจาก #ส่วน ที่ลิงก์แอดชี้มา (เช่น ...#ads)
      คนที่เข้าเว็บเองหรือเปิดบนคอม ปุ่มเหมือนเดิม (LINE บนคอมไม่รองรับลิงก์ oaMessage) */
   var src = '', land = (location.hash || '').slice(1);
+  var pv = Date.now().toString(36) + Math.random().toString(36).slice(2, 8);   // รหัสการเปิดหน้าครั้งนี้
   try {
     src = new URLSearchParams(location.search).get('utm_source') || sessionStorage.getItem('tjr_src') || '';
     if (src) sessionStorage.setItem('tjr_src', src);
@@ -1409,6 +1430,8 @@ a.phone:hover{transform:translateY(-3px)}
       event: 'lead_click', contact_method: m, link_url: h, traffic_source: src, landing_section: land,
       page_section: sec ? (sec.id || sec.className || sec.tagName.toLowerCase()) : ''
     });
+    /* ChatGPT Ads: นับเป็น Lead · event_id เดียวกันต่อช่องทางต่อการเปิดหน้า กดซ้ำช่องทางเดิมไม่นับเพิ่ม */
+    if (window.oaiq) oaiq('measure', 'lead_created', {type: 'customer_action'}, {event_id: 'lead_' + pv + '_' + m});
   });
 })();
 </script>
