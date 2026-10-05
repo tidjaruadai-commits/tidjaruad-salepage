@@ -492,6 +492,28 @@ a.phone:hover{transform:translateY(-3px)}
 #services .grid.g3 > .card{flex:0 1 calc((100% - 44px) / 3)}
 @media(max-width:900px){#services .grid.g3 > .card{flex-basis:calc((100% - 22px) / 2)}}
 @media(max-width:760px){#services .grid.g3 > .card{flex-basis:100%}}
+
+.lf{max-width:680px;margin:34px auto 0;background:#fff;border:1px solid var(--line);border-radius:24px;padding:28px;text-align:left;box-shadow:var(--shadow);position:relative;z-index:1}
+.lf h3{font-size:20px;font-weight:600;color:var(--ink);margin:0 0 4px}
+.lf .lf-sub{font-size:14px;color:var(--body);margin:0 0 18px}
+.lf-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px}
+.lf-f{display:flex;flex-direction:column;gap:6px;min-width:0}
+.lf-f.full{grid-column:1/-1}
+.lf label{font-size:13.5px;font-weight:500;color:var(--ink)}
+.lf label b{color:var(--red);font-weight:500}
+.lf input,.lf select,.lf textarea{font:inherit;font-size:15px;color:var(--ink);background:var(--wash);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;width:100%;box-sizing:border-box}
+.lf textarea{min-height:92px;resize:vertical}
+.lf input:focus,.lf select:focus,.lf textarea:focus{outline:none;border-color:#4F8CFF;box-shadow:0 0 0 3px rgba(79,140,255,.18);background:#fff}
+.lf .bad{border-color:var(--red);background:#fff}
+.lf .btn{width:100%;margin-top:18px}
+.lf .btn[disabled]{opacity:.6;cursor:progress}
+.lf-consent{font-size:12.5px;color:#9BA0C0;margin:12px 0 0;text-align:center}
+.lf-consent a{color:var(--body)}
+.lf-msg{margin-top:14px;border-radius:14px;padding:12px 14px;font-size:14.5px;line-height:1.6}
+.lf-msg.ok{background:#E9F8EF;color:#17663B}
+.lf-msg.err{background:var(--red-soft);color:#B4232F}
+.lf-msg a{color:inherit;font-weight:600}
+@media(max-width:640px){.lf{padding:22px 18px;border-radius:20px;margin-top:26px}.lf-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -1243,6 +1265,27 @@ a.phone:hover{transform:translateY(-3px)}
         <a href="tel:0917178924" class="btn btn-line"><svg class="i"><use href="#i-phone"/></svg> 091-717-8924</a>
       </div>
       <div class="cta-note">รับคำปรึกษาฟรี ไม่มีค่าใช้จ่าย · ตอบกลับภายในเวลาทำการ</div>
+      <form class="lf" id="leadForm" novalidate>
+        <h3>หรือกรอกข้อมูล ให้ทีมงานโทรกลับ</h3>
+        <p class="lf-sub">ปรึกษากระบวนการยิงแอดและการผลิตคลิป ไม่มีข้อผูกมัด</p>
+        <div class="lf-grid">
+          <div class="lf-f full"><label for="lf-name">ชื่อผู้ติดต่อ <b>*</b></label>
+            <input id="lf-name" name="name" type="text" autocomplete="name" required placeholder="ชื่อของคุณ"></div>
+          <div class="lf-f"><label for="lf-phone">เบอร์โทรศัพท์ <b>*</b></label>
+            <input id="lf-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required pattern="[0-9\-+ ]{9,}" placeholder="0XX-XXX-XXXX"></div>
+          <div class="lf-f"><label for="lf-email">อีเมล <b>*</b></label>
+            <input id="lf-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
+          <div class="lf-f"><label for="lf-biz">ประเภทธุรกิจของคุณ</label>
+            <input id="lf-biz" name="businessType" type="text" placeholder="เช่น คลินิก ร้านอาหาร TikTok Shop"></div>
+          <div class="lf-f"><label for="lf-budget">งบโฆษณาที่วางแผนต่อเดือน <b>*</b></label>
+            <select id="lf-budget" name="budget" required><option>ต่ำกว่า 30,000 บาท</option><option>30,000 - 100,000 บาท</option><option>100,000 - 300,000 บาท</option><option>มากกว่า 300,000 บาท</option></select></div>
+          <div class="lf-f full"><label for="lf-msg">เป้าหมายหรือความต้องการเพิ่มเติม</label>
+            <textarea id="lf-msg" name="message" rows="3" placeholder="เล่าสั้น ๆ ว่าอยากให้ช่วยเรื่องอะไร"></textarea></div>
+        </div>
+        <button class="btn btn-red" type="submit" id="lf-submit"><svg class="i"><use href="#i-arrow-r"/></svg> ส่งข้อมูลเพื่อรับคำปรึกษาฟรี</button>
+        <p class="lf-consent">การส่งข้อมูลถือว่ายินยอมให้ติดจรวดติดต่อกลับเพื่อให้คำปรึกษา ตาม<a href="privacy.html">นโยบายความเป็นส่วนตัว</a></p>
+        <div class="lf-msg" id="lf-status" role="status" aria-live="polite" hidden></div>
+      </form>
     </div>
   </div>
 </section>
@@ -1433,6 +1476,53 @@ a.phone:hover{transform:translateY(-3px)}
     /* ChatGPT Ads: นับเป็น Lead · event_id เดียวกันต่อช่องทางต่อการเปิดหน้า กดซ้ำช่องทางเดิมไม่นับเพิ่ม */
     if (window.oaiq) oaiq('measure', 'lead_created', {type: 'customer_action'}, {event_id: 'lead_' + pv + '_' + m});
   });
+
+  /* ฟอร์มขอคำปรึกษา (#leadForm) -> n8n ตัวเดียวกับ tidjaruad.co/contact
+     ที่มา + บริการที่สนใจต่อท้ายใน message ให้ทีมเห็น · ส่งสำเร็จค่อยนับ conversion */
+  var form = document.getElementById('leadForm');
+  if (form) {
+    var SVC_NAME = {consult: 'ที่ปรึกษาการตลาด', training: 'คอร์สสอนยิงแอด', ads: 'ดูแลแอด', content: 'ผลิตคลิปสั้น', kol: 'จัดหา KOL'};
+    var SRC_NAME = [['chatgpt','ChatGPT'], ['openai','ChatGPT'], ['tiktok','TikTok'], ['facebook','Facebook'], ['fb','Facebook'],
+                    ['instagram','Instagram'], ['ig','Instagram'], ['google','Google'], ['line','LINE']];
+    var srcName = src || 'เข้าเว็บโดยตรง', s2 = src.toLowerCase();
+    for (var k = 0; k < SRC_NAME.length; k++) if (src && s2.indexOf(SRC_NAME[k][0]) > -1) { srcName = SRC_NAME[k][1]; break; }
+    var camp = '';
+    try { camp = new URLSearchParams(location.search).get('utm_campaign') || ''; } catch (e) {}
+    var status = document.getElementById('lf-status'), btn = document.getElementById('lf-submit'), sent = false;
+    var say = function (cls, html) { status.className = 'lf-msg ' + cls; status.innerHTML = html; status.hidden = false; };
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (sent) return;
+      var bad = [].filter.call(form.querySelectorAll('[required]'), function (f) { return !f.checkValidity(); });
+      [].forEach.call(form.querySelectorAll('.bad'), function (f) { f.classList.remove('bad'); });
+      if (bad.length) {
+        bad.forEach(function (f) { f.classList.add('bad'); });
+        say('err', 'กรอกช่องที่มีเครื่องหมาย * ให้ครบ และเช็กเบอร์โทรกับอีเมลอีกครั้ง');
+        bad[0].focus();
+        return;
+      }
+      var v = function (n) { return (form.elements[n].value || '').trim(); };
+      var tag = '[ที่มา: เซลเพจ sale.tidjaruad.co · ช่องทาง: ' + srcName + (camp ? ' · แคมเปญ: ' + camp : '') +
+                (SVC_NAME[land] ? ' · สนใจ: ' + SVC_NAME[land] : '') + ']';
+      var data = {name: v('name'), phone: v('phone'), email: v('email'), businessType: v('businessType'),
+                  budget: v('budget'), message: (v('message') ? v('message') + '\n\n' : '') + tag};
+      btn.disabled = true; status.hidden = true;
+      fetch('https://tidjaruad.app.n8n.cloud/webhook/contact-form', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)})
+        .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); })
+        .then(function () {
+          sent = true;
+          form.reset();
+          say('ok', 'ทีมงานติดจรวดได้รับข้อมูลของคุณเรียบร้อยแล้ว จะรีบโทรติดต่อกลับเพื่อแนะนำกลยุทธ์โดยเร็วที่สุดครับ');
+          (window.dataLayer = window.dataLayer || []).push({event: 'submit_contact_form', form_name: 'sale_page_form',
+            traffic_source: src, landing_section: land});
+          if (window.oaiq) oaiq('measure', 'custom', {type: 'custom'}, {custom_event_name: 'submit_contact_form', event_id: 'form_' + pv});
+        })
+        .catch(function () {
+          btn.disabled = false;
+          say('err', 'ส่งข้อมูลไม่สำเร็จ ลองใหม่อีกครั้ง หรือ <a href="https://lin.ee/YKdTsUY">ทัก LINE @tidjaruad</a> ได้ทันที');
+        });
+    });
+  }
 })();
 </script>
 
