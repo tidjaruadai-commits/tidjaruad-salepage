@@ -1532,10 +1532,14 @@ a.phone:hover{transform:translateY(-3px)}
       event: 'lead_click', contact_method: m, link_url: h, traffic_source: src, landing_section: land,
       page_section: sec ? (sec.id || sec.className || sec.tagName.toLowerCase()) : ''
     });
-    /* ChatGPT Ads: นับเป็น Lead · event_id เดียวกันต่อช่องทางต่อการเปิดหน้า กดซ้ำช่องทางเดิมไม่นับเพิ่ม */
-    if (window.oaiq) oaiq('measure', 'lead_created', {type: 'customer_action'}, {event_id: 'lead_' + pv + '_' + m});
-    /* ChatGPT Ads: conversion "LINE click" (แคมเปญ LINE ประมูลหาคนกด LINE จาก event นี้) */
-    if (m === 'line' && window.oaiq) oaiq('measure', 'custom', {type: 'custom'}, {custom_event_name: 'line_click', event_id: 'line_' + pv});
+    /* ChatGPT Ads (2026-10-07): lead_created = กด LINE เท่านั้น — แคมเปญ Conversions ประมูลได้เฉพาะ standard event
+       จึงให้ standard event ตัวนี้เป็น "คนกดไป LINE" ล้วน ๆ (conversion "Lead (LINE/Phone/Email)" ใน Ads Manager ถูกเปลี่ยนชื่อตาม)
+       โทร/อีเมลแยกเป็น custom event contact_click (ดูในรายงานได้ แต่ใช้ประมูลไม่ได้)
+       event_id เดียวกันต่อช่องทางต่อการเปิดหน้า กดซ้ำช่องทางเดิมไม่นับเพิ่ม */
+    if (window.oaiq) {
+      if (m === 'line') oaiq('measure', 'lead_created', {type: 'customer_action'}, {event_id: 'lead_' + pv + '_line'});
+      else oaiq('measure', 'custom', {type: 'custom'}, {custom_event_name: 'contact_click', event_id: 'contact_' + pv + '_' + m});
+    }
     /* Meta pixel ของเซลเพจ: Contact ทุกช่องทาง · event_id เดียวกันต่อช่องทางต่อการเปิดหน้า */
     if (window.tjrMeta) tjrMeta('Contact', {content_name: m}, 'contact_' + pv + '_' + m);
   });
