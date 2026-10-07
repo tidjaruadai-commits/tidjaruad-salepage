@@ -538,6 +538,27 @@ a.phone:hover{transform:translateY(-3px)}
 .lf-msg.err{background:var(--red-soft);color:#B4232F}
 .lf-msg a{color:inherit;font-weight:600}
 @media(max-width:640px){.lf{padding:22px 18px;border-radius:20px;margin-top:26px}.lf-grid{grid-template-columns:1fr}}
+
+.btn-lineapp{background:#06C755;color:#fff;box-shadow:0 10px 26px rgba(6,199,85,.3)}
+.btn-lineapp:hover{background:#05A847;color:#fff;transform:translateY(-2px);box-shadow:0 14px 32px rgba(6,199,85,.4)}
+.btn-big{font-size:17px;padding:16px 34px}
+.nav-cta.nav-line{background:#06C755;box-shadow:0 8px 22px rgba(6,199,85,.3)}
+.nav-cta.nav-line:hover{background:#05A847}
+.to-line svg.i{color:#06C755}
+.dock{display:none}
+@media(max-width:760px){
+  .hide-sm{display:none}
+  .float{display:none}
+  .dock{display:flex;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:210;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));
+    background:rgba(255,253,248,.95);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid var(--line);
+    transform:translateY(110%);transition:transform .25s}
+  .dock.show{transform:none}
+  .dock .btn{flex:1;width:auto;font-size:16px;padding:13px 16px}
+  .dock-tel{flex:none;width:50px;border-radius:999px;display:grid;place-items:center;background:#fff;border:1px solid var(--line);color:var(--ink)}
+  .dock-tel svg.i{font-size:21px}
+  footer{padding-bottom:84px}
+}
+@media(prefers-reduced-motion:reduce){.dock{transition:none}}
 </style>
 </head>
 <body>
@@ -606,7 +627,7 @@ a.phone:hover{transform:translateY(-3px)}
       <a href="#content">ทำคลิป</a>
       <a href="#kol">หา KOL</a>
     </div>
-    <a href="#contact" class="nav-cta">ปรึกษาฟรี <svg class="i ar"><use href="#i-arrow-r"/></svg></a>
+    <a href="https://lin.ee/YKdTsUY" class="nav-cta nav-line"><svg class="i"><use href="#i-line"/></svg> ทัก LINE<span class="hide-sm"> ปรึกษาฟรี</span></a>
   </div>
 </nav>
 
@@ -625,7 +646,7 @@ a.phone:hover{transform:translateY(-3px)}
         <a href="#kol"><b>+2,226%</b><span>ยอดขายจากวิดีโอ</span></a>
       </div>
       <div class="hero-cta">
-        <a href="#contact" class="btn btn-red">ปรึกษาฟรี <svg class="i ar"><use href="#i-arrow-r"/></svg></a>
+        <a href="https://lin.ee/YKdTsUY" class="btn btn-lineapp" id="heroLine"><svg class="i"><use href="#i-line"/></svg> ทัก LINE ปรึกษาฟรี</a>
         <a href="#portfolio" class="btn btn-line">ดูผลลัพธ์ทั้งหมด <svg class="i"><use href="#i-arrow-d"/></svg></a>
       </div>
     </div>
@@ -774,7 +795,7 @@ a.phone:hover{transform:translateY(-3px)}
           <li><svg class="i"><use href="#i-check"/></svg>ประเมินงบที่เสียเปล่าต่อเดือน</li>
           <li><svg class="i"><use href="#i-check"/></svg>อธิบายผลผ่านวิดีโอคอล 30 นาที</li>
         </ul>
-        <a href="#contact" class="btn btn-line">เริ่มจากตรวจก่อน</a>
+        <a href="https://lin.ee/YKdTsUY" class="btn btn-line to-line"><svg class="i"><use href="#i-line"/></svg> เริ่มจากตรวจก่อน</a>
       </div></div>
       <div class="pw"><div class="price">
         <h3>ปรึกษารายครั้ง</h3><div class="sub">มีคำถามเฉพาะเรื่อง อยากได้คำตอบเร็ว</div>
@@ -784,7 +805,7 @@ a.phone:hover{transform:translateY(-3px)}
           <li><svg class="i"><use href="#i-check"/></svg>ประชุมเจาะปัญหา 2 ชม.</li>
           <li><svg class="i"><use href="#i-check"/></svg>สรุปข้อเสนอแนะเป็นเอกสาร</li>
         </ul>
-        <a href="#contact" class="btn btn-line">นัดปรึกษา</a>
+        <a href="https://lin.ee/YKdTsUY" class="btn btn-line to-line"><svg class="i"><use href="#i-line"/></svg> นัดปรึกษา</a>
       </div></div>
       <div class="pw"><div class="badge">แนะนำ</div><div class="price pop">
         <h3>Growth Plan 90 วัน</h3><div class="sub">วางแผนแล้วเดินไปด้วยกัน 3 เดือน</div>
@@ -796,7 +817,7 @@ a.phone:hover{transform:translateY(-3px)}
           <li><svg class="i"><use href="#i-check"/></svg>ประชุมติดตามเดือนละ 2 ครั้ง</li>
           <li><svg class="i"><use href="#i-check"/></svg>LINE กลุ่มปรึกษาตลอดสัญญา</li>
         </ul>
-        <a href="#contact" class="btn btn-red">ปรึกษาความเหมาะสมฟรี</a>
+        <a href="https://lin.ee/YKdTsUY" class="btn btn-lineapp"><svg class="i"><use href="#i-line"/></svg> ปรึกษาความเหมาะสมฟรี</a>
       </div></div>
       <div class="pw"><div class="price">
         <h3>ที่ปรึกษาประจำ</h3><div class="sub">สำหรับแบรนด์ที่ต้องการคนคุมภาพรวม</div>
@@ -808,7 +829,7 @@ a.phone:hover{transform:translateY(-3px)}
           <li><svg class="i"><use href="#i-check"/></svg>ตรวจงานเอเจนซี่รายอื่นให้</li>
           <li><svg class="i"><use href="#i-check"/></svg>วางระบบรายงานทั้งองค์กร</li>
         </ul>
-        <a href="#contact" class="btn btn-line">คุยรายละเอียด</a>
+        <a href="https://lin.ee/YKdTsUY" class="btn btn-line to-line"><svg class="i"><use href="#i-line"/></svg> คุยรายละเอียด</a>
       </div></div>
     </div>
     <p class="note-sm">* ถ้าใช้บริการดูแลโฆษณาของเราอยู่แล้ว ค่าที่ปรึกษารวมอยู่ในแพ็กเกจ ไม่คิดเพิ่ม</p>
@@ -854,7 +875,7 @@ a.phone:hover{transform:translateY(-3px)}
           <li><svg class="i"><use href="#i-check"/></svg>ไฟล์เทมเพลตและเช็กลิสต์</li>
           <li><svg class="i"><use href="#i-check"/></svg>อัปเดตเนื้อหาใหม่ให้ฟรี</li>
         </ul>
-        <a href="#contact" class="btn btn-line">สนใจคอร์สนี้</a>
+        <a href="https://lin.ee/YKdTsUY" class="btn btn-line to-line"><svg class="i"><use href="#i-line"/></svg> สนใจคอร์สนี้</a>
       </div></div>
       <div class="pw"><div class="price">
         <h3>Workshop กลุ่ม</h3><div class="sub">เรียนรวมกับผู้ประกอบการรายอื่น</div>
@@ -865,7 +886,7 @@ a.phone:hover{transform:translateY(-3px)}
           <li><svg class="i"><use href="#i-check"/></svg>เข้ากลุ่มถาม-ตอบ 3 เดือน</li>
           <li><svg class="i"><use href="#i-check"/></svg>ใบประกาศเมื่อเรียนจบ</li>
         </ul>
-        <a href="#contact" class="btn btn-line">จองที่นั่ง</a>
+        <a href="https://lin.ee/YKdTsUY" class="btn btn-line to-line"><svg class="i"><use href="#i-line"/></svg> จองที่นั่ง</a>
       </div></div>
       <div class="pw"><div class="price">
         <h3>ติวเดี่ยว 1:1</h3><div class="sub">โค้ชตัวต่อตัวกับบัญชีจริงของคุณ</div>
@@ -876,7 +897,7 @@ a.phone:hover{transform:translateY(-3px)}
           <li><svg class="i"><use href="#i-check"/></svg>บันทึกวิดีโอไว้ทบทวนได้</li>
           <li><svg class="i"><use href="#i-check"/></svg>แบ่งเรียนได้หลายครั้งจนครบ 5 ชม.</li>
         </ul>
-        <a href="#contact" class="btn btn-line">นัดเวลา</a>
+        <a href="https://lin.ee/YKdTsUY" class="btn btn-line to-line"><svg class="i"><use href="#i-line"/></svg> นัดเวลา</a>
       </div></div>
       <div class="pw"><div class="badge">แนะนำสำหรับองค์กร</div><div class="price pop">
         <h3>In-house Training</h3><div class="sub">สอนถึงออฟฟิศ ปรับเนื้อหาตามธุรกิจคุณ</div>
@@ -888,7 +909,7 @@ a.phone:hover{transform:translateY(-3px)}
           <li><svg class="i"><use href="#i-check"/></svg>ติดตามผลหลังเรียน 1 ครั้ง</li>
           <li><svg class="i"><use href="#i-check"/></svg>กลุ่มถาม-ตอบ 6 เดือน</li>
         </ul>
-        <a href="#contact" class="btn btn-red">ขอใบเสนอราคา</a>
+        <a href="https://lin.ee/YKdTsUY" class="btn btn-lineapp"><svg class="i"><use href="#i-line"/></svg> ขอใบเสนอราคา</a>
       </div></div>
     </div>
     <p class="note-sm">* In-house นอกกรุงเทพฯ มีค่าเดินทางเพิ่มตามจริง · ราคายังไม่รวม VAT</p>
@@ -987,7 +1008,7 @@ a.phone:hover{transform:translateY(-3px)}
           <li><svg class="i"><use href="#i-check"/></svg>สอนทีมคุณดูแลต่อ 2 ชั่วโมง</li>
           <li><svg class="i"><use href="#i-check"/></svg>ซัพพอร์ตหลังส่งมอบ 14 วัน</li>
         </ul>
-        <a href="#contact" class="btn btn-line">สนใจแบบนี้</a>
+        <a href="https://lin.ee/YKdTsUY" class="btn btn-line to-line"><svg class="i"><use href="#i-line"/></svg> สนใจแบบนี้</a>
       </div></div>
       <div class="pw"><div class="price">
         <h3>Starter</h3><div class="sub">ธุรกิจที่เพิ่งเริ่มยิงแอดอย่างเป็นระบบ</div>
@@ -998,7 +1019,7 @@ a.phone:hover{transform:translateY(-3px)}
           <li><svg class="i"><use href="#i-check"/></svg>Performance Report รายเดือน</li>
           <li><svg class="i"><use href="#i-check"/></svg>LINE กลุ่มติดต่อทีมโดยตรง</li>
         </ul>
-        <a href="#contact" class="btn btn-line">ปรึกษาความเหมาะสมฟรี</a>
+        <a href="https://lin.ee/YKdTsUY" class="btn btn-line to-line"><svg class="i"><use href="#i-line"/></svg> ปรึกษาความเหมาะสมฟรี</a>
       </div></div>
       <div class="pw"><div class="badge">ลูกค้าเลือกมากที่สุด</div><div class="price pop">
         <h3>Growth</h3><div class="sub">แบรนด์ที่พร้อมสเกลยอดต่อเนื่อง</div>
@@ -1010,7 +1031,7 @@ a.phone:hover{transform:translateY(-3px)}
           <li><svg class="i"><use href="#i-check"/></svg>ประชุมสรุปผลเดือนละ 1 ครั้ง</li>
           <li><svg class="i"><use href="#i-check"/></svg>Ads Direction ให้ทีมคอนเทนต์</li>
         </ul>
-        <a href="#contact" class="btn btn-red">ปรึกษาความเหมาะสมฟรี</a>
+        <a href="https://lin.ee/YKdTsUY" class="btn btn-lineapp"><svg class="i"><use href="#i-line"/></svg> ปรึกษาความเหมาะสมฟรี</a>
       </div></div>
       <div class="pw"><div class="price">
         <h3>Scale</h3><div class="sub">งบสูง หลายร้าน หลายแพลตฟอร์ม</div>
@@ -1022,7 +1043,7 @@ a.phone:hover{transform:translateY(-3px)}
           <li><svg class="i"><use href="#i-check"/></svg>วางแผนครีเอทีฟร่วมกันรายเดือน</li>
           <li><svg class="i"><use href="#i-check"/></svg>ประชุมทุก 2 สัปดาห์</li>
         </ul>
-        <a href="#contact" class="btn btn-line">คุยรายละเอียด</a>
+        <a href="https://lin.ee/YKdTsUY" class="btn btn-line to-line"><svg class="i"><use href="#i-line"/></svg> คุยรายละเอียด</a>
       </div></div>
     </div>
     <p class="note-sm">* ราคานี้เป็นค่าบริการดูแล ยังไม่รวมงบโฆษณาที่จ่ายให้แพลตฟอร์มโดยตรง · แนะนำเริ่มต้นขั้นต่ำ 3 เดือน</p>
@@ -1069,7 +1090,7 @@ a.phone:hover{transform:translateY(-3px)}
           <li><svg class="i"><use href="#i-check"/></svg>ปรับ Hook ให้ 2 เวอร์ชัน</li>
           <li><svg class="i"><use href="#i-check"/></svg>แก้ไขได้ 2 รอบ</li>
         </ul>
-        <a href="#contact" class="btn btn-line">สนใจแบบนี้</a>
+        <a href="https://lin.ee/YKdTsUY" class="btn btn-line to-line"><svg class="i"><use href="#i-line"/></svg> สนใจแบบนี้</a>
       </div></div>
       <div class="pw"><div class="price">
         <h3>Content Guideline</h3><div class="sub">มีทีมผลิตอยู่แล้ว ต้องการทิศทาง</div>
@@ -1080,7 +1101,7 @@ a.phone:hover{transform:translateY(-3px)}
           <li><svg class="i"><use href="#i-check"/></svg>โครงสร้างคลิปแนะนำต่อแคมเปญ</li>
           <li><svg class="i"><use href="#i-check"/></svg>แผน A/B Testing รายรอบ</li>
         </ul>
-        <a href="#contact" class="btn btn-line">ปรึกษาความเหมาะสมฟรี</a>
+        <a href="https://lin.ee/YKdTsUY" class="btn btn-line to-line"><svg class="i"><use href="#i-line"/></svg> ปรึกษาความเหมาะสมฟรี</a>
       </div></div>
       <div class="pw"><div class="badge">ขายดี · คุ้มที่สุด</div><div class="price pop">
         <h3>ครบวงจร 10 คลิป</h3><div class="sub">สคริปต์ + ถ่าย + ตัดต่อ</div>
@@ -1092,7 +1113,7 @@ a.phone:hover{transform:translateY(-3px)}
           <li><svg class="i"><use href="#i-check"/></svg>ตรวจ Policy ก่อนส่งมอบ</li>
           <li><svg class="i"><use href="#i-check"/></svg><b style="color:var(--red);font-weight:500">แถมบริการยิงแอดฟรี</b> (ไม่รวมค่าโฆษณา)</li>
         </ul>
-        <a href="#contact" class="btn btn-red">ปรึกษาความเหมาะสมฟรี</a>
+        <a href="https://lin.ee/YKdTsUY" class="btn btn-lineapp"><svg class="i"><use href="#i-line"/></svg> ปรึกษาความเหมาะสมฟรี</a>
       </div></div>
       <div class="pw"><div class="price">
         <h3>Content Retainer</h3><div class="sub">ป้อนคลิปต่อเนื่องทุกเดือน</div>
@@ -1104,7 +1125,7 @@ a.phone:hover{transform:translateY(-3px)}
           <li><svg class="i"><use href="#i-check"/></svg>รวมภาพนิ่งสำหรับหน้าร้าน</li>
           <li><svg class="i"><use href="#i-check"/></svg><b style="color:var(--red);font-weight:500">แถมบริการยิงแอดฟรี</b> (ไม่รวมค่าโฆษณา)</li>
         </ul>
-        <a href="#contact" class="btn btn-line">คุยรายละเอียด</a>
+        <a href="https://lin.ee/YKdTsUY" class="btn btn-line to-line"><svg class="i"><use href="#i-line"/></svg> คุยรายละเอียด</a>
       </div></div>
     </div>
     <p class="note-sm">* แพ็กครบวงจร 10 คลิป และ Content Retainer <b style="color:var(--ink);font-weight:500">แถมบริการยิงแอดให้ฟรี ไม่รวมค่าโฆษณาที่จ่ายให้แพลตฟอร์มโดยตรง</b><br>* ค่านักแสดง/พรีเซนเตอร์ ค่าเดินทางต่างจังหวัด และค่าเช่าสถานที่พิเศษ คิดแยกตามจริง</p>
@@ -1165,7 +1186,7 @@ a.phone:hover{transform:translateY(-3px)}
           <li><svg class="i"><use href="#i-check"/></svg>เรตราคาโดยประมาณของแต่ละราย</li>
           <li><svg class="i"><use href="#i-check"/></svg>เทมเพลตบรีฟให้เอาไปใช้เอง</li>
         </ul>
-        <a href="#contact" class="btn btn-line">สนใจแบบนี้</a>
+        <a href="https://lin.ee/YKdTsUY" class="btn btn-line to-line"><svg class="i"><use href="#i-line"/></svg> สนใจแบบนี้</a>
       </div></div>
       <div class="pw"><div class="price">
         <h3>Affiliate / ส่งของรีวิว</h3><div class="sub">สินค้าราคาไม่สูง เน้นปริมาณ</div>
@@ -1176,7 +1197,7 @@ a.phone:hover{transform:translateY(-3px)}
           <li><svg class="i"><use href="#i-check"/></svg>ทำบรีฟ + ชุดข้อมูลสินค้า</li>
           <li><svg class="i"><use href="#i-check"/></svg>รายงานยอดขายรายครีเอเตอร์</li>
         </ul>
-        <a href="#contact" class="btn btn-line">ปรึกษาความเหมาะสมฟรี</a>
+        <a href="https://lin.ee/YKdTsUY" class="btn btn-line to-line"><svg class="i"><use href="#i-line"/></svg> ปรึกษาความเหมาะสมฟรี</a>
       </div></div>
       <div class="pw"><div class="badge">แนะนำ · สมดุลที่สุด</div><div class="price pop">
         <h3>KOL Campaign</h3><div class="sub">แคมเปญจ้างรีวิวเป็นชุด</div>
@@ -1188,7 +1209,7 @@ a.phone:hover{transform:translateY(-3px)}
           <li><svg class="i"><use href="#i-check"/></svg>รายงานผลรวมทั้งแคมเปญ</li>
           <li><svg class="i"><use href="#i-check"/></svg>ขอสิทธิ์นำคลิปไปยิงแอดต่อ</li>
         </ul>
-        <a href="#contact" class="btn btn-red">ปรึกษาความเหมาะสมฟรี</a>
+        <a href="https://lin.ee/YKdTsUY" class="btn btn-lineapp"><svg class="i"><use href="#i-line"/></svg> ปรึกษาความเหมาะสมฟรี</a>
       </div></div>
       <div class="pw"><div class="price">
         <h3>Live Commerce</h3><div class="sub">จัดไลฟ์ขายกับครีเอเตอร์</div>
@@ -1200,7 +1221,7 @@ a.phone:hover{transform:translateY(-3px)}
           <li><svg class="i"><use href="#i-check"/></svg>ยิงแอดดันไลฟ์ระหว่างถ่ายทอด</li>
           <li><svg class="i"><use href="#i-check"/></svg>สรุปยอดขายและกำไรสุทธิหลังไลฟ์</li>
         </ul>
-        <a href="#contact" class="btn btn-line">คุยรายละเอียด</a>
+        <a href="https://lin.ee/YKdTsUY" class="btn btn-line to-line"><svg class="i"><use href="#i-line"/></svg> คุยรายละเอียด</a>
       </div></div>
     </div>
     <p class="note-sm">* ค่าบริการนี้เป็นค่าดูแลจัดการ ยังไม่รวมค่าตัว KOL ที่จ่ายให้ครีเอเตอร์โดยตรง</p>
@@ -1284,7 +1305,7 @@ a.phone:hover{transform:translateY(-3px)}
       <h2>พร้อมพาธุรกิจก้าวไปอีกขั้น<br>กับ<span class="hl">พาร์ทเนอร์ที่เข้าใจคุณ</span>หรือยัง?</h2>
       <p>เริ่มต้นง่าย ๆ ด้วยการพูดคุยเป้าหมาย วิเคราะห์ปัญหา และหาทิศทางการทำโฆษณาที่เหมาะกับคุณโดยเฉพาะ</p>
       <div class="cta-btns">
-        <a href="https://lin.ee/YKdTsUY" class="btn btn-red"><svg class="i"><use href="#i-line"/></svg> ทัก LINE @tidjaruad</a>
+        <a href="https://lin.ee/YKdTsUY" class="btn btn-lineapp btn-big"><svg class="i"><use href="#i-line"/></svg> ทัก LINE @tidjaruad</a>
         <a href="tel:0622945324" class="btn btn-line"><svg class="i"><use href="#i-phone"/></svg> 062-294-5324</a>
         <a href="tel:0917178924" class="btn btn-line"><svg class="i"><use href="#i-phone"/></svg> 091-717-8924</a>
       </div>
@@ -1457,6 +1478,20 @@ a.phone:hover{transform:translateY(-3px)}
 })();
 </script>
 
+<div class="dock" id="lineDock">
+  <a href="https://lin.ee/YKdTsUY" class="btn btn-lineapp"><svg class="i"><use href="#i-line"/></svg> ทัก LINE ปรึกษาฟรี</a>
+  <a href="tel:0622945324" class="dock-tel" aria-label="โทร 062-294-5324"><svg class="i"><use href="#i-phone"/></svg></a>
+</div>
+<script>
+(function(){
+  var d = document.getElementById('lineDock'), h = document.getElementById('heroLine');
+  if (!d || !h) return;
+  if (!('IntersectionObserver' in window)) { d.classList.add('show'); return; }
+  new IntersectionObserver(function (es) {
+    d.classList.toggle('show', !es[0].isIntersecting && es[0].boundingClientRect.top < 0);
+  }).observe(h);
+})();
+</script>
 
 <script>
 /* ส่ง event "lead_click" ให้ GTM ทุกครั้งที่กดทัก LINE / โทร / อีเมล
@@ -1499,6 +1534,8 @@ a.phone:hover{transform:translateY(-3px)}
     });
     /* ChatGPT Ads: นับเป็น Lead · event_id เดียวกันต่อช่องทางต่อการเปิดหน้า กดซ้ำช่องทางเดิมไม่นับเพิ่ม */
     if (window.oaiq) oaiq('measure', 'lead_created', {type: 'customer_action'}, {event_id: 'lead_' + pv + '_' + m});
+    /* ChatGPT Ads: conversion "LINE click" (แคมเปญ LINE ประมูลหาคนกด LINE จาก event นี้) */
+    if (m === 'line' && window.oaiq) oaiq('measure', 'custom', {type: 'custom'}, {custom_event_name: 'line_click', event_id: 'line_' + pv});
     /* Meta pixel ของเซลเพจ: Contact ทุกช่องทาง · event_id เดียวกันต่อช่องทางต่อการเปิดหน้า */
     if (window.tjrMeta) tjrMeta('Contact', {content_name: m}, 'contact_' + pv + '_' + m);
   });
