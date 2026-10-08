@@ -222,7 +222,7 @@ section[id]{scroll-margin-top:76px}
 
 /* ===== CTA ===== */
 .cta-box{background:linear-gradient(150deg,#FFF4F5 0%,#F2F7FF 100%);border:1px solid var(--line);border-radius:34px;padding:60px 40px;text-align:center;position:relative;overflow:hidden}
-.cta-box .mini{width:110px;height:auto;margin:0 auto 6px;filter:drop-shadow(0 14px 26px rgba(27,29,69,.16))}
+.cta-box .mini{width:110px;margin:0 auto 6px;filter:drop-shadow(0 14px 26px rgba(27,29,69,.16))}
 .cta-box h2{font-size:clamp(25px,3.4vw,37px);font-weight:700;margin-bottom:16px;letter-spacing:-.3px}
 .cta-box .hl{color:var(--red)}
 .cta-box p{max-width:600px;margin:0 auto 30px;font-size:16.5px}
@@ -692,7 +692,7 @@ a.phone:hover{transform:translateY(-3px)}
         <h2>การันตีด้วยรางวัลและ TikTok Certified</h2>
         <p>พิสูจน์ด้วยผลงานจริงและการรับรองอย่างเป็นทางการจาก TikTok ประเทศไทย</p>
       </div>
-      <div class="cert-stat"><b>฿70M+</b><span>งบโฆษณา TikTok ที่บริหาร ปี 2025</span></div>
+      <div class="cert-stat"><b>$782K</b><span>งบโฆษณาเติบโตขึ้น +115%</span></div>
     </div>
     <div class="cert-line">
       <div class="cert-col t-s" style="--up:0"><div class="cert-vis"><div class="cert-tier">Silver</div><div class="cb photo"><img src="assets/awards/2022-silver.webp" width="244" height="314" alt="TikTok Agency Rewards Program · Silver Tier" loading="lazy"></div></div><div class="cert-axis"></div><div class="cert-y">2022</div><div class="cert-t">TikTok Agency Partner · Silver Tier</div><ul><li>1st Runner Up Creative Contest</li><li>Top 5 Best Campaign</li></ul></div>
@@ -1300,7 +1300,7 @@ a.phone:hover{transform:translateY(-3px)}
 <section id="contact" style="padding-top:24px">
   <div class="wrap">
     <div class="cta-box">
-      <img class="mini" src="assets/mascot-small.webp" alt="" width="110" height="73" loading="lazy">
+      <img class="mini" src="assets/mascot-small.webp" alt="" width="110" height="150" loading="lazy">
       <div class="tagchip">FREE CONSULTATION PARTNER</div>
       <h2>พร้อมพาธุรกิจก้าวไปอีกขั้น<br>กับ<span class="hl">พาร์ทเนอร์ที่เข้าใจคุณ</span>หรือยัง?</h2>
       <p>เริ่มต้นง่าย ๆ ด้วยการพูดคุยเป้าหมาย วิเคราะห์ปัญหา และหาทิศทางการทำโฆษณาที่เหมาะกับคุณโดยเฉพาะ</p>
@@ -1423,7 +1423,7 @@ a.phone:hover{transform:translateY(-3px)}
 </script>
 
 <script>
-/* ส่วนรางวัล: เลื่อนมาถึงแล้วค่อยเล่น (เส้นเวลา 2022 -> 2026 + นับเลข ฿70M+ ขึ้นจาก 0)
+/* ส่วนรางวัล: เลื่อนมาถึงแล้วค่อยเล่น (เส้นเวลา 2022 -> 2026 + นับเลข $782K ขึ้นจาก 0)
    ไม่รองรับ IntersectionObserver หรือผู้ใช้ตั้งลดการเคลื่อนไหว -> แสดงแบบนิ่งตามปกติ */
 (function(){
   var sec = document.getElementById('certified');
@@ -1432,20 +1432,19 @@ a.phone:hover{transform:translateY(-3px)}
   if (!line || !('IntersectionObserver' in window)) return;
   if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   line.classList.add('anim');
-  var target = 70, done = false;
+  var target = 782, done = false;
+  if (stat) stat.textContent = '$0K';
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){
       if (!e.isIntersecting || done) return;
       done = true; io.disconnect();
       line.classList.add('go');
       if (!stat) return;
-      stat.textContent = '฿0M';                        // เริ่มนับตอนนี้ ไม่ใช่ตอนโหลดหน้า
       var t0 = null, dur = 2200;                       // นับไปพร้อมกับเส้นเวลาที่วิ่งถึงปี 2026
       function step(t){
         if (!t0) t0 = t;
         var p = Math.min((t - t0) / dur, 1);
-        var n = Math.round(target * (1 - Math.pow(1 - p, 3)));
-        stat.textContent = '฿' + n + 'M' + (p >= 1 ? '+' : '');   // เครื่องหมาย + ใส่ตอนนับจบ
+        stat.textContent = '$' + Math.round(target * (1 - Math.pow(1 - p, 3))) + 'K';
         if (p < 1) requestAnimationFrame(step);
       }
       requestAnimationFrame(step);
@@ -1501,11 +1500,17 @@ a.phone:hover{transform:translateY(-3px)}
   /* มาจากแอด (ลิงก์มี utm_source) + เปิดบนมือถือ -> ปุ่ม LINE พิมพ์ข้อความทักไว้ให้เลยว่า "สนใจบริการอะไร เห็นจากไหน"
      แอดมินรู้ทันทีว่า lead มาจาก ChatGPT / TikTok / Facebook · บริการเดาจาก #ส่วน ที่ลิงก์แอดชี้มา (เช่น ...#ads)
      คนที่เข้าเว็บเองหรือเปิดบนคอม ปุ่มเหมือนเดิม (LINE บนคอมไม่รองรับลิงก์ oaMessage) */
-  var src = '', land = (location.hash || '').slice(1);
+  var src = '', seg = '', land = (location.hash || '').slice(1);
   var pv = Date.now().toString(36) + Math.random().toString(36).slice(2, 8);   // รหัสการเปิดหน้าครั้งนี้
+  /* กลุ่มลูกค้าของแคมเปญ (2026-10-08 แยกแคมเปญ ChatGPT ตามกลุ่ม) — ลิงก์แอดใส่ ?seg=tiktokshop|restaurant|clinic
+     ข้อความทัก LINE / แท็กฟอร์ม / dataLayer จะบอกกลุ่ม ทีมนับได้ว่ากลุ่มไหนมีคนทักจริงกี่คน */
+  var SEG = {tiktokshop: 'ร้าน TikTok Shop', restaurant: 'ร้านอาหาร', clinic: 'คลินิก'};
   try {
-    src = new URLSearchParams(location.search).get('utm_source') || sessionStorage.getItem('tjr_src') || '';
+    var qs = new URLSearchParams(location.search);
+    src = qs.get('utm_source') || sessionStorage.getItem('tjr_src') || '';
     if (src) sessionStorage.setItem('tjr_src', src);
+    seg = (qs.get('seg') || sessionStorage.getItem('tjr_seg') || '').toLowerCase();
+    if (SEG[seg]) sessionStorage.setItem('tjr_seg', seg); else seg = '';
   } catch (e) {}
   if (src && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
     var NAMES = [['chatgpt','ChatGPT'], ['openai','ChatGPT'], ['tiktok','TikTok'], ['facebook','Facebook'], ['fb','Facebook'],
@@ -1521,7 +1526,8 @@ a.phone:hover{transform:translateY(-3px)}
       var key = (sec && SVC[sec.id]) ? sec.id : (SVC[land] ? land : '');
       var msg = key === 'training'
         ? 'สวัสดีครับ/ค่ะ สนใจคอร์สสอนยิงแอด (เห็นจาก ' + name + ')\nเรียนเอง หรือ อบรมทีมในบริษัท: '
-        : 'สวัสดีครับ/ค่ะ สนใจจ้างทีม' + (key ? SVC[key] : 'ดูแลการตลาดออนไลน์') + (key === 'kol' ? ' ' : '') + 'ให้ธุรกิจ (เห็นจาก ' + name + ')' +
+        : 'สวัสดีครับ/ค่ะ สนใจจ้างทีม' + (key ? SVC[key] : 'ดูแลการตลาดออนไลน์') + (key === 'kol' ? ' ' : '') +
+          'ให้' + (seg ? SEG[seg] : 'ธุรกิจ') + ' (เห็นจาก ' + name + ')' +
           '\nธุรกิจ/สินค้าที่ขาย: \nงบโฆษณาต่อเดือน: ';
       a.href = 'https://line.me/R/oaMessage/%40fpr0123n/?' + encodeURIComponent(msg);
     });
@@ -1537,7 +1543,7 @@ a.phone:hover{transform:translateY(-3px)}
     if (!m) return;
     var sec = a.closest('section[id], header[id], footer, .float');
     (window.dataLayer = window.dataLayer || []).push({
-      event: 'lead_click', contact_method: m, link_url: h, traffic_source: src, landing_section: land,
+      event: 'lead_click', contact_method: m, link_url: h, traffic_source: src, landing_section: land, segment: seg,
       page_section: sec ? (sec.id || sec.className || sec.tagName.toLowerCase()) : ''
     });
     /* ChatGPT Ads (2026-10-07): lead_created = กด LINE เท่านั้น — แคมเปญ Conversions ประมูลได้เฉพาะ standard event
@@ -1578,6 +1584,7 @@ a.phone:hover{transform:translateY(-3px)}
       }
       var v = function (n) { return (form.elements[n].value || '').trim(); };
       var tag = '[ที่มา: เซลเพจ sale.tidjaruad.co · ช่องทาง: ' + srcName + (camp ? ' · แคมเปญ: ' + camp : '') +
+                (seg ? ' · กลุ่ม: ' + SEG[seg] : '') +
                 (SVC_NAME[land] ? ' · สนใจ: ' + SVC_NAME[land] : '') + ']';
       var data = {name: v('name'), phone: v('phone'), email: v('email'), businessType: v('businessType'),
                   budget: v('budget'), message: (v('message') ? v('message') + '\n\n' : '') + tag};
@@ -1589,7 +1596,7 @@ a.phone:hover{transform:translateY(-3px)}
           form.reset();
           say('ok', 'ทีมงานติดจรวดได้รับข้อมูลของคุณเรียบร้อยแล้ว จะรีบโทรติดต่อกลับเพื่อแนะนำกลยุทธ์โดยเร็วที่สุดครับ');
           (window.dataLayer = window.dataLayer || []).push({event: 'submit_contact_form', form_name: 'sale_page_form',
-            traffic_source: src, landing_section: land});
+            traffic_source: src, landing_section: land, segment: seg});
           if (window.oaiq) oaiq('measure', 'custom', {type: 'custom'}, {custom_event_name: 'submit_contact_form', event_id: 'form_' + pv});
           if (window.tjrMeta) tjrMeta('Lead', {content_name: 'sale_page_form'}, 'form_' + pv);
         })
