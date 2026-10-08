@@ -222,7 +222,7 @@ section[id]{scroll-margin-top:76px}
 
 /* ===== CTA ===== */
 .cta-box{background:linear-gradient(150deg,#FFF4F5 0%,#F2F7FF 100%);border:1px solid var(--line);border-radius:34px;padding:60px 40px;text-align:center;position:relative;overflow:hidden}
-.cta-box .mini{width:110px;margin:0 auto 6px;filter:drop-shadow(0 14px 26px rgba(27,29,69,.16))}
+.cta-box .mini{width:110px;height:auto;margin:0 auto 6px;filter:drop-shadow(0 14px 26px rgba(27,29,69,.16))}
 .cta-box h2{font-size:clamp(25px,3.4vw,37px);font-weight:700;margin-bottom:16px;letter-spacing:-.3px}
 .cta-box .hl{color:var(--red)}
 .cta-box p{max-width:600px;margin:0 auto 30px;font-size:16.5px}
@@ -692,7 +692,7 @@ a.phone:hover{transform:translateY(-3px)}
         <h2>การันตีด้วยรางวัลและ TikTok Certified</h2>
         <p>พิสูจน์ด้วยผลงานจริงและการรับรองอย่างเป็นทางการจาก TikTok ประเทศไทย</p>
       </div>
-      <div class="cert-stat"><b>$782K</b><span>งบโฆษณาเติบโตขึ้น +115%</span></div>
+      <div class="cert-stat"><b>฿70M+</b><span>งบโฆษณา TikTok ที่บริหาร ปี 2025</span></div>
     </div>
     <div class="cert-line">
       <div class="cert-col t-s" style="--up:0"><div class="cert-vis"><div class="cert-tier">Silver</div><div class="cb photo"><img src="assets/awards/2022-silver.webp" width="244" height="314" alt="TikTok Agency Rewards Program · Silver Tier" loading="lazy"></div></div><div class="cert-axis"></div><div class="cert-y">2022</div><div class="cert-t">TikTok Agency Partner · Silver Tier</div><ul><li>1st Runner Up Creative Contest</li><li>Top 5 Best Campaign</li></ul></div>
@@ -1300,7 +1300,7 @@ a.phone:hover{transform:translateY(-3px)}
 <section id="contact" style="padding-top:24px">
   <div class="wrap">
     <div class="cta-box">
-      <img class="mini" src="assets/mascot-small.webp" alt="" width="110" height="150" loading="lazy">
+      <img class="mini" src="assets/mascot-small.webp" alt="" width="110" height="73" loading="lazy">
       <div class="tagchip">FREE CONSULTATION PARTNER</div>
       <h2>พร้อมพาธุรกิจก้าวไปอีกขั้น<br>กับ<span class="hl">พาร์ทเนอร์ที่เข้าใจคุณ</span>หรือยัง?</h2>
       <p>เริ่มต้นง่าย ๆ ด้วยการพูดคุยเป้าหมาย วิเคราะห์ปัญหา และหาทิศทางการทำโฆษณาที่เหมาะกับคุณโดยเฉพาะ</p>
@@ -1423,7 +1423,7 @@ a.phone:hover{transform:translateY(-3px)}
 </script>
 
 <script>
-/* ส่วนรางวัล: เลื่อนมาถึงแล้วค่อยเล่น (เส้นเวลา 2022 -> 2026 + นับเลข $782K ขึ้นจาก 0)
+/* ส่วนรางวัล: เลื่อนมาถึงแล้วค่อยเล่น (เส้นเวลา 2022 -> 2026 + นับเลข ฿70M+ ขึ้นจาก 0)
    ไม่รองรับ IntersectionObserver หรือผู้ใช้ตั้งลดการเคลื่อนไหว -> แสดงแบบนิ่งตามปกติ */
 (function(){
   var sec = document.getElementById('certified');
@@ -1432,19 +1432,20 @@ a.phone:hover{transform:translateY(-3px)}
   if (!line || !('IntersectionObserver' in window)) return;
   if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   line.classList.add('anim');
-  var target = 782, done = false;
-  if (stat) stat.textContent = '$0K';
+  var target = 70, done = false;
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){
       if (!e.isIntersecting || done) return;
       done = true; io.disconnect();
       line.classList.add('go');
       if (!stat) return;
+      stat.textContent = '฿0M';                        // เริ่มนับตอนนี้ ไม่ใช่ตอนโหลดหน้า
       var t0 = null, dur = 2200;                       // นับไปพร้อมกับเส้นเวลาที่วิ่งถึงปี 2026
       function step(t){
         if (!t0) t0 = t;
         var p = Math.min((t - t0) / dur, 1);
-        stat.textContent = '$' + Math.round(target * (1 - Math.pow(1 - p, 3))) + 'K';
+        var n = Math.round(target * (1 - Math.pow(1 - p, 3)));
+        stat.textContent = '฿' + n + 'M' + (p >= 1 ? '+' : '');   // เครื่องหมาย + ใส่ตอนนับจบ
         if (p < 1) requestAnimationFrame(step);
       }
       requestAnimationFrame(step);
