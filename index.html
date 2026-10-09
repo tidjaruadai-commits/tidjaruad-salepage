@@ -1515,22 +1515,126 @@ a.phone:hover{transform:translateY(-3px)}
   if (src && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
     var NAMES = [['chatgpt','ChatGPT'], ['openai','ChatGPT'], ['tiktok','TikTok'], ['facebook','Facebook'], ['fb','Facebook'],
                  ['instagram','Instagram'], ['ig','Instagram'], ['google','Google'], ['line','LINE']];
-    /* ข้อความตั้งต้นแบบให้กรอกข้อมูล (2026-10-08): lead จากแอด ChatGPT มีคนถามปัญหา TikTok ส่วนตัว (ผ่อน Pay Later, บัญชีโดนปิด)
-       ปนมาก -> บอกชัดว่า "จ้างทีม…ให้ธุรกิจ" และเว้นช่องธุรกิจ/งบให้กรอก คนที่ไม่ได้มีธุรกิจจะเห็นตั้งแต่ก่อนส่ง
-       บอท Botcake อ่านช่องที่กรอกเป็น BIZ/BUDGET ได้ (line-bot/botcake-instruction-tidjaruad.txt บล็อก 4) */
+    /* ข้อความตั้งต้น (2026-10-08): lead จากแอด ChatGPT มีคนถามปัญหา TikTok ส่วนตัว (ผ่อน Pay Later, บัญชีโดนปิด)
+       ปนมาก -> บอกชัดว่า "จ้างทีม…ให้ธุรกิจ" คนที่ไม่ได้มีธุรกิจจะเห็นตั้งแต่ก่อนส่ง
+       ธุรกิจ/งบ ได้จากแผ่นแตะเลือกด้านล่าง (เดิมเว้นช่องให้พิมพ์เอง แต่คนกดส่งเลยโดยไม่กรอก) */
     var SVC = {consult: 'ที่ปรึกษาการตลาด', training: 'คอร์สสอนยิงแอด', ads: 'ดูแลแอด', content: 'ผลิตคลิปสั้น', kol: 'จัดหา KOL'};
     var name = src, s = src.toLowerCase();
     for (var i = 0; i < NAMES.length; i++) if (s.indexOf(NAMES[i][0]) > -1) { name = NAMES[i][1]; break; }
+    var oaLink = function (msg) { return 'https://line.me/R/oaMessage/%40fpr0123n/?' + encodeURIComponent(msg); };
     document.querySelectorAll('a[href*="lin.ee/"]').forEach(function(a){
       var sec = a.closest('section[id]');
       var key = (sec && SVC[sec.id]) ? sec.id : (SVC[land] ? land : '');
-      var msg = key === 'training'
-        ? 'สวัสดีครับ/ค่ะ สนใจคอร์สสอนยิงแอด (เห็นจาก ' + name + ')\nเรียนเอง หรือ อบรมทีมในบริษัท: '
+      var head = key === 'training'
+        ? 'สวัสดีครับ/ค่ะ สนใจคอร์สสอนยิงแอด (เห็นจาก ' + name + ')'
         : 'สวัสดีครับ/ค่ะ สนใจจ้างทีม' + (key ? SVC[key] : 'ดูแลการตลาดออนไลน์') + (key === 'kol' ? ' ' : '') +
-          'ให้' + (seg ? SEG[seg] : 'ธุรกิจ') + ' (เห็นจาก ' + name + ')' +
-          '\nธุรกิจ/สินค้าที่ขาย: \nงบโฆษณาต่อเดือน: ';
-      a.href = 'https://line.me/R/oaMessage/%40fpr0123n/?' + encodeURIComponent(msg);
+          'ให้' + (seg ? SEG[seg] : 'ธุรกิจ') + ' (เห็นจาก ' + name + ')';
+      a.setAttribute('data-tjr-head', head);
+      a.setAttribute('data-tjr-kind', key === 'training' ? 'training' : 'biz');
+      a.href = oaLink(head);
     });
+
+    /* ถามก่อนเข้า LINE (2026-10-09 ผู้ใช้เลือก): ข้อความตั้งต้นแบบเว้นช่องให้กรอก คนส่วนใหญ่กดส่งเลยโดยไม่กรอก
+       -> กดปุ่ม LINE แล้วขึ้นแผ่นล่างให้แตะเลือก "ขายอะไร" + "งบโฆษณาต่อเดือน" ไม่ต้องพิมพ์ แล้วค่อยเปิด LINE พร้อมคำตอบ
+       ปุ่มแรกแค่เปิดแผ่น (ยังไม่นับ conversion) · ปุ่ม "ไปคุยใน LINE" / "ข้าม" ในแผ่นเป็นลิงก์ line.me จริง
+       ตัวดัก click ด้านล่างจึงยิง lead_created ตอนไป LINE จริงครั้งเดียวเหมือนเดิม
+       แนท (Botcake) อ่าน "ธุรกิจ/สินค้าที่ขาย:" เป็น BIZ และ "งบโฆษณาต่อเดือน:" เป็น BUDGET */
+    var BIZ = {
+      tiktokshop: ['อาหารเสริม / สุขภาพ', 'ความงาม / สกินแคร์', 'อาหาร / ของกิน', 'แฟชั่น / เครื่องประดับ', 'ของใช้ / แม่และเด็ก', 'อื่น ๆ'],
+      restaurant: ['ร้านอาหาร', 'ปิ้งย่าง / บุฟเฟต์', 'เครื่องดื่ม / ขนม', 'เดลิเวอรี่ / ของฝาก', 'อื่น ๆ'],
+      clinic: ['คลินิกความงาม', 'คลินิกทันตกรรม', 'คลินิกสุขภาพ / การแพทย์', 'สปา / ศัลยกรรม', 'อื่น ๆ'],
+      any: ['ขายออนไลน์ / TikTok Shop', 'ร้านอาหาร', 'คลินิก / ความงาม', 'ธุรกิจบริการ', 'อื่น ๆ']
+    };
+    var BUDGET = ['ยังไม่เคยยิงแอด', 'ต่ำกว่า 30,000 บาท', '30,000 – 100,000 บาท', 'มากกว่า 100,000 บาท'];
+    var LEARN = ['เรียนเอง', 'อบรมทีมในบริษัท'];
+    var css = document.createElement('style');
+    css.textContent =
+      '.tjr-sheet{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:flex-end;justify-content:center;background:rgba(10,14,31,.55)}' +
+      '.tjr-sheet[hidden]{display:none}' +
+      '.tjr-card{width:100%;max-width:520px;max-height:92vh;overflow:auto;background:#fff;color:#1B1D45;border-radius:20px 20px 0 0;' +
+        'padding:20px 18px calc(18px + env(safe-area-inset-bottom,0px));box-shadow:0 -10px 40px rgba(10,14,31,.25);font-family:inherit}' +
+      '.tjr-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}' +
+      '.tjr-card h3{margin:0;font-size:19px;line-height:1.35;font-weight:700}' +
+      '.tjr-card p.tjr-sub{margin:4px 0 0;font-size:14px;color:#5A5E80}' +
+      '.tjr-x{border:0;background:#EEF2F7;color:#1B1D45;width:34px;height:34px;border-radius:50%;font-size:20px;line-height:1;cursor:pointer;flex:none}' +
+      '.tjr-q{margin:16px 0 8px;font-size:15px;font-weight:700}' +
+      '.tjr-chips{display:flex;flex-wrap:wrap;gap:8px}' +
+      '.tjr-chip{border:1.5px solid #D5DBE8;background:#fff;color:#1B1D45;border-radius:999px;padding:9px 14px;font:inherit;font-size:15px;cursor:pointer}' +
+      '.tjr-chip[aria-pressed="true"]{border-color:#FF3347;background:#FFF0F2;color:#C8102E;font-weight:700}' +
+      '.tjr-go{display:block;margin-top:20px;text-align:center;background:#06C755;color:#fff;border-radius:14px;padding:14px;font-size:17px;font-weight:700;text-decoration:none}' +
+      '.tjr-skip{display:block;margin-top:10px;text-align:center;color:#5A5E80;font-size:14px;text-decoration:underline}' +
+      '.tjr-chip:focus-visible,.tjr-x:focus-visible,.tjr-go:focus-visible,.tjr-skip:focus-visible{outline:3px solid #4F8CFF;outline-offset:2px}';
+    document.head.appendChild(css);
+    var sheet = document.createElement('div');
+    sheet.className = 'tjr-sheet';
+    sheet.hidden = true;
+    sheet.innerHTML =
+      '<div class="tjr-card" role="dialog" aria-modal="true" aria-labelledby="tjr-t">' +
+        '<div class="tjr-top"><div><h3 id="tjr-t">ขอข้อมูลสั้น ๆ ก่อนคุยใน LINE</h3>' +
+        '<p class="tjr-sub">แตะเลือกได้เลย ไม่ต้องพิมพ์ ทีมจะตอบได้ตรงขึ้น</p></div>' +
+        '<button type="button" class="tjr-x" aria-label="ปิด">×</button></div>' +
+        '<div class="tjr-body"></div>' +
+        '<a class="tjr-go" href="#">ไปคุยใน LINE</a>' +
+        '<a class="tjr-skip" href="#">ข้าม ไป LINE เลย</a>' +
+      '</div>';
+    document.body.appendChild(sheet);
+    var body = sheet.querySelector('.tjr-body'), go = sheet.querySelector('.tjr-go'), skip = sheet.querySelector('.tjr-skip');
+    var head = '', kind = 'biz', ans = {};
+    var chips = function (q, list, field) {
+      var h = '<p class="tjr-q">' + q + '</p><div class="tjr-chips" data-field="' + field + '">';
+      list.forEach(function (t) { h += '<button type="button" class="tjr-chip" aria-pressed="false">' + t + '</button>'; });
+      return h + '</div>';
+    };
+    var compose = function () {
+      var msg = head;
+      if (kind === 'training') {
+        if (ans.learn) msg += '\nเรียนเอง หรือ อบรมทีมในบริษัท: ' + ans.learn;
+      } else {
+        if (ans.biz) msg += '\nธุรกิจ/สินค้าที่ขาย: ' + (ans.biz === 'อื่น ๆ' ? '' : ans.biz);
+        if (ans.budget) msg += '\nงบโฆษณาต่อเดือน: ' + ans.budget;
+      }
+      go.href = oaLink(msg);
+    };
+    var close = function () { sheet.hidden = true; };
+    var open = function (a) {
+      head = a.getAttribute('data-tjr-head');
+      kind = a.getAttribute('data-tjr-kind');
+      ans = {};
+      body.innerHTML = kind === 'training'
+        ? chips('อยากเรียนแบบไหน', LEARN, 'learn')
+        : chips('ธุรกิจ / สินค้าที่ขาย', BIZ[seg] || BIZ.any, 'biz') + chips('งบโฆษณาต่อเดือน (โดยประมาณ)', BUDGET, 'budget');
+      skip.href = oaLink(head);
+      compose();
+      sheet.hidden = false;
+      var first = body.querySelector('.tjr-chip');
+      if (first) first.focus();
+    };
+    body.addEventListener('click', function (e) {
+      var b = e.target.closest('.tjr-chip');
+      if (!b) return;
+      var grp = b.parentNode;
+      [].forEach.call(grp.children, function (c) { c.setAttribute('aria-pressed', c === b ? 'true' : 'false'); });
+      ans[grp.getAttribute('data-field')] = b.textContent;
+      compose();
+    });
+    sheet.querySelector('.tjr-x').addEventListener('click', close);
+    sheet.addEventListener('click', function (e) { if (e.target === sheet) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !sheet.hidden) close(); });
+    [go, skip].forEach(function (l) {
+      l.addEventListener('click', function () {
+        (window.dataLayer = window.dataLayer || []).push({event: 'line_prequal', prequal_business: ans.biz || '',
+          prequal_budget: ans.budget || '', prequal_learn: ans.learn || '', prequal_skipped: l === skip, segment: seg});
+        setTimeout(close, 400);
+      });
+    });
+    /* ดักปุ่ม LINE เดิมของหน้า (capture ที่ document มาก่อนตัวนับ conversion ด้านล่าง) -> เปิดแผ่นแทน ยังไม่นับ */
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a[data-tjr-head]');
+      if (!a) return;
+      e.preventDefault();
+      e.stopPropagation();
+      open(a);
+    }, true);
   }
 
   document.addEventListener('click', function(e){
