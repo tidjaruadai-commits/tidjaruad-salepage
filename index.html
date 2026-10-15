@@ -222,7 +222,7 @@ section[id]{scroll-margin-top:76px}
 
 /* ===== CTA ===== */
 .cta-box{background:linear-gradient(150deg,#FFF4F5 0%,#F2F7FF 100%);border:1px solid var(--line);border-radius:34px;padding:60px 40px;text-align:center;position:relative;overflow:hidden}
-.cta-box .mini{width:180px;height:auto;margin:0 auto 6px;filter:drop-shadow(0 14px 26px rgba(27,29,69,.16))}
+.cta-box .mini{width:110px;margin:0 auto 6px;filter:drop-shadow(0 14px 26px rgba(27,29,69,.16))}
 .cta-box h2{font-size:clamp(25px,3.4vw,37px);font-weight:700;margin-bottom:16px;letter-spacing:-.3px}
 .cta-box .hl{color:var(--red)}
 .cta-box p{max-width:600px;margin:0 auto 30px;font-size:16.5px}
@@ -1300,7 +1300,7 @@ a.phone:hover{transform:translateY(-3px)}
 <section id="contact" style="padding-top:24px">
   <div class="wrap">
     <div class="cta-box">
-      <img class="mini" src="assets/mascot-small.webp" alt="" width="180" height="120" loading="lazy">
+      <img class="mini" src="assets/mascot-small.webp" alt="" width="110" height="150" loading="lazy">
       <div class="tagchip">FREE CONSULTATION PARTNER</div>
       <h2>พร้อมพาธุรกิจก้าวไปอีกขั้น<br>กับ<span class="hl">พาร์ทเนอร์ที่เข้าใจคุณ</span>หรือยัง?</h2>
       <p>เริ่มต้นง่าย ๆ ด้วยการพูดคุยเป้าหมาย วิเคราะห์ปัญหา และหาทิศทางการทำโฆษณาที่เหมาะกับคุณโดยเฉพาะ</p>
@@ -1512,6 +1512,14 @@ a.phone:hover{transform:translateY(-3px)}
     seg = (qs.get('seg') || sessionStorage.getItem('tjr_seg') || '').toLowerCase();
     if (SEG[seg]) sessionStorage.setItem('tjr_seg', seg); else seg = '';
   } catch (e) {}
+  /* หัวเว็บตามกลุ่ม (2026-10-15): คนจากแอดคลินิกเคยเจอหัวข้อเคส TikTok Shop ซึ่งไม่เกี่ยวกับเขา
+     -> เปลี่ยนป้าย/หัวข้อ/คำโปรยตอนมี ?seg=clinic (ภาพผลงานและ KPI ด้านล่างคงไว้) · กลุ่มอื่นใช้หัวเว็บเดิม */
+  if (seg === 'clinic') {
+    var hPill = document.querySelector('.hero .pill'), hH1 = document.querySelector('.hero h1'), hLead = document.querySelector('.hero .lead');
+    if (hPill) hPill.innerHTML = '<svg class="i"><use href="#i-chart-up"/></svg> สำหรับคลินิก · ทีม TikTok Certified';
+    if (hH1) hH1.innerHTML = 'ยิงแอดคลินิกให้ผ่าน Policy<br>ได้คนไข้ทักแชท<br><span class="red">ไม่เสียเวลาแก้แอดซ้ำ</span>';
+    if (hLead) hLead.textContent = 'มีเจ้าหน้าที่ TikTok Ads ดูแล Policy ใกล้ชิด วางแอดคลินิกให้ถูกกฎตั้งแต่แรก ดูแลทั้ง TikTok และ Facebook — แอดผ่านเร็ว ก็นำคู่แข่งไปหลายก้าว';
+  }
   if (src && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
     var NAMES = [['chatgpt','ChatGPT'], ['openai','ChatGPT'], ['tiktok','TikTok'], ['facebook','Facebook'], ['fb','Facebook'],
                  ['instagram','Instagram'], ['ig','Instagram'], ['google','Google'], ['line','LINE']];
@@ -1525,9 +1533,10 @@ a.phone:hover{transform:translateY(-3px)}
     document.querySelectorAll('a[href*="lin.ee/"]').forEach(function(a){
       var sec = a.closest('section[id]');
       var key = (sec && SVC[sec.id]) ? sec.id : (SVC[land] ? land : '');
+      /* 2026-10-15: สั้นลงให้เหมือนคนพิมพ์เอง — คนกดไป LINE แล้วไม่กดส่งราว 3 ใน 4 · คง "สนใจ…" + "(เห็นจาก …)" ไว้ให้แนทอ่านที่มา */
       var head = key === 'training'
-        ? 'สวัสดีครับ/ค่ะ สนใจคอร์สสอนยิงแอด (เห็นจาก ' + name + ')'
-        : 'สวัสดีครับ/ค่ะ สนใจจ้างทีม' + (key ? SVC[key] : 'ดูแลการตลาดออนไลน์') + (key === 'kol' ? ' ' : '') +
+        ? 'สนใจคอร์สสอนยิงแอดครับ/ค่ะ (เห็นจาก ' + name + ')'
+        : 'สนใจครับ/ค่ะ ขอรายละเอียด' + (key ? SVC[key] : 'ดูแลแอด') + (key === 'kol' ? ' ' : '') +
           'ให้' + (seg ? SEG[seg] : 'ธุรกิจ') + ' (เห็นจาก ' + name + ')';
       a.setAttribute('data-tjr-head', head);
       a.setAttribute('data-tjr-kind', key === 'training' ? 'training' : 'biz');
